@@ -1,6 +1,7 @@
 /**
- * Monaco IDE V9 - Tabs & Buffer Management Module
- * Powered by declarative dom-primitive-bindings.
+ * Monaco IDE Single V3 - Single File Manager
+ * At any point in time, manages exactly ONE active file buffer in Monaco Editor.
+ * Zero multi-tabs, zero tab strip clutter.
  */
 
 import { bindEvents } from '../../core/bindings.js';
@@ -9,10 +10,8 @@ import { state, getActiveTab } from '../../core/state.js';
 import bindings from './bindings.json' with { type: 'json' };
 import actions from './actions.js';
 
-let tabIdCounter = 1;
-
 export function detectLanguage(fileName) {
-    const ext = fileName.split('.').pop()?.toLowerCase();
+    const ext = String(fileName || '').split('.').pop()?.toLowerCase();
     switch (ext) {
         case 'json':
             return 'json';
@@ -40,6 +39,10 @@ export function detectLanguage(fileName) {
             return 'yaml';
         case 'sql':
             return 'sql';
+        case 'py':
+            return 'python';
+        case 'sh':
+            return 'shell';
         default:
             return 'plaintext';
     }
@@ -48,229 +51,137 @@ export function detectLanguage(fileName) {
 export function formatBytes(bytes) {
     if (!bytes || bytes === 0) return '0 B';
     if (bytes < 1024) return `${bytes} B`;
-    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+    const kb = bytes / 1024;
+    if (kb < 1024) return `${kb.toFixed(1)} KB`;
+    const mb = kb / 1024;
+    return `${mb.toFixed(1)} MB`;
 }
 
 export function getFileIconClass(fileName) {
-    const lang = detectLanguage(fileName);
-    switch (lang) {
+    const ext = String(fileName || '').split('.').pop()?.toLowerCase();
+    switch (ext) {
         case 'json':
             return 'bi bi-filetype-json text-amber-400';
-        case 'javascript':
+        case 'js':
+        case 'mjs':
+        case 'cjs':
             return 'bi bi-filetype-js text-yellow-400';
-        case 'typescript':
-            return 'bi bi-filetype-tsx text-sky-400';
+        case 'ts':
+        case 'tsx':
+            return 'bi bi-filetype-tsx text-blue-400';
         case 'html':
+        case 'htm':
             return 'bi bi-filetype-html text-orange-400';
         case 'css':
-            return 'bi bi-filetype-css text-blue-400';
-        case 'markdown':
+        case 'scss':
+        case 'less':
+            return 'bi bi-filetype-css text-sky-400';
+        case 'md':
             return 'bi bi-filetype-md text-emerald-400';
         case 'xml':
-            return 'bi bi-filetype-xml text-teal-400';
+        case 'svg':
+            return 'bi bi-filetype-xml text-purple-400';
+        case 'sql':
+            return 'bi bi-filetype-sql text-indigo-400';
+        case 'py':
+            return 'bi bi-filetype-py text-emerald-300';
         default:
             return 'bi bi-file-earmark-code text-zinc-400';
     }
 }
 
-function updateHeaderStatus() {
+export function updateHeaderStatus() {
     const tab = getActiveTab();
-    const nameEl = document.getElementById('fileName');
-    const sizeEl = document.getElementById('fileSize');
-    const iconEl = document.getElementById('fileIcon');
-    const dirtyDot = document.getElementById('dirtyDot');
-    const tabCountEl = document.getElementById('tabCount');
-
-    if (tabCountEl) {
-        tabCountEl.textContent = `${state.tabs.length} ${state.tabs.length === 1 ? 'file' : 'files'}`;
-    }
+    const fileNameEl = document.getElementById('fileName');
+    const fileSizeEl = document.getElementById('fileSize');
+    const fileIconEl = document.getElementById('fileIcon');
+    const dirtyDotEl = document.getElementById('dirtyDot');
 
     if (!tab) {
-        if (nameEl) nameEl.textContent = 'No file open';
-        if (sizeEl) sizeEl.textContent = '0 B';
-        if (iconEl) iconEl.className = 'bi bi-file-earmark text-zinc-500';
-        if (dirtyDot) dirtyDot.classList.add('hidden');
-        document.title = 'Monaco IDE V9';
+        if (fileNameEl) fileNameEl.textContent = 'Untitled';
+        if (fileSizeEl) fileSizeEl.textContent = '0 B';
+        if (dirtyDotEl) dirtyDotEl.classList.add('hidden');
+        document.title = 'Monaco IDE Single V3';
         return;
     }
 
-    if (nameEl) nameEl.textContent = tab.name;
-    if (sizeEl) sizeEl.textContent = formatBytes(tab.size);
-    if (iconEl) iconEl.className = getFileIconClass(tab.name);
+    if (fileNameEl) fileNameEl.textContent = tab.name;
+    if (fileSizeEl) fileSizeEl.textContent = formatBytes(tab.size || 0);
 
-    if (dirtyDot) {
-        if (tab.isDirty) {
-            dirtyDot.classList.remove('hidden');
-        } else {
-            dirtyDot.classList.add('hidden');
-        }
+    if (fileIconEl) {
+        fileIconEl.className = `${getFileIconClass(tab.name)} text-xs`;
     }
 
-    const baseTitle = `${tab.name} — Monaco IDE V9`;
+    if (dirtyDotEl) {
+        if (tab.isDirty) dirtyDotEl.classList.remove('hidden');
+        else dirtyDotEl.classList.add('hidden');
+    }
+
+    const baseTitle = `${tab.name} — Monaco IDE Single V3`;
     document.title = tab.isDirty ? `• ${baseTitle}` : baseTitle;
 }
 
-export function renderTabStrip() {
-    const strip = document.getElementById('tabStrip');
-    if (!strip) return;
-
-    strip.innerHTML = '';
-
-    state.tabs.forEach(tab => {
-        const isActive = tab.id === state.activeTabId;
-        const tabEl = document.createElement('div');
-        tabEl.dataset.tabId = tab.id;
-        tabEl.className = `tab-item h-full px-3 flex items-center gap-2 border-r border-zinc-800 text-xs cursor-pointer transition select-none ${isActive ? 'tab-active' : 'tab-inactive'}`;
-        tabEl.title = tab.path || tab.name;
-
-        // Icon
-        const icon = document.createElement('i');
-        icon.className = getFileIconClass(tab.name);
-        tabEl.appendChild(icon);
-
-        // Name
-        const nameSpan = document.createElement('span');
-        nameSpan.className = 'truncate max-w-[140px] font-mono font-medium';
-        nameSpan.textContent = tab.name;
-        tabEl.appendChild(nameSpan);
-
-        // Dirty Dot
-        const dirtySpan = document.createElement('span');
-        dirtySpan.className = `w-1.5 h-1.5 rounded-full bg-amber-400 ${tab.isDirty ? 'inline-block' : 'hidden'}`;
-        dirtySpan.title = 'Unsaved changes';
-        tabEl.appendChild(dirtySpan);
-
-        // Close button (declarative selector: .tab-close-btn)
-        const closeBtn = document.createElement('button');
-        closeBtn.type = 'button';
-        closeBtn.className = 'tab-close-btn ml-1 text-zinc-500 hover:text-zinc-200 hover:bg-zinc-700/60 rounded p-0.5 transition flex items-center justify-center';
-        closeBtn.title = 'Close (Ctrl+W)';
-        closeBtn.innerHTML = '<i class="bi bi-x text-sm leading-none"></i>';
-        tabEl.appendChild(closeBtn);
-
-        strip.appendChild(tabEl);
-    });
-
-    updateHeaderStatus();
+export function showSavedFeedback() {
+    const saveStatusEl = document.getElementById('saveStatus');
+    if (!saveStatusEl) return;
+    saveStatusEl.classList.remove('hidden');
+    setTimeout(() => {
+        saveStatusEl.classList.add('hidden');
+    }, 1800);
 }
 
-export function switchTab(tabId) {
-    const tab = state.tabs.find(t => t.id === tabId);
-    if (!tab) return;
+/**
+ * Loads a single file into the editor, cleanly replacing any previous file.
+ */
+export function loadFile({ name, content = '', language = null, handle = null, path = '', size = 0 }) {
+    if (!state.editor || !state.monaco) return null;
 
-    state.activeTabId = tab.id;
-    if (state.editor && tab.model) {
-        state.editor.setModel(tab.model);
+    // Dispose old model if exists
+    const currentTab = getActiveTab();
+    if (currentTab && currentTab.model) {
+        currentTab.model.dispose();
     }
-
-    renderTabStrip();
-    eventBus.emit('tab:activated', tab);
-}
-
-export function createTab({ name, content = '', handle = null, path = '', language = null, size = 0 }) {
-    if (!state.monaco) return null;
 
     const lang = language || detectLanguage(name);
     const model = state.monaco.editor.createModel(content, lang);
 
-    const newTab = {
-        id: `tab-${tabIdCounter++}`,
-        name,
-        path: path || name,
+    const singleTab = {
+        id: 1,
+        name: name || 'Untitled',
+        path: path || name || 'Untitled',
         handle,
         model,
-        lastSavedContent: content,
+        size: size || new Blob([content]).size,
         isDirty: false,
-        size: size || new Blob([content]).size
+        lastSavedContent: content
     };
 
+    // Keep single file in state
+    state.tabs = [singleTab];
+    state.activeTabId = 1;
+
+    state.editor.setModel(model);
+
+    // Watch for edits to toggle dirty indicator
     model.onDidChangeContent(() => {
-        const currentContent = model.getValue();
-        const dirty = currentContent !== newTab.lastSavedContent;
-        if (newTab.isDirty !== dirty) {
-            newTab.isDirty = dirty;
-            renderTabStrip();
-            eventBus.emit('tab:dirty', newTab);
-        }
-        eventBus.emit('model:contentChanged', newTab);
+        const text = model.getValue();
+        singleTab.isDirty = text !== singleTab.lastSavedContent;
+        singleTab.size = new Blob([text]).size;
+        updateHeaderStatus();
+        eventBus.emit('model:contentChanged', singleTab);
     });
 
-    state.tabs.push(newTab);
-    switchTab(newTab.id);
-    return newTab;
+    updateHeaderStatus();
+    eventBus.emit('file:loaded', singleTab);
+    return singleTab;
 }
 
-export function openOrSwitchTab(fileData) {
-    const { name, handle, path } = fileData;
-    const existing = state.tabs.find(t =>
-        (handle && t.handle && t.handle.name === handle.name) ||
-        (path && t.path === path) ||
-        (!handle && !path && t.name === name)
-    );
+// Alias for initial bootstrapper compatibility
+export const createTab = loadFile;
 
-    if (existing) {
-        switchTab(existing.id);
-        return existing;
-    }
-
-    return createTab(fileData);
-}
-
-export function closeTab(tabId) {
-    const tabIndex = state.tabs.findIndex(t => t.id === tabId);
-    if (tabIndex === -1) return;
-
-    const tab = state.tabs[tabIndex];
-
-    if (tab.isDirty) {
-        const discard = confirm(`"${tab.name}" has unsaved changes.\nAre you sure you want to discard your changes and close?`);
-        if (!discard) return;
-    }
-
-    if (tab.model) {
-        tab.model.dispose();
-    }
-
-    state.tabs.splice(tabIndex, 1);
-    eventBus.emit('tab:closed', tab);
-
-    if (state.activeTabId === tabId) {
-        if (state.tabs.length > 0) {
-            const nextTab = state.tabs[Math.min(tabIndex, state.tabs.length - 1)];
-            switchTab(nextTab.id);
-        } else {
-            createTab({
-                name: 'untitled.json',
-                content: '{\n  \n}\n',
-                language: 'json'
-            });
-        }
-    } else {
-        renderTabStrip();
-    }
-}
-
-function showSavedFeedback() {
-    const statusEl = document.getElementById('saveStatus');
-    if (!statusEl) return;
-    statusEl.classList.remove('hidden');
-    statusEl.textContent = 'Saved ✓';
-    setTimeout(() => statusEl.classList.add('hidden'), 2000);
-}
-
-function downloadAsBlob(content, fileName) {
-    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = fileName || 'document.json';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-}
-
+/**
+ * Save active file directly to disk via File System Access API
+ */
 export async function saveActiveFile() {
     const tab = getActiveTab();
     if (!tab || !tab.model) return;
@@ -278,7 +189,7 @@ export async function saveActiveFile() {
     const content = tab.model.getValue();
 
     try {
-        if (tab.handle) {
+        if (tab.handle && tab.handle.createWritable) {
             const writable = await tab.handle.createWritable();
             await writable.write(content);
             await writable.close();
@@ -288,7 +199,7 @@ export async function saveActiveFile() {
             tab.size = new Blob([content]).size;
 
             showSavedFeedback();
-            renderTabStrip();
+            updateHeaderStatus();
             eventBus.emit('file:saved', tab);
             return;
         }
@@ -309,22 +220,30 @@ export async function saveActiveFile() {
                 tab.size = new Blob([content]).size;
 
                 showSavedFeedback();
-                renderTabStrip();
+                updateHeaderStatus();
                 eventBus.emit('file:saved', tab);
                 return;
             } catch (err) {
                 if (err.name === 'AbortError') return;
-                console.warn('showSaveFilePicker failed, fallback to download:', err);
+                console.warn('showSaveFilePicker fallback:', err);
             }
         }
 
-        downloadAsBlob(content, tab.name);
+        // Fallback: browser download
+        const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = tab.name || 'document.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
         tab.lastSavedContent = content;
         tab.isDirty = false;
-        tab.size = new Blob([content]).size;
-
         showSavedFeedback();
-        renderTabStrip();
+        updateHeaderStatus();
         eventBus.emit('file:saved', tab);
     } catch (err) {
         console.error('Failed to save file:', err);
@@ -332,11 +251,14 @@ export async function saveActiveFile() {
     }
 }
 
+/**
+ * Open single file from disk
+ */
 export async function openFiles() {
     if (window.showOpenFilePicker) {
         try {
-            const handles = await window.showOpenFilePicker({
-                multiple: true,
+            const [handle] = await window.showOpenFilePicker({
+                multiple: false,
                 types: [
                     {
                         description: 'Supported Code & Text Files',
@@ -353,86 +275,77 @@ export async function openFiles() {
                 ]
             });
 
-            if (!handles || handles.length === 0) return;
+            if (!handle) return;
+            const file = await handle.getFile();
+            const text = await file.text();
 
-            for (const handle of handles) {
-                const file = await handle.getFile();
-                const text = await file.text();
-                openOrSwitchTab({
-                    name: file.name,
-                    content: text,
-                    handle,
-                    path: file.name,
-                    size: file.size
-                });
-            }
+            loadFile({
+                name: file.name,
+                content: text,
+                handle,
+                path: file.name,
+                size: file.size
+            });
             return;
         } catch (err) {
             if (err.name === 'AbortError') return;
-            console.warn('showOpenFilePicker failed, fallback to input:', err);
+            console.warn('showOpenFilePicker failed, falling back to input:', err);
         }
     }
 
+    // Fallback: trigger file input
     const input = document.getElementById('fileInput');
     if (input) input.click();
 }
 
-export function formatActiveDocument() {
-    if (!state.editor) return;
-    const action = state.editor.getAction('editor.action.formatDocument');
-    if (action) action.run();
+export function handleFileInput(event) {
+    const input = event.target;
+    if (!input || !input.files || input.files.length === 0) return;
+
+    const file = input.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+        loadFile({
+            name: file.name,
+            content: reader.result,
+            path: file.name,
+            size: file.size
+        });
+        input.value = '';
+    };
+    reader.readAsText(file);
 }
 
 export function initTabs() {
-    const tabStripContainer = document.getElementById('tabStripContainer') || document.querySelector('nav');
-    if (tabStripContainer) {
-        bindEvents(tabStripContainer, bindings, actions);
+    const container = document.body;
+    if (container) {
+        bindEvents(container, bindings, actions);
     }
 
-    // Bind hidden file input
-    const fileInput = document.getElementById('fileInput');
-    if (fileInput) {
-        bindEvents(document.body, [
-            { event: 'change', selector: '#fileInput', action: 'handleFileInput' }
-        ], actions);
-    }
-
-    // Subscribe to events from Header, Explorer, QuickOpen
-    eventBus.on('ui:saveActiveFile', saveActiveFile);
+    // Subscribe to events
     eventBus.on('ui:openFiles', openFiles);
-    eventBus.on('ui:formatActiveDocument', formatActiveDocument);
-    eventBus.on('file:open', (fileData) => openOrSwitchTab(fileData));
+    eventBus.on('ui:saveFile', saveActiveFile);
 
-    // Keyboard shortcuts
-    if (state.editor && state.monaco) {
-        state.editor.addCommand(state.monaco.KeyMod.CtrlCmd | state.monaco.KeyCode.KeyS, saveActiveFile);
-        state.editor.addCommand(state.monaco.KeyMod.CtrlCmd | state.monaco.KeyCode.KeyO, openFiles);
-        state.editor.addCommand(state.monaco.KeyMod.CtrlCmd | state.monaco.KeyCode.KeyW, () => {
-            if (state.activeTabId) closeTab(state.activeTabId);
-        });
-    }
-
+    // Save shortcut (Ctrl+S)
     window.addEventListener('keydown', (e) => {
         if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
             e.preventDefault();
             saveActiveFile();
-        } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'o') {
-            e.preventDefault();
-            openFiles();
-        } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'w') {
-            e.preventDefault();
-            if (state.activeTabId) closeTab(state.activeTabId);
         }
     });
 
-    window.addEventListener('beforeunload', (e) => {
-        const hasDirty = state.tabs.some(t => t.isDirty);
-        if (hasDirty) {
+    // Open shortcut (Ctrl+O)
+    window.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'o') {
             e.preventDefault();
-            e.returnValue = '';
+            openFiles();
         }
     });
+
+    if (state.editor && state.monaco) {
+        state.editor.addCommand(state.monaco.KeyMod.CtrlCmd | state.monaco.KeyCode.KeyS, saveActiveFile);
+        state.editor.addCommand(state.monaco.KeyMod.CtrlCmd | state.monaco.KeyCode.KeyO, openFiles);
+    }
 }
 
 export default initTabs;
-

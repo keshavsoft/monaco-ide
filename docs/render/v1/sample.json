@@ -1,0 +1,25 @@
+{
+  "project": "Monaco IDE Single V3",
+  "version": "3.0.0",
+  "description": "Pure single-file Monaco Editor with zero multi-tab clutter",
+  "author": "KeshavSoft",
+  "features": [
+    "Powered by KeshavSoft dom-primitive-bindings (v5): modular bindings.json + actions.js per domain folder",
+    "Zero imperative addEventListener spaghetti: all UI interactions hooked declaratively",
+    "Full Preview serves the selected workspace files from the browser to the preview tab",
+    "1-Click Standalone Pop-out Preview with live updates from the editor",
+    "Workspace Folder Explorer (Open Folder via showDirectoryPicker with recursive tree)",
+    "Quick Open File Switcher Palette (Ctrl+P) with fuzzy workspace search",
+    "Multi-document tabbed buffer strip with isolated Monaco text models",
+    "Compact 22px Studio Status Bar (Ln/Col, UTF-8, Spaces, Language, Alt+Z Word Wrap)",
+    "Native File System Access API (Direct disk persistence via Ctrl+S)"
+  ],
+  "declarativeModules": {
+    "header": "modules/header/bindings.json + actions.js",
+    "explorer": "modules/explorer/bindings.json + actions.js",
+    "tabs": "modules/tabs/bindings.json + actions.js",
+    "preview": "modules/preview/bindings.json + actions.js",
+    "statusBar": "modules/statusBar/bindings.json + actions.js",
+    "quickOpen": "modules/quickOpen/bindings.json + actions.js"
+  }
+}

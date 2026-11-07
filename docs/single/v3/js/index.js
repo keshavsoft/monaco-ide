@@ -1,6 +1,6 @@
 /**
- * Monaco IDE Single V2 - Application Bootstrapper
- * Streamlined single-file editor without left file explorer.
+ * Monaco IDE Single V3 - Application Bootstrapper
+ * Dedicated single-file editor (no multi-tabs, no explorer).
  */
 
 import { state } from './core/state.js';

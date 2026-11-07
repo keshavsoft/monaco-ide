@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>sample.json — Monaco IDE Single V2</title>
+    <title>sample.json — Monaco IDE Single V3</title>
     <!-- Compiled Standalone Tailwind CSS -->
     <link rel="stylesheet" href="./style.css">
     <!-- Bootstrap Icons -->
@@ -25,12 +25,12 @@
                     <i class="bi bi-code-slash text-sky-400 text-base"></i>
                     <span class="text-xs font-bold tracking-wider uppercase text-zinc-300">Monaco IDE</span>
                     <span
-                        class="text-[10px] font-semibold text-sky-400 bg-sky-950/80 border border-sky-800/80 px-1.5 py-0.2 rounded">v2</span>
+                        class="text-[10px] font-semibold text-sky-400 bg-sky-950/80 border border-sky-800/80 px-1.5 py-0.2 rounded">v3</span>
                 </a>
 
                 <div class="h-4 w-[1px] bg-zinc-800 mx-1"></div>
 
-                <!-- Open Files (Ctrl+O) -->
+                <!-- Open File (Ctrl+O) -->
                 <button id="openFileBtn" type="button" title="Open file from disk (Ctrl+O)"
                     class="inline-flex items-center gap-1.5 bg-zinc-800 hover:bg-zinc-700 active:bg-zinc-900 border border-zinc-700/60 text-zinc-200 text-xs font-semibold px-2.5 py-1 rounded-md shadow-sm transition active:scale-95 cursor-pointer">
                     <i class="bi bi-file-earmark-plus text-sky-400"></i>
@@ -48,23 +48,16 @@
                     Saved ✓
                 </span>
 
-                <!-- Total Open Tabs Badge -->
-                <span id="tabCount"
-                    class="text-[10px] text-zinc-400 bg-zinc-800 border border-zinc-700/60 px-2 py-0.5 rounded font-mono">
-                    1 file
-                </span>
-
                 <!-- Active File Info Pill -->
                 <div
                     class="inline-flex items-center gap-2 bg-zinc-800/80 border border-zinc-700/60 rounded-md px-2.5 py-1 text-xs">
                     <i class="bi bi-filetype-json text-amber-400" id="fileIcon"></i>
                     <span class="text-zinc-400 font-medium">Active:</span>
                     <span id="fileName"
-                        class="text-zinc-100 font-semibold font-mono truncate max-w-[120px]">sample.json</span>
+                        class="text-zinc-100 font-semibold font-mono truncate max-w-[160px]">sample.json</span>
                     <span id="dirtyDot" class="hidden w-2 h-2 rounded-full bg-amber-400 animate-pulse"
                         title="Unsaved changes"></span>
-                    <span id="fileSize" class="text-[10px] text-zinc-400 bg-zinc-700/60 px-1.5 py-0.2 rounded">0.4
-                        KB</span>
+                    <span id="fileSize" class="text-[10px] text-zinc-400 bg-zinc-700/60 px-1.5 py-0.2 rounded">0.4 KB</span>
                 </div>
 
                 <div class="h-4 w-[1px] bg-zinc-800 mx-1"></div>
@@ -78,57 +71,41 @@
             </div>
         </header>
 
-        <!-- Main Workspace Body (Tabs + Editor + Live Preview) -->
+        <!-- Main Workspace Body (Editor Canvas + Split Preview) -->
         <div class="flex-1 flex flex-col overflow-hidden">
-            <!-- 34px Multi-Document Tab Strip Container -->
-            <nav id="tabStripContainer"
-                class="h-[34px] bg-zinc-900/90 border-b border-zinc-800 flex items-center justify-between shrink-0">
-                <!-- Scrollable Tabs Area -->
-                <div id="tabStrip" class="flex-1 flex items-center overflow-x-auto no-scrollbar h-full"></div>
+            <!-- Editor Canvas + Live Split Preview Container -->
+            <div class="flex-1 flex overflow-hidden relative">
+                <!-- Monaco Editor Canvas -->
+                <main class="flex-1 h-full bg-[#1e1e1e] overflow-hidden relative">
+                    <div id="jsonEditor" class="w-full h-full"></div>
+                </main>
 
-                <!-- New Tab Action Button -->
-                <button id="newTabBtn" type="button" title="New Untitled Buffer"
-                    class="h-full px-3 text-zinc-400 hover:text-white hover:bg-zinc-800 border-l border-zinc-800 transition flex items-center justify-center cursor-pointer shrink-0">
-                    <i class="bi bi-plus-lg text-sm"></i>
-                </button>
-            </nav>
-
-                <!-- Editor Canvas + Live Split Preview Container -->
-                <div class="flex-1 flex overflow-hidden relative">
-                    <!-- Monaco Editor Canvas -->
-                    <main class="flex-1 h-full bg-[#1e1e1e] overflow-hidden relative">
-                        <div id="jsonEditor" class="w-full h-full"></div>
-                    </main>
-
-                    <!-- Live Split Preview Pane with Popout Button -->
-                    <section id="previewPane"
-                        class="w-1/2 h-full border-l border-zinc-800 bg-zinc-950 flex flex-col hidden overflow-hidden">
-                        <div
-                            class="h-[30px] bg-zinc-900/80 border-b border-zinc-800 px-3 flex items-center justify-between text-xs text-zinc-400 select-none shrink-0">
-                            <div class="flex items-center gap-2">
-                                <i class="bi bi-eye text-sky-400"></i>
-                                <span class="font-semibold text-zinc-200">Live Preview</span>
-                                <span id="previewLangBadge"
-                                    class="text-[10px] bg-zinc-800 border border-zinc-700/60 px-1.5 py-0.2 rounded font-mono text-zinc-300">HTML</span>
-                                <span
-                                    class="text-[9px] text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-1.5 py-0.2 rounded">Virtual
-                                    CSS Active</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <button id="popoutPreviewBtn" type="button" title="Open Preview in Separate Browser Tab"
-                                    class="text-zinc-400 hover:text-sky-300 p-0.5 rounded transition">
-                                    <i class="bi bi-box-arrow-up-right text-xs"></i>
-                                </button>
-                                <button id="closePreviewBtn" type="button" title="Close Preview (Ctrl+\)"
-                                    class="text-zinc-400 hover:text-zinc-100 p-0.5 rounded transition">
-                                    <i class="bi bi-x-lg text-xs"></i>
-                                </button>
-                            </div>
+                <!-- Live Split Preview Pane with Popout Button -->
+                <section id="previewPane"
+                    class="w-1/2 h-full border-l border-zinc-800 bg-zinc-950 flex flex-col hidden overflow-hidden">
+                    <div
+                        class="h-[30px] bg-zinc-900/80 border-b border-zinc-800 px-3 flex items-center justify-between text-xs text-zinc-400 select-none shrink-0">
+                        <div class="flex items-center gap-2">
+                            <i class="bi bi-eye text-sky-400"></i>
+                            <span class="font-semibold text-zinc-200">Live Preview</span>
+                            <span id="previewLangBadge"
+                                class="text-[10px] bg-zinc-800 border border-zinc-700/60 px-1.5 py-0.2 rounded font-mono text-zinc-300">HTML</span>
                         </div>
-                        <div id="previewContainer" class="flex-1 overflow-hidden bg-zinc-950"></div>
-                    </section>
-                </div>
+                        <div class="flex items-center gap-2">
+                            <button id="popoutPreviewBtn" type="button" title="Open Preview in Separate Browser Tab"
+                                class="text-zinc-400 hover:text-sky-300 p-0.5 rounded transition">
+                                <i class="bi bi-box-arrow-up-right text-xs"></i>
+                            </button>
+                            <button id="closePreviewBtn" type="button" title="Close Preview (Ctrl+\)"
+                                class="text-zinc-400 hover:text-zinc-100 p-0.5 rounded transition">
+                                <i class="bi bi-x-lg text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="previewContainer" class="flex-1 overflow-hidden bg-zinc-950"></div>
+                </section>
             </div>
+        </div>
 
         <!-- 22px Compact Studio Status Bar -->
         <footer

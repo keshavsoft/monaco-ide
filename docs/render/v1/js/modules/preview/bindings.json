@@ -1,0 +1,15 @@
+[
+  {
+    "event": "click",
+    "selector": "#closePreviewBtn",
+    "action": "closePreview",
+    "narration": "Close live split-screen preview pane (Ctrl+\\)"
+  },
+  {
+    "event": "click",
+    "selector": "#popoutPreviewBtn",
+    "action": "popoutPreview",
+    "narration": "Open fully resolved preview in a new dedicated browser tab"
+  }
+]
+

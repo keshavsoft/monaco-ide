@@ -1,37 +1,39 @@
-# Monaco IDE Single V2 — Single File Editor (Without Explorer)
+# Monaco IDE Single V3 — Strict Single File Editor (No Multi-Tabs)
 
-Monaco IDE Single V2 is a streamlined, distraction-free code editor designed for working with a single file. The left workspace folder explorer has been removed, dedicating 100% of the screen width to the Monaco code editor.
+Monaco IDE Single V3 is a pure, distraction-free code editor strictly displaying **one file at any point in time**.
 
 ---
 
-### Key Features
+### Highlights in V3
 
-* **No File Explorer**: Clean, full-width canvas without the left sidebar.
-* **Single File Focus**: Open any file from disk via the **File** button (`Ctrl+O`).
-* **Essential Studio Tools**:
-  * Status bar with cursor position (`Ln/Col`), Word Wrap toggle (`Alt+Z`), Minimap toggle, and language indicator.
-  * Inline live split preview (`Ctrl+\`).
-  * Direct file buffer editing.
+* **Zero Multi-Tabs**: The multi-document tab strip (`tabStripContainer`) has been removed.
+* **Always One File**: Opening a file immediately replaces the active editor buffer with the chosen file.
+* **Direct Disk Persistence (`Ctrl+S`)**:
+  * Saves changes directly back to your local file via the native File System Access API (`FileSystemFileHandle.createWritable()`).
+* **Active File Status Pill**:
+  * The compact header displays the exact active file name, file icon, dirty dot indicator, and formatted file size.
+* **Inline Live Preview (`Ctrl+\`)**:
+  * Easily toggle the side-by-side preview pane for HTML, Markdown, and JSON syntax.
 
 ---
 
 ### Architecture & Active Modules
 
 ```
-docs/single/v2/
-├── index.html                  # Full-width single-file editor layout
-├── sample.json                 # Initial buffer
+docs/single/v3/
+├── index.html                  # Full-height single-file canvas layout
+├── sample.json                 # Initial single-file buffer
 ├── style.css                   # IDE styling
 ├── README.md                   # Documentation
 └── js/
-    ├── index.js                # Bootstrapper (no explorer, no quickOpen)
+    ├── index.js                # App bootstrapper
     ├── core/
-    │   ├── bindings.js         # DOM primitive bindings engine
+    │   ├── bindings.js         # Declarative DOM bindings engine
     │   ├── eventBus.js         # Event bus
-    │   └── state.js            # Tabs & active model state
+    │   └── state.js            # Active file model state
     └── modules/
-        ├── header/             # Open file action only
-        ├── tabs/               # Single buffer management
-        ├── preview/            # Split preview (Ctrl+\)
-        └── statusBar/          # Compact status bar
+        ├── header/             # Open file action
+        ├── tabs/               # Single-file loader & direct disk save
+        ├── preview/            # Split preview pane (Ctrl+\)
+        └── statusBar/          # Compact status bar (Ln/Col, Wrap, Language)
 ```
