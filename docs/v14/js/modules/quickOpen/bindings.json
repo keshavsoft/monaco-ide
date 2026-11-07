@@ -1,0 +1,27 @@
+[
+  {
+    "event": "input",
+    "selector": "#quickOpenInput",
+    "action": "handleSearchInput",
+    "narration": "Filter workspace files and open tabs by search query"
+  },
+  {
+    "event": "keydown",
+    "selector": "#quickOpenInput",
+    "action": "handleSearchKeydown",
+    "narration": "Navigate quick open list with arrows or select with Enter"
+  },
+  {
+    "event": "click",
+    "selector": "#quickOpenBackdrop",
+    "action": "closeQuickOpen",
+    "narration": "Dismiss quick open modal when backdrop is clicked"
+  },
+  {
+    "event": "click",
+    "selector": ".quick-open-item",
+    "action": "selectQuickOpenItem",
+    "narration": "Open selected item from quick open results into Monaco editor"
+  }
+]
+

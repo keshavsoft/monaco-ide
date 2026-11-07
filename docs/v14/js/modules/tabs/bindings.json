@@ -1,0 +1,27 @@
+[
+  {
+    "event": "click",
+    "selector": "#newTabBtn",
+    "action": "createNewTab",
+    "narration": "Create and activate new untitled scratch buffer tab"
+  },
+  {
+    "event": "click",
+    "selector": ".tab-item",
+    "action": "switchTab",
+    "narration": "Switch active editor model to clicked tab buffer"
+  },
+  {
+    "event": "click",
+    "selector": ".tab-close-btn",
+    "action": "closeTab",
+    "narration": "Close tab buffer and dispose Monaco text model (Ctrl+W)"
+  },
+  {
+    "event": "change",
+    "selector": "#fileInput",
+    "action": "handleFileInput",
+    "narration": "Process file selection from fallback native file input"
+  }
+]
+

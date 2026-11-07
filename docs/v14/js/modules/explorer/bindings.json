@@ -1,0 +1,21 @@
+[
+  {
+    "event": "click",
+    "selector": "#refreshTreeBtn",
+    "action": "refreshWorkspace",
+    "narration": "Re-index and refresh workspace directory tree"
+  },
+  {
+    "event": "click",
+    "selector": "#sidebarOpenFolderPrompt",
+    "action": "openFolder",
+    "narration": "Open workspace folder dialog from empty state prompt"
+  },
+  {
+    "event": "click",
+    "selector": ".sidebar-file-item",
+    "action": "openTreeFile",
+    "narration": "Open clicked file from explorer tree into Monaco editor tab"
+  }
+]
+

@@ -1,0 +1,57 @@
+[
+  {
+    "event": "click",
+    "selector": "#clearTerminalBtn",
+    "action": "clearTerminal",
+    "narration": "Clear terminal output screen (cls)"
+  },
+  {
+    "event": "click",
+    "selector": "#closeTerminalBtn",
+    "action": "closeTerminal",
+    "narration": "Close/hide the integrated terminal panel"
+  },
+  {
+    "event": "click",
+    "selector": "#maxTerminalBtn",
+    "action": "toggleMaximizeTerminal",
+    "narration": "Maximize or restore the terminal panel height"
+  },
+  {
+    "event": "click",
+    "selector": "#newTerminalBtn",
+    "action": "newTerminal",
+    "narration": "Open a new terminal shell session"
+  },
+  {
+    "event": "change",
+    "selector": "#shellSelect",
+    "action": "switchShell",
+    "narration": "Switch between cmd, powershell, node, and bash"
+  },
+  {
+    "event": "click",
+    "selector": "#terminalTabTerminal",
+    "action": "selectTerminalTab",
+    "narration": "Switch to Terminal panel view"
+  },
+  {
+    "event": "click",
+    "selector": "#terminalTabOutput",
+    "action": "selectOutputTab",
+    "narration": "Switch to Output view"
+  },
+  {
+    "event": "click",
+    "selector": "#terminalTabProblems",
+    "action": "selectProblemsTab",
+    "narration": "Switch to Problems view"
+  },
+  {
+    "event": "click",
+    "selector": "#terminalTabDebug",
+    "action": "selectDebugTab",
+    "narration": "Switch to Debug Console view"
+  }
+]
+

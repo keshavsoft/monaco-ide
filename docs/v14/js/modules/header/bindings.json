@@ -1,0 +1,56 @@
+[
+  {
+    "event": "click",
+    "selector": "#sidebarToggleBtn",
+    "action": "toggleSidebar",
+    "narration": "Toggle left workspace explorer sidebar visibility (Ctrl+B)"
+  },
+  {
+    "event": "click",
+    "selector": "#openFileBtn",
+    "action": "openFiles",
+    "narration": "Open files from local disk via native file dialog (Ctrl+O)"
+  },
+  {
+    "event": "click",
+    "selector": "#openFolderBtn",
+    "action": "openFolder",
+    "narration": "Open workspace project directory via showDirectoryPicker"
+  },
+  {
+    "event": "click",
+    "selector": "#quickOpenTrigger",
+    "action": "openQuickOpen",
+    "narration": "Open quick file switcher palette (Ctrl+P)"
+  },
+  {
+    "event": "click",
+    "selector": "#saveFileBtn",
+    "action": "saveActiveFile",
+    "narration": "Save active editor buffer directly to disk (Ctrl+S)"
+  },
+  {
+    "event": "click",
+    "selector": "#formatBtn",
+    "action": "formatActiveDocument",
+    "narration": "Auto-format document syntax in Monaco (Shift+Alt+F)"
+  },
+  {
+    "event": "click",
+    "selector": "#splitPreviewBtn",
+    "action": "togglePreview",
+    "narration": "Toggle live split-screen preview pane (Ctrl+\\)"
+  },
+  {
+    "event": "click",
+    "selector": "#runCodeBtn",
+    "action": "runCode",
+    "narration": "Run active JavaScript file in Terminal (like VS Code)"
+  },
+  {
+    "event": "click",
+    "selector": "#toggleTerminalBtn",
+    "action": "toggleTerminal",
+    "narration": "Toggle bottom Terminal panel (Ctrl+`)"
+  }
+]
