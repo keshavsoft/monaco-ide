@@ -1,6 +1,6 @@
 /**
- * Monaco IDE Single V3 - Application Bootstrapper
- * Dedicated single-file editor (no multi-tabs, no explorer).
+ * Monaco IDE Render V1 - Application Bootstrapper
+ * Single-file editor controlling Tab 2 JSON-to-DOM Live Renderer.
  */
 
 import { state } from './core/state.js';

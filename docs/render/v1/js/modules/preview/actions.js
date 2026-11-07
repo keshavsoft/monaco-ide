@@ -1,13 +1,3 @@
-import { togglePreview, popoutPreview } from './index.js';
-
-export const actions = {
-    closePreview: () => {
-        togglePreview();
-    },
-    popoutPreview: () => {
-        popoutPreview();
-    }
-};
+export const actions = {};
 
 export default actions;
-

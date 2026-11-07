@@ -1,39 +1,56 @@
-# Monaco IDE Single V3 — Strict Single File Editor (No Multi-Tabs)
+# Monaco IDE Render V1 — Tab 1 to Tab 2 JSON-to-DOM Live Renderer
 
-Monaco IDE Single V3 is a pure, distraction-free code editor strictly displaying **one file at any point in time**.
-
----
-
-### Highlights in V3
-
-* **Zero Multi-Tabs**: The multi-document tab strip (`tabStripContainer`) has been removed.
-* **Always One File**: Opening a file immediately replaces the active editor buffer with the chosen file.
-* **Direct Disk Persistence (`Ctrl+S`)**:
-  * Saves changes directly back to your local file via the native File System Access API (`FileSystemFileHandle.createWritable()`).
-* **Active File Status Pill**:
-  * The compact header displays the exact active file name, file icon, dirty dot indicator, and formatted file size.
-* **Inline Live Preview (`Ctrl+\`)**:
-  * Easily toggle the side-by-side preview pane for HTML, Markdown, and JSON syntax.
+Monaco IDE Render V1 connects the Monaco code editor (Tab 1) directly to a standalone preview tab (Tab 2) via `BroadcastChannel` and `localStorage`, compiling declarative JSON specifications into native DOM elements via `@keshavsoft/json-to-dom` (v42).
 
 ---
 
-### Architecture & Active Modules
+### Core Concept & Workflow
+
+1. **Tab 1: Monaco Editor (`docs/render/v1/index.html`)**:
+   - Single-file editor buffer (defaulting to `sample.json`).
+   - Click the **Render** button (or press `Ctrl+Enter`):
+     - Opens Tab 2 (`render.html`) in a dedicated browser tab.
+     - Persists content to `localStorage` for instant load.
+     - Broadcasts real-time live updates over `BroadcastChannel('keshavsoft-render-v1')`.
+     - Displays `Tab 2 Live` status pill in the header.
+
+2. **Tab 2: Standalone Live Renderer (`docs/render/v1/render.html`)**:
+   - Bundles `@keshavsoft/json-to-dom` v42 (`./js/lib/json-to-dom.min.js`).
+   - Connects to `BroadcastChannel('keshavsoft-render-v1')` and `localStorage`.
+   - On receiving JSON:
+     - Converts declarative JSON into live browser DOM nodes via `jsonToDom({ jsonSpec, targetHtmlId: 'app' })`.
+     - Mounts directly into `#app` with zero Virtual DOM overhead.
+   - On receiving HTML:
+     - Renders native HTML into `#app`.
+   - On syntax errors:
+     - Displays a clear error banner without crashing the preview tab.
+
+3. **Live Sync**:
+   - As you type in Monaco in Tab 1, changes stream automatically to Tab 2 (debounced by 150ms).
+   - Tab 2 re-compiles and mutates the DOM in real-time.
+
+---
+
+### Folder Structure
 
 ```
-docs/single/v3/
-├── index.html                  # Full-height single-file canvas layout
-├── sample.json                 # Initial single-file buffer
-├── style.css                   # IDE styling
-├── README.md                   # Documentation
+docs/render/v1/
+├── index.html                  # Tab 1: Monaco Editor interface
+├── render.html                 # Tab 2: JSON-to-DOM standalone renderer
+├── sample.json                 # Sample declarative JSON specification
+├── style.css                   # Editor styles
+├── README.md                   # Architecture documentation
 └── js/
-    ├── index.js                # App bootstrapper
+    ├── index.js                # Tab 1 bootstrapper
+    ├── lib/
+    │   └── json-to-dom.min.js  # KeshavSoft JSON-to-DOM engine (v42)
     ├── core/
-    │   ├── bindings.js         # Declarative DOM bindings engine
-    │   ├── eventBus.js         # Event bus
-    │   └── state.js            # Active file model state
+    │   ├── bindings.js         # KeshavSoft dom-primitive-bindings
+    │   ├── eventBus.js         # Reactive event bus
+    │   └── state.js            # State store
     └── modules/
-        ├── header/             # Open file action
-        ├── tabs/               # Single-file loader & direct disk save
-        ├── preview/            # Split preview pane (Ctrl+\)
-        └── statusBar/          # Compact status bar (Ln/Col, Wrap, Language)
+        ├── header/             # Header bindings & Render button action
+        ├── tabs/               # Single-file buffer manager & disk save (Ctrl+S)
+        ├── preview/            # Tab 1 -> Tab 2 BroadcastChannel controller
+        └── statusBar/          # Status bar controls
 ```

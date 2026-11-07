@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>sample.json — Monaco IDE Single V3</title>
+    <title>sample.json — Monaco IDE Render V1</title>
     <!-- Compiled Standalone Tailwind CSS -->
     <link rel="stylesheet" href="./style.css">
     <!-- Bootstrap Icons -->
@@ -25,7 +25,7 @@
                     <i class="bi bi-code-slash text-sky-400 text-base"></i>
                     <span class="text-xs font-bold tracking-wider uppercase text-zinc-300">Monaco IDE</span>
                     <span
-                        class="text-[10px] font-semibold text-sky-400 bg-sky-950/80 border border-sky-800/80 px-1.5 py-0.2 rounded">v3</span>
+                        class="text-[10px] font-semibold text-emerald-400 bg-emerald-950/80 border border-emerald-800/80 px-1.5 py-0.2 rounded">render v1</span>
                 </a>
 
                 <div class="h-4 w-[1px] bg-zinc-800 mx-1"></div>
@@ -38,10 +38,25 @@
                 </button>
                 <input type="file" id="fileInput" class="hidden"
                     accept=".json,.js,.mjs,.cjs,.ts,.tsx,.html,.htm,.css,.scss,.txt,.md,.xml,.svg,application/json,text/*">
+
+                <!-- Render in New Tab (Tab 2) -->
+                <button id="renderBtn" type="button" title="Render JSON-to-DOM in New Tab (Ctrl+Enter)"
+                    class="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white text-xs font-semibold px-2.5 py-1 rounded-md shadow-sm transition active:scale-95 cursor-pointer">
+                    <i class="bi bi-play-circle-fill text-white"></i>
+                    <span>Render</span>
+                    <i class="bi bi-box-arrow-up-right text-[10px] text-emerald-200"></i>
+                </button>
             </div>
 
             <!-- Right: Status & Active File Indicator Badge -->
             <div class="flex items-center gap-2">
+                <!-- Tab 2 Live Sync Indicator -->
+                <span id="tab2SyncStatus"
+                    class="hidden text-[10px] font-semibold text-emerald-400 bg-emerald-950/80 border border-emerald-800 px-2 py-0.5 rounded flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Tab 2 Live</span>
+                </span>
+
                 <!-- Save Status Notification -->
                 <span id="saveStatus"
                     class="hidden text-[10px] font-semibold text-emerald-400 bg-emerald-950/80 border border-emerald-800 px-2 py-0.5 rounded">
@@ -71,41 +86,10 @@
             </div>
         </header>
 
-        <!-- Main Workspace Body (Editor Canvas + Split Preview) -->
-        <div class="flex-1 flex flex-col overflow-hidden">
-            <!-- Editor Canvas + Live Split Preview Container -->
-            <div class="flex-1 flex overflow-hidden relative">
-                <!-- Monaco Editor Canvas -->
-                <main class="flex-1 h-full bg-[#1e1e1e] overflow-hidden relative">
-                    <div id="jsonEditor" class="w-full h-full"></div>
-                </main>
-
-                <!-- Live Split Preview Pane with Popout Button -->
-                <section id="previewPane"
-                    class="w-1/2 h-full border-l border-zinc-800 bg-zinc-950 flex flex-col hidden overflow-hidden">
-                    <div
-                        class="h-[30px] bg-zinc-900/80 border-b border-zinc-800 px-3 flex items-center justify-between text-xs text-zinc-400 select-none shrink-0">
-                        <div class="flex items-center gap-2">
-                            <i class="bi bi-eye text-sky-400"></i>
-                            <span class="font-semibold text-zinc-200">Live Preview</span>
-                            <span id="previewLangBadge"
-                                class="text-[10px] bg-zinc-800 border border-zinc-700/60 px-1.5 py-0.2 rounded font-mono text-zinc-300">HTML</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <button id="popoutPreviewBtn" type="button" title="Open Preview in Separate Browser Tab"
-                                class="text-zinc-400 hover:text-sky-300 p-0.5 rounded transition">
-                                <i class="bi bi-box-arrow-up-right text-xs"></i>
-                            </button>
-                            <button id="closePreviewBtn" type="button" title="Close Preview (Ctrl+\)"
-                                class="text-zinc-400 hover:text-zinc-100 p-0.5 rounded transition">
-                                <i class="bi bi-x-lg text-xs"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div id="previewContainer" class="flex-1 overflow-hidden bg-zinc-950"></div>
-                </section>
-            </div>
-        </div>
+        <!-- Main Workspace Body (Full-Width Monaco Editor) -->
+        <main class="flex-1 w-full bg-[#1e1e1e] overflow-hidden relative">
+            <div id="jsonEditor" class="w-full h-full"></div>
+        </main>
 
         <!-- 22px Compact Studio Status Bar -->
         <footer

@@ -4,5 +4,11 @@
     "selector": "#openFileBtn",
     "action": "openFiles",
     "narration": "Open file from local disk via native file dialog (Ctrl+O)"
+  },
+  {
+    "event": "click",
+    "selector": "#renderBtn",
+    "action": "openRenderTab",
+    "narration": "Render JSON-to-DOM in Tab 2 (Ctrl+Enter)"
   }
 ]
