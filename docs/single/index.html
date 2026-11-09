@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monaco IDE Single — Distraction-Free Single File Editors</title>
+  <!-- Compiled Tailwind CSS & Bootstrap Icons -->
+  <link rel="stylesheet" href="./v1/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    /* Custom enhancements for Single hub */
+    .card-hover {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(56, 189, 248, 0.4);
+    }
+    .gradient-border-v3 {
+      position: relative;
+      background: linear-gradient(#18181b, #18181b) padding-box,
+                  linear-gradient(135deg, #10b981, #06b6d4, #6366f1) border-box;
+      border: 2px solid transparent;
+    }
+  </style>
+</head>
+
+<body class="bg-zinc-950 text-zinc-100 antialiased min-h-screen flex flex-col font-sans selection:bg-sky-500/30 selection:text-sky-200">
+
+  <!-- Navbar -->
+  <nav class="border-b border-zinc-800 bg-zinc-900/90 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+      <!-- Brand & Breadcrumbs -->
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="../index.html" class="flex items-center gap-2 text-zinc-400 hover:text-zinc-200 transition">
+          <i class="bi bi-code-slash text-sky-400 text-xl"></i>
+          <span class="font-bold text-sm tracking-wider uppercase text-zinc-200">Monaco IDE</span>
+        </a>
+        <span class="text-zinc-600">/</span>
+        <span class="font-bold text-sm text-sky-400 flex items-center gap-1.5">
+          <i class="bi bi-file-earmark-code"></i>
+          <span>Single</span>
+        </span>
+        <span class="text-[10px] font-semibold text-emerald-400 bg-emerald-950/80 border border-emerald-800/80 px-2 py-0.5 rounded-full ml-1">
+          Distraction-Free
+        </span>
+      </div>
+
+      <!-- Quick Version Jump -->
+      <div class="flex items-center gap-2 text-xs font-mono">
+        <a href="./v1/index.html" class="text-zinc-400 hover:text-zinc-200 px-2.5 py-1 rounded hover:bg-zinc-800 transition" title="V1: Compact Studio with Explorer">v1</a>
+        <a href="./v2/index.html" class="text-zinc-400 hover:text-zinc-200 px-2.5 py-1 rounded hover:bg-zinc-800 transition" title="V2: Full Width without Explorer">v2</a>
+        <a href="./v3/index.html" class="text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-2.5 py-1 rounded font-bold hover:bg-emerald-900/60 transition" title="V3: Strict Single File Canvas">v3 Flagship</a>
+        <a href="../index.html" class="text-zinc-400 hover:text-zinc-200 border border-zinc-700/80 px-2.5 py-1 rounded hover:bg-zinc-800 transition flex items-center gap-1 ml-2">
+          <i class="bi bi-arrow-left"></i>
+          <span class="hidden sm:inline">All 13 Versions</span>
+        </a>
+        <a href="https://github.com/keshavsoft/monaco-ide" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-zinc-100 p-1.5 transition ml-1" title="GitHub Repository">
+          <i class="bi bi-github text-base"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <main class="flex-1 max-w-5xl mx-auto px-4 sm:px-6 py-12 flex flex-col items-center text-center">
+
+    <!-- Status Pill -->
+    <div class="inline-flex items-center gap-2 bg-zinc-900 border border-emerald-800/60 text-emerald-400 px-3.5 py-1 rounded-full text-xs font-medium mb-6 shadow-sm">
+      <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span>Monaco IDE Single • Dedicated Distraction-Free Code & Spec Workspaces</span>
+    </div>
+
+    <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white max-w-3xl leading-tight mb-5">
+      Pure Focus. Single File.<br />
+      <span class="bg-gradient-to-r from-emerald-400 via-sky-400 to-indigo-400 bg-clip-text text-transparent">Zero Distraction.</span>
+    </h1>
+
+    <p class="text-base sm:text-lg text-zinc-400 max-w-3xl mb-8 leading-relaxed">
+      Sometimes you don't need a heavy multi-project workspace, background service workers, or sprawling directory trees. You just want to open an individual file or JSON spec, inspect its syntax with Monaco precision, live-preview changes side-by-side, and save directly to your physical disk via native File System Access.
+    </p>
+
+    <!-- Hero CTA Buttons -->
+    <div class="flex flex-wrap items-center justify-center gap-3.5 mb-14">
+      <a href="./v3/index.html"
+        class="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-semibold text-sm px-6 py-3 rounded-lg shadow-lg shadow-emerald-950/60 transition transform hover:-translate-y-0.5 active:translate-y-0">
+        <i class="bi bi-play-circle-fill text-lg"></i>
+        <span>Launch V3 Strict Single File</span>
+      </a>
+      <a href="./v2/index.html"
+        class="inline-flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-700/80 font-semibold text-sm px-5 py-3 rounded-lg transition">
+        <i class="bi bi-aspect-ratio"></i>
+        <span>Open V2 Full-Width Canvas</span>
+      </a>
+      <a href="./v1/index.html"
+        class="inline-flex items-center gap-2 bg-zinc-900/60 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 border border-zinc-800 font-semibold text-sm px-4 py-3 rounded-lg transition">
+        <i class="bi bi-layout-sidebar"></i>
+        <span>Open V1 with Explorer</span>
+      </a>
+      <a href="../index.html"
+        class="inline-flex items-center gap-2 bg-zinc-900/40 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 border border-zinc-800/80 font-semibold text-sm px-4 py-3 rounded-lg transition">
+        <i class="bi bi-arrow-left-circle"></i>
+        <span>Full Monaco IDE Studio</span>
+      </a>
+    </div>
+
+    <!-- The Story Section -->
+    <section class="w-full text-left bg-zinc-900/60 border border-zinc-800 rounded-xl p-6 sm:p-8 mb-12 shadow-md">
+      <div class="flex items-center gap-2 text-sky-400 font-semibold text-xs tracking-wider uppercase mb-2">
+        <i class="bi bi-book-half"></i>
+        <span>The Evolution Story</span>
+      </div>
+      <h2 class="text-2xl font-bold text-white mb-4">Why We Built the "Single" Edition</h2>
+      
+      <div class="space-y-4 text-zinc-300 text-sm leading-relaxed">
+        <p>
+          While the full <strong>Monaco IDE</strong> grew into a comprehensive web-based development environment—complete with in-browser Service Worker HTTP virtual servers, virtual asset resolving, and multi-tab workspace sessions—many everyday workflows simply demanded a <em>featherlight, focused editor</em>.
+        </p>
+        <p>
+          When you want to tweak a configuration, craft a declarative JSON table specification, test a single HTML snippet, or edit a markdown doc, managing folder permissions and navigating deep folder structures is friction. The <strong>Single</strong> edition was created to solve this through progressive simplification:
+        </p>
+
+        <!-- Progressive Steps Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-3">
+          <div class="bg-zinc-950/70 border border-zinc-800/80 rounded-lg p-4">
+            <div class="flex items-center gap-2 text-sky-400 font-mono text-xs font-bold mb-2">
+              <span class="w-5 h-5 rounded-full bg-sky-950 border border-sky-800 flex items-center justify-center text-[10px]">1</span>
+              <span>V1: The Focused Core</span>
+            </div>
+            <p class="text-xs text-zinc-400 leading-normal">
+              Stripped out the virtual server and background service workers while keeping the explorer sidebar, quick open palette (<code class="text-zinc-300">Ctrl+P</code>), and split preview.
+            </p>
+          </div>
+
+          <div class="bg-zinc-950/70 border border-zinc-800/80 rounded-lg p-4">
+            <div class="flex items-center gap-2 text-amber-400 font-mono text-xs font-bold mb-2">
+              <span class="w-5 h-5 rounded-full bg-amber-950 border border-amber-800 flex items-center justify-center text-[10px]">2</span>
+              <span>V2: No Explorer</span>
+            </div>
+            <p class="text-xs text-zinc-400 leading-normal">
+              Eliminated the left workspace directory tree altogether. 100% of viewport width is dedicated to the Monaco Editor with direct file open (<code class="text-zinc-300">Ctrl+O</code>).
+            </p>
+          </div>
+
+          <div class="bg-zinc-950/70 border border-emerald-800/60 rounded-lg p-4 bg-emerald-950/10">
+            <div class="flex items-center gap-2 text-emerald-400 font-mono text-xs font-bold mb-2">
+              <span class="w-5 h-5 rounded-full bg-emerald-950 border border-emerald-800 flex items-center justify-center text-[10px]">3</span>
+              <span>V3: Strict Single File</span>
+            </div>
+            <p class="text-xs text-zinc-400 leading-normal">
+              Removed the multi-tab strip. Exactly one file in memory. Native disk persistence via <code class="text-emerald-300">Ctrl+S</code>, active file status indicator, and instant split preview.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Version Showcase Cards -->
+    <section class="w-full text-left mb-14">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <div class="flex items-center gap-2 text-emerald-400 font-semibold text-xs tracking-wider uppercase mb-1">
+            <i class="bi bi-collection-play"></i>
+            <span>Interactive Workspaces</span>
+          </div>
+          <h2 class="text-2xl font-bold text-white">Choose Your Workspace</h2>
+        </div>
+        <span class="text-xs text-zinc-500 font-mono">3 Editions Available</span>
+      </div>
+
+      <div class="space-y-5">
+
+        <!-- Card V3 (Flagship) -->
+        <div class="gradient-border-v3 rounded-xl p-6 sm:p-7 card-hover">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+            <div class="flex items-center gap-3">
+              <span class="text-sm font-bold font-mono text-emerald-400 bg-emerald-950 border border-emerald-800 px-3 py-1 rounded-md">
+                v3
+              </span>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-lg font-bold text-white">Strict Single File Canvas</h3>
+                  <span class="text-[10px] font-bold text-emerald-300 bg-emerald-950/80 border border-emerald-700/80 px-2 py-0.5 rounded-full uppercase tracking-wide">
+                    Flagship • Recommended
+                  </span>
+                </div>
+                <p class="text-xs text-zinc-400 mt-0.5">Strict single-file lifecycle • No tab confusion • Direct disk save (<code class="text-emerald-300 font-mono">Ctrl+S</code>)</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 shrink-0">
+              <a href="./v3/index.html"
+                class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-semibold text-xs px-4 py-2 rounded-lg shadow transition">
+                <i class="bi bi-play-fill text-base"></i>
+                <span>Launch V3</span>
+              </a>
+              <a href="./v3/README.md" target="_blank"
+                class="inline-flex items-center gap-1.5 text-zinc-400 hover:text-zinc-200 border border-zinc-700 px-3 py-2 rounded-lg text-xs hover:bg-zinc-800 transition">
+                <i class="bi bi-file-earmark-text"></i>
+                <span>Docs</span>
+              </a>
+            </div>
+          </div>
+
+          <p class="text-sm text-zinc-300 mb-4 leading-relaxed">
+            The purest distraction-free Monaco environment. Multi-tab management is completely eliminated; opening a file replaces the active editor buffer immediately. Edits are saved directly back to the physical file on disk using the browser's native File System Access API (<code class="text-zinc-200 font-mono">FileSystemFileHandle.createWritable()</code>).
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 pt-2 border-t border-zinc-800/80 text-xs">
+            <div class="flex items-center gap-2 text-zinc-300">
+              <i class="bi bi-hdd-network text-emerald-400"></i>
+              <span>Native Disk Save (<code class="font-mono text-zinc-400">Ctrl+S</code>)</span>
+            </div>
+            <div class="flex items-center gap-2 text-zinc-300">
+              <i class="bi bi-badge-ad text-sky-400"></i>
+              <span>Active File Status Pill</span>
+            </div>
+            <div class="flex items-center gap-2 text-zinc-300">
+              <i class="bi bi-columns-gap text-indigo-400"></i>
+              <span>Live Split Preview (<code class="font-mono text-zinc-400">Ctrl+\</code>)</span>
+            </div>
+            <div class="flex items-center gap-2 text-zinc-300">
+              <i class="bi bi-speedometer2 text-amber-400"></i>
+              <span>Instant Zero-State Boot</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card V2 -->
+        <div class="bg-zinc-900/60 border border-zinc-800 rounded-xl p-6 sm:p-7 card-hover">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+            <div class="flex items-center gap-3">
+              <span class="text-sm font-bold font-mono text-amber-400 bg-amber-950 border border-amber-800 px-3 py-1 rounded-md">
+                v2
+              </span>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-lg font-bold text-white">Distraction-Free Editor (Without Explorer)</h3>
+                  <span class="text-[10px] font-semibold text-zinc-400 bg-zinc-800 border border-zinc-700 px-2 py-0.5 rounded-full">
+                    Full-Width Canvas
+                  </span>
+                </div>
+                <p class="text-xs text-zinc-400 mt-0.5">100% viewport width for Monaco • Multi-document tab strip • Live preview</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 shrink-0">
+              <a href="./v2/index.html"
+                class="inline-flex items-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-zinc-100 font-semibold text-xs px-4 py-2 rounded-lg border border-zinc-700 transition">
+                <i class="bi bi-play-fill text-base"></i>
+                <span>Launch V2</span>
+              </a>
+              <a href="./v2/README.md" target="_blank"
+                class="inline-flex items-center gap-1.5 text-zinc-400 hover:text-zinc-200 border border-zinc-700/80 px-3 py-2 rounded-lg text-xs hover:bg-zinc-800 transition">
+                <i class="bi bi-file-earmark-text"></i>
+                <span>Docs</span>
+              </a>
+            </div>
+          </div>
+
+          <p class="text-sm text-zinc-300 mb-4 leading-relaxed">
+            Designed for programmers who want full horizontal screen space. The left explorer tree is omitted entirely, giving the editor unobstructed canvas width. Multi-document buffers can be loaded from disk via <code class="text-zinc-200 font-mono">Ctrl+O</code> and switched via the compact tab strip.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 pt-2 border-t border-zinc-800/80 text-xs">
+            <div class="flex items-center gap-2 text-zinc-300">
+              <i class="bi bi-arrows-fullscreen text-amber-400"></i>
+              <span>100% Screen Real Estate</span>
+            </div>
+            <div class="flex items-center gap-2 text-zinc-300">
+              <i class="bi bi-folder2-open text-sky-400"></i>
+              <span>File Picker Open (<code class="font-mono text-zinc-400">Ctrl+O</code>)</span>
+            </div>
+            <div class="flex items-center gap-2 text-zinc-300">
+              <i class="bi bi-segmented-nav text-indigo-400"></i>
+              <span>Multi-Document Tabs</span>
+            </div>
+            <div class="flex items-center gap-2 text-zinc-300">
+              <i class="bi bi-window-split text-emerald-400"></i>
+              <span>Split Preview Pane</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card V1 -->
+        <div class="bg-zinc-900/40 border border-zinc-800/80 rounded-xl p-6 sm:p-7 card-hover">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+            <div class="flex items-center gap-3">
+              <span class="text-sm font-bold font-mono text-zinc-400 bg-zinc-800 border border-zinc-700 px-3 py-1 rounded-md">
+                v1
+              </span>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-lg font-bold text-white">Compact Studio Shell</h3>
+                  <span class="text-[10px] font-semibold text-zinc-500 bg-zinc-800/60 border border-zinc-700/60 px-2 py-0.5 rounded-full">
+                    Baseline Architecture
+                  </span>
+                </div>
+                <p class="text-xs text-zinc-400 mt-0.5">Streamlined studio layout • Workspace tree explorer • Quick Open (<code class="text-zinc-300 font-mono">Ctrl+P</code>)</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 shrink-0">
+              <a href="./v1/index.html"
+                class="inline-flex items-center gap-2 bg-zinc-800/80 hover:bg-zinc-700 text-zinc-200 font-semibold text-xs px-4 py-2 rounded-lg border border-zinc-700 transition">
+                <i class="bi bi-play-fill text-base"></i>
+                <span>Launch V1</span>
+              </a>
+              <a href="./v1/README.md" target="_blank"
+                class="inline-flex items-center gap-1.5 text-zinc-400 hover:text-zinc-200 border border-zinc-700/80 px-3 py-2 rounded-lg text-xs hover:bg-zinc-800 transition">
+                <i class="bi bi-file-earmark-text"></i>
+                <span>Docs</span>
+              </a>
+            </div>
+          </div>
+
+          <p class="text-sm text-zinc-300 mb-4 leading-relaxed">
+            The initial focused build of Monaco IDE Single. Retains the familiar VS Code-like workspace tree in a collapsible 240px sidebar, multi-tab buffer strip, and fuzzy Quick Open palette (<code class="text-zinc-200 font-mono">Ctrl+P</code>), without any service worker overhead.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 pt-2 border-t border-zinc-800/80 text-xs">
+            <div class="flex items-center gap-2 text-zinc-300">
+              <i class="bi bi-folder-symlink text-sky-400"></i>
+              <span>Workspace Directory Tree</span>
+            </div>
+            <div class="flex items-center gap-2 text-zinc-300">
+              <i class="bi bi-search text-amber-400"></i>
+              <span>Quick Open (<code class="font-mono text-zinc-400">Ctrl+P</code>)</span>
+            </div>
+            <div class="flex items-center gap-2 text-zinc-300">
+              <i class="bi bi-layout-sidebar-inset text-indigo-400"></i>
+              <span>Toggle Sidebar (<code class="font-mono text-zinc-400">Ctrl+B</code>)</span>
+            </div>
+            <div class="flex items-center gap-2 text-zinc-300">
+              <i class="bi bi-filetype-json text-emerald-400"></i>
+              <span>sample.json Initial Model</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Comparison Matrix -->
+    <section class="w-full text-left bg-zinc-900/50 border border-zinc-800 rounded-xl p-6 sm:p-8 mb-12 shadow-sm">
+      <div class="flex items-center gap-2 text-sky-400 font-semibold text-xs tracking-wider uppercase mb-2">
+        <i class="bi bi-table"></i>
+        <span>Side-by-Side Comparison</span>
+      </div>
+      <h2 class="text-2xl font-bold text-white mb-6">Which Version Should You Use?</h2>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="border-b border-zinc-800 text-zinc-400 font-mono">
+              <th class="py-3 px-3">Feature</th>
+              <th class="py-3 px-3">V1 Shell</th>
+              <th class="py-3 px-3">V2 Canvas</th>
+              <th class="py-3 px-3 text-emerald-400">V3 Strict (Recommended)</th>
+              <th class="py-3 px-3 text-zinc-500">Full IDE (V13)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-zinc-800/60 text-zinc-300 font-sans">
+            <tr>
+              <td class="py-3 px-3 font-semibold text-white">Left Folder Explorer</td>
+              <td class="py-3 px-3 text-sky-400"><i class="bi bi-check-circle-fill"></i> Yes (<code class="font-mono">Ctrl+B</code>)</td>
+              <td class="py-3 px-3 text-zinc-500"><i class="bi bi-x-circle"></i> None</td>
+              <td class="py-3 px-3 text-zinc-500"><i class="bi bi-x-circle"></i> None</td>
+              <td class="py-3 px-3 text-sky-400"><i class="bi bi-check-circle-fill"></i> Full Tree</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-3 font-semibold text-white">Multi-Document Tabs</td>
+              <td class="py-3 px-3 text-sky-400"><i class="bi bi-check-circle-fill"></i> Yes</td>
+              <td class="py-3 px-3 text-sky-400"><i class="bi bi-check-circle-fill"></i> Yes</td>
+              <td class="py-3 px-3 text-emerald-400 font-semibold"><i class="bi bi-dash-circle"></i> Strict 1 File</td>
+              <td class="py-3 px-3 text-sky-400"><i class="bi bi-check-circle-fill"></i> Yes</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-3 font-semibold text-white">Direct Disk Save (Ctrl+S)</td>
+              <td class="py-3 px-3 text-zinc-400">Buffer save</td>
+              <td class="py-3 px-3 text-zinc-400">Buffer save</td>
+              <td class="py-3 px-3 text-emerald-400 font-bold"><i class="bi bi-check-circle-fill"></i> Native File System API</td>
+              <td class="py-3 px-3 text-sky-400"><i class="bi bi-check-circle-fill"></i> Native / Virtual</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-3 font-semibold text-white">Quick Open Palette (Ctrl+P)</td>
+              <td class="py-3 px-3 text-sky-400"><i class="bi bi-check-circle-fill"></i> Yes</td>
+              <td class="py-3 px-3 text-zinc-500"><i class="bi bi-x-circle"></i> None</td>
+              <td class="py-3 px-3 text-zinc-500"><i class="bi bi-x-circle"></i> None</td>
+              <td class="py-3 px-3 text-sky-400"><i class="bi bi-check-circle-fill"></i> Yes</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-3 font-semibold text-white">Split Live Preview (Ctrl+\)</td>
+              <td class="py-3 px-3 text-sky-400"><i class="bi bi-check-circle-fill"></i> Yes</td>
+              <td class="py-3 px-3 text-sky-400"><i class="bi bi-check-circle-fill"></i> Yes</td>
+              <td class="py-3 px-3 text-emerald-400"><i class="bi bi-check-circle-fill"></i> Yes</td>
+              <td class="py-3 px-3 text-sky-400"><i class="bi bi-check-circle-fill"></i> In-Browser Server</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-3 font-semibold text-white">HTTP Virtual Server (Service Worker)</td>
+              <td class="py-3 px-3 text-zinc-500"><i class="bi bi-x-circle"></i> None</td>
+              <td class="py-3 px-3 text-zinc-500"><i class="bi bi-x-circle"></i> None</td>
+              <td class="py-3 px-3 text-zinc-500"><i class="bi bi-x-circle"></i> None</td>
+              <td class="py-3 px-3 text-sky-400 font-semibold"><i class="bi bi-check-circle-fill"></i> Port 8080 Intercept</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Technical Architecture Section -->
+    <section class="w-full text-left bg-zinc-900/30 border border-zinc-800/80 rounded-xl p-6 sm:p-8 mb-12">
+      <div class="flex items-center gap-2 text-indigo-400 font-semibold text-xs tracking-wider uppercase mb-2">
+        <i class="bi bi-gear-wide-connected"></i>
+        <span>Declarative Architecture</span>
+      </div>
+      <h2 class="text-xl font-bold text-white mb-3">Powered by Declarative DOM Primitive Bindings</h2>
+      <p class="text-xs text-zinc-400 mb-4 leading-relaxed">
+        Like all KeshavSoft projects, every Single edition adheres strictly to declarative separation of concerns:
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-mono">
+        <div class="p-3 bg-zinc-950/80 rounded border border-zinc-800">
+          <div class="text-sky-400 font-bold mb-1">1. bindings.json</div>
+          <div class="text-zinc-400 text-[11px]">Declarative map binding events (<code class="text-zinc-300">click</code>, <code class="text-zinc-300">keydown</code>) to named actions without imperative event loops.</div>
+        </div>
+        <div class="p-3 bg-zinc-950/80 rounded border border-zinc-800">
+          <div class="text-amber-400 font-bold mb-1">2. actions.js</div>
+          <div class="text-zinc-400 text-[11px]">Pure, decoupled domain functions executed when events fire (e.g. <code class="text-zinc-300">togglePreview</code>, <code class="text-zinc-300">saveCurrentFile</code>).</div>
+        </div>
+        <div class="p-3 bg-zinc-950/80 rounded border border-zinc-800">
+          <div class="text-emerald-400 font-bold mb-1">3. eventBus.js</div>
+          <div class="text-zinc-400 text-[11px]">Asynchronous pub/sub broker allowing modules (header, preview, statusBar, tabs) to communicate cleanly without direct coupling.</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-zinc-800/80 py-8 text-center text-xs text-zinc-500 bg-zinc-950">
+    <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-2 text-zinc-400">
+        <i class="bi bi-code-slash text-sky-400"></i>
+        <span class="font-semibold text-zinc-300">Monaco IDE Single</span>
+        <span>&bull;</span>
+        <a href="../index.html" class="hover:text-zinc-200 transition">Main Studio</a>
+        <span>&bull;</span>
+        <span>KeshavSoft Declarative Standards</span>
+      </div>
+      <p>&copy; 2026 KeshavSoft. Released under the MIT License.</p>
+      <div class="flex items-center gap-4">
+        <a href="https://github.com/keshavsoft/monaco-ide" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-300 transition">
+          <i class="bi bi-github mr-1"></i>GitHub
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
+
