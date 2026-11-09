@@ -23,12 +23,14 @@
         <span class="text-sm font-bold text-white">Context Menu &amp; Alt+Click</span>
       </div>
 
-      <div class="flex items-center gap-3">
-        <a href="./v1/proposal.md" target="_blank" class="text-xs text-zinc-400 hover:text-zinc-200 transition font-mono">
-          <i class="bi bi-file-earmark-text"></i> Proposal ADR
+      <div class="flex items-center gap-2">
+        <a href="./v1/index.html" class="inline-flex items-center gap-1.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-xs font-medium px-3 py-1.5 rounded-lg border border-zinc-700/60 transition">
+          <span class="font-mono text-[10px] text-zinc-400">V1</span>
+          <span>Hybrid</span>
         </a>
-        <a href="./v1/index.html" class="inline-flex items-center gap-1.5 bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold px-3.5 py-1.5 rounded-lg shadow transition">
-          <i class="bi bi-play-fill text-sm"></i> Launch V1
+        <a href="./v2/index.html" class="inline-flex items-center gap-1.5 bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold px-3.5 py-1.5 rounded-lg shadow transition">
+          <i class="bi bi-play-fill text-sm"></i>
+          <span>Launch V2 (Pure)</span>
         </a>
       </div>
     </div>
@@ -40,7 +42,7 @@
     <div class="border-b border-zinc-800 pb-8">
       <div class="inline-flex items-center gap-2 bg-amber-950/60 border border-amber-800/80 px-3 py-1 rounded-full text-xs font-mono text-amber-300 mb-3">
         <i class="bi bi-lightning-charge-fill"></i>
-        <span>Zero-Typing AST Exploration</span>
+        <span>Zero-Typing Visual AST Exploration</span>
       </div>
       <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
         Right-Click Node Inspection &amp; Alt+Click
@@ -49,6 +51,51 @@
         Why should developers memorize and type complex paths through 11,000 lines of AST? Invert the workflow: <strong>point at any line in Monaco, right-click, and let the editor construct the query for you.</strong>
       </p>
     </div>
+
+    <!-- The Evolution Story: V1 vs V2 -->
+    <section class="bg-zinc-900/40 border border-zinc-800/80 rounded-xl p-6 sm:p-7 space-y-5">
+      <div class="flex items-center gap-2 text-amber-400 text-xs font-bold uppercase tracking-wider">
+        <i class="bi bi-compass"></i>
+        <span>The Evolution of Simplicity</span>
+      </div>
+      <h2 class="text-xl font-bold text-white">Why V2 Removes the Top Search Input</h2>
+      <p class="text-sm text-zinc-400 leading-relaxed">
+        In <strong>V1</strong>, we proved that right-clicking any node could extract its RFC 9535 path. However, keeping the top search input created cognitive distraction: users' eyes defaulted to typing syntax manually instead of exploring the code visually.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+        <div class="bg-zinc-950/80 border border-zinc-800 rounded-lg p-4 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-zinc-400">Context Menu V1</span>
+            <span class="text-[10px] bg-zinc-800 text-zinc-400 px-2 py-0.5 rounded font-mono">Hybrid</span>
+          </div>
+          <p class="text-xs text-zinc-400">
+            Has the top search input + Find button + Right-click menu. Functional, but dual-control causes visual competition.
+          </p>
+          <div class="pt-2">
+            <a href="./v1/index.html" class="text-xs text-sky-400 hover:underline inline-flex items-center gap-1 font-mono">
+              <span>Inspect V1 Baseline</span>
+              <i class="bi bi-arrow-right text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-zinc-950/80 border border-amber-600/60 rounded-lg p-4 space-y-2 shadow-md">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-amber-300">Context Menu V2</span>
+            <span class="text-[10px] bg-amber-950 text-amber-300 border border-amber-800/60 px-2 py-0.5 rounded font-mono">Boss Edition</span>
+          </div>
+          <p class="text-xs text-zinc-300">
+            Search bar completely eliminated. Pure visual probe: mouse clicks drive 100% of the extraction. Replaced with an illuminated read-only active path pill.
+          </p>
+          <div class="pt-2">
+            <a href="./v2/index.html" class="text-xs text-amber-400 hover:underline inline-flex items-center gap-1 font-bold font-mono">
+              <span>Launch V2 Pure Probe</span>
+              <i class="bi bi-arrow-right text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- The Problem Narrative -->
     <section class="bg-zinc-900/40 border border-zinc-800/80 rounded-xl p-6 sm:p-7 space-y-4">
@@ -82,24 +129,28 @@
         <li><strong>Cursor Capture</strong>: Monaco delivers the exact line number (<code class="text-sky-300 font-mono">pos.lineNumber</code>).</li>
         <li><strong>Hierarchical Scope Walk</strong>: <code class="text-amber-300 font-mono">pathResolver.js</code> scans backwards from line 1, tracking object scopes (<code class="text-zinc-400 font-mono">{ }</code>), array scopes (<code class="text-zinc-400 font-mono">[ ]</code>), and property keys.</li>
         <li><strong>RFC 9535 Assembly</strong>: Assembles the canonical JSONPath string in under <strong>0.1ms</strong>.</li>
-        <li><strong>Instant Query &amp; Render</strong>: Injects the path into the top search bar, highlights the source line, and immediately executes <code class="text-sky-300 font-mono">jsonpathly.query()</code> on the Right Editor.</li>
+        <li><strong>Direct Extraction &amp; Display</strong>: Injects the path into the active pill, flashes an amber line highlight on the left, and renders the extracted subtree on the right.</li>
       </ol>
     </section>
 
     <!-- Launch CTA Card -->
     <section class="bg-gradient-to-r from-amber-950/40 via-zinc-900 to-zinc-900 border border-amber-800/80 rounded-xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
       <div>
-        <span class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">Interactive Testbed</span>
-        <h3 class="text-2xl font-bold text-white mt-1">Ready to Test Context Menu V1?</h3>
+        <span class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">Ready to Test?</span>
+        <h3 class="text-2xl font-bold text-white mt-1">Experience Context Menu V2</h3>
         <p class="text-xs text-zinc-400 mt-1 max-w-lg">
-          Experience zero-typing AST querying live with dual Monaco editors and embedded AST data.
+          Zero typing, zero distractions. Right-click or Alt+Click any line to extract and learn AST structures.
         </p>
       </div>
 
       <div class="flex items-center gap-3 shrink-0">
-        <a href="./v1/index.html" class="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white font-bold text-sm px-6 py-3 rounded-lg shadow-lg shadow-amber-950/60 transition">
-          <i class="bi bi-play-circle-fill text-base"></i>
-          <span>Launch Context Menu V1</span>
+        <a href="./v1/index.html" class="inline-flex items-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 font-semibold text-xs px-4 py-2.5 rounded-lg border border-zinc-700 transition">
+          <i class="bi bi-play-circle text-sm"></i>
+          <span>V1 Baseline</span>
+        </a>
+        <a href="./v2/index.html" class="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white font-bold text-sm px-6 py-3 rounded-lg shadow-lg shadow-amber-950/60 transition">
+          <i class="bi bi-lightning-charge-fill text-base"></i>
+          <span>Launch V2 (Pure Probe)</span>
         </a>
       </div>
     </section>
@@ -112,4 +163,3 @@
 </body>
 
 </html>
-

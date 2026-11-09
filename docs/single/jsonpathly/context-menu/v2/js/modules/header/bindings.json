@@ -1,0 +1,18 @@
+[
+  {
+    "event": "click",
+    "selector": "#btnFile",
+    "action": "openFile"
+  },
+  {
+    "event": "change",
+    "selector": "#fileInput",
+    "action": "handleFileInputChange"
+  },
+  {
+    "event": "click",
+    "selector": "#btnCopyOutput",
+    "action": "copyOutput"
+  }
+]
+
