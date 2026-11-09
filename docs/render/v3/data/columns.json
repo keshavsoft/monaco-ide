@@ -1,0 +1,20 @@
+[
+  {
+    "key": "id",
+    "label": "ID",
+    "className": "font-mono"
+  },
+  {
+    "key": "name",
+    "label": "Name"
+  },
+  {
+    "key": "status",
+    "label": "Status"
+  },
+  {
+    "key": "amount",
+    "label": "Amount",
+    "align": "right"
+  }
+]

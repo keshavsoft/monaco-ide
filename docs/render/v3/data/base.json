@@ -1,0 +1,23 @@
+{
+  "tagName": "table",
+  "attributes": {
+    "id": "PR",
+    "class": "w-full border-collapse text-sm"
+  },
+  "children": [
+    {
+      "tagName": "thead",
+      "attributes": {
+        "id": "PR-head",
+        "class": "bg-slate-800 text-slate-100"
+      }
+    },
+    {
+      "tagName": "tbody",
+      "attributes": {
+        "id": "PR-body",
+        "class": "divide-y divide-slate-200"
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "rows": [
+    {
+      "id": "VCH-2026-1042",
+      "name": "Keshav Enterprise Solutions",
+      "status": "Paid",
+      "amount": "₹12,500"
+    },
+    {
+      "id": "VCH-2026-1043",
+      "name": "Sri Lakshmi Traders",
+      "status": "Pending",
+      "amount": "₹8,750"
+    },
+    {
+      "id": "VCH-2026-1044",
+      "name": "Coastal Distributors",
+      "status": "Overdue",
+      "amount": "₹21,300"
+    }
+  ]
+}

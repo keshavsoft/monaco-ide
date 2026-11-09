@@ -1,0 +1,567 @@
+{
+  "tagName": "div",
+  "attributes": {
+    "class": "min-h-screen bg-slate-900 text-slate-100 p-6 font-sans"
+  },
+  "children": [
+    {
+      "tagName": "header",
+      "attributes": {
+        "class": "flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-6 mb-6 border-b border-slate-800"
+      },
+      "children": [
+        {
+          "tagName": "div",
+          "children": [
+            {
+              "tagName": "div",
+              "attributes": {
+                "class": "flex items-center gap-2 mb-1"
+              },
+              "children": [
+                {
+                  "tagName": "span",
+                  "textContent": "JSON to DOM",
+                  "attributes": {
+                    "class": "px-2 py-0.5 rounded text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                  }
+                },
+                {
+                  "tagName": "span",
+                  "textContent": "Live v42 Engine",
+                  "attributes": {
+                    "class": "text-xs text-slate-400 font-mono"
+                  }
+                }
+              ]
+            },
+            {
+              "tagName": "h1",
+              "textContent": "Analytics & Performance Hub",
+              "attributes": {
+                "class": "text-2xl font-bold tracking-tight text-white"
+              }
+            },
+            {
+              "tagName": "p",
+              "textContent": "Compiled directly from declarative JSON into native DOM elements with zero Virtual DOM overhead.",
+              "attributes": {
+                "class": "text-xs text-slate-400 mt-1"
+              }
+            }
+          ]
+        },
+        {
+          "tagName": "div",
+          "attributes": {
+            "class": "flex items-center gap-3"
+          },
+          "children": [
+            {
+              "tagName": "button",
+              "textContent": "Export Report",
+              "attributes": {
+                "type": "button",
+                "class": "px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-semibold rounded-lg text-slate-200 transition"
+              }
+            },
+            {
+              "tagName": "button",
+              "textContent": "⚡ Create Metric",
+              "attributes": {
+                "type": "button",
+                "class": "px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-xs font-semibold rounded-lg text-white shadow-sm transition"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tagName": "div",
+      "attributes": {
+        "class": "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6"
+      },
+      "children": [
+        {
+          "tagName": "div",
+          "attributes": {
+            "class": "bg-slate-800/80 border border-slate-700/60 rounded-xl p-4 shadow-sm"
+          },
+          "children": [
+            {
+              "tagName": "div",
+              "attributes": {
+                "class": "flex items-center justify-between text-xs text-slate-400 mb-2"
+              },
+              "children": [
+                {
+                  "tagName": "span",
+                  "textContent": "Total Revenue"
+                },
+                {
+                  "tagName": "span",
+                  "textContent": "+18.2%",
+                  "attributes": {
+                    "class": "text-emerald-400 font-bold"
+                  }
+                }
+              ]
+            },
+            {
+              "tagName": "div",
+              "textContent": "₹ 2,48,920.00",
+              "attributes": {
+                "class": "text-2xl font-black text-white font-mono"
+              }
+            },
+            {
+              "tagName": "p",
+              "textContent": "Across 14 regional channels",
+              "attributes": {
+                "class": "text-[11px] text-slate-400 mt-2"
+              }
+            }
+          ]
+        },
+        {
+          "tagName": "div",
+          "attributes": {
+            "class": "bg-slate-800/80 border border-slate-700/60 rounded-xl p-4 shadow-sm"
+          },
+          "children": [
+            {
+              "tagName": "div",
+              "attributes": {
+                "class": "flex items-center justify-between text-xs text-slate-400 mb-2"
+              },
+              "children": [
+                {
+                  "tagName": "span",
+                  "textContent": "Active Workspaces"
+                },
+                {
+                  "tagName": "span",
+                  "textContent": "+4 new",
+                  "attributes": {
+                    "class": "text-sky-400 font-bold"
+                  }
+                }
+              ]
+            },
+            {
+              "tagName": "div",
+              "textContent": "1,248",
+              "attributes": {
+                "class": "text-2xl font-black text-white font-mono"
+              }
+            },
+            {
+              "tagName": "p",
+              "textContent": "99.98% uptime SLA verified",
+              "attributes": {
+                "class": "text-[11px] text-slate-400 mt-2"
+              }
+            }
+          ]
+        },
+        {
+          "tagName": "div",
+          "attributes": {
+            "class": "bg-slate-800/80 border border-slate-700/60 rounded-xl p-4 shadow-sm"
+          },
+          "children": [
+            {
+              "tagName": "div",
+              "attributes": {
+                "class": "flex items-center justify-between text-xs text-slate-400 mb-2"
+              },
+              "children": [
+                {
+                  "tagName": "span",
+                  "textContent": "DOM Mutations / sec"
+                },
+                {
+                  "tagName": "span",
+                  "textContent": "Instant",
+                  "attributes": {
+                    "class": "text-emerald-400 font-bold"
+                  }
+                }
+              ]
+            },
+            {
+              "tagName": "div",
+              "textContent": "0.14 ms",
+              "attributes": {
+                "class": "text-2xl font-black text-emerald-400 font-mono"
+              }
+            },
+            {
+              "tagName": "p",
+              "textContent": "Direct append with no virtual DOM",
+              "attributes": {
+                "class": "text-[11px] text-slate-400 mt-2"
+              }
+            }
+          ]
+        },
+        {
+          "tagName": "div",
+          "attributes": {
+            "class": "bg-slate-800/80 border border-slate-700/60 rounded-xl p-4 shadow-sm"
+          },
+          "children": [
+            {
+              "tagName": "div",
+              "attributes": {
+                "class": "flex items-center justify-between text-xs text-slate-400 mb-2"
+              },
+              "children": [
+                {
+                  "tagName": "span",
+                  "textContent": "Bundle Footprint"
+                },
+                {
+                  "tagName": "span",
+                  "textContent": "Ultra-light",
+                  "attributes": {
+                    "class": "text-purple-400 font-bold"
+                  }
+                }
+              ]
+            },
+            {
+              "tagName": "div",
+              "textContent": "12.1 KB",
+              "attributes": {
+                "class": "text-2xl font-black text-white font-mono"
+              }
+            },
+            {
+              "tagName": "p",
+              "textContent": "Zero external dependencies",
+              "attributes": {
+                "class": "text-[11px] text-slate-400 mt-2"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tagName": "div",
+      "attributes": {
+        "class": "grid grid-cols-1 lg:grid-cols-3 gap-6"
+      },
+      "children": [
+        {
+          "tagName": "div",
+          "attributes": {
+            "class": "lg:col-span-2 bg-slate-800/90 border border-slate-700/60 rounded-xl p-5 shadow-sm"
+          },
+          "children": [
+            {
+              "tagName": "div",
+              "attributes": {
+                "class": "flex items-center justify-between mb-4 pb-3 border-b border-slate-700/60"
+              },
+              "children": [
+                {
+                  "tagName": "h2",
+                  "textContent": "Recent Transactions",
+                  "attributes": {
+                    "class": "text-sm font-bold text-white uppercase tracking-wider"
+                  }
+                },
+                {
+                  "tagName": "span",
+                  "textContent": "Live feed",
+                  "attributes": {
+                    "class": "text-[11px] px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-800"
+                  }
+                }
+              ]
+            },
+            {
+              "tagName": "table",
+              "attributes": {
+                "class": "w-full text-xs text-left text-slate-300 border-collapse"
+              },
+              "children": [
+                {
+                  "tagName": "thead",
+                  "attributes": {
+                    "class": "text-[11px] uppercase bg-slate-900/60 text-slate-400 border-b border-slate-700"
+                  },
+                  "children": [
+                    {
+                      "tagName": "tr",
+                      "children": [
+                        {
+                          "tagName": "th",
+                          "textContent": "Voucher No.",
+                          "attributes": {
+                            "class": "py-2.5 px-3 font-semibold"
+                          }
+                        },
+                        {
+                          "tagName": "th",
+                          "textContent": "Party Name",
+                          "attributes": {
+                            "class": "py-2.5 px-3 font-semibold"
+                          }
+                        },
+                        {
+                          "tagName": "th",
+                          "textContent": "Status",
+                          "attributes": {
+                            "class": "py-2.5 px-3 font-semibold"
+                          }
+                        },
+                        {
+                          "tagName": "th",
+                          "textContent": "Amount",
+                          "attributes": {
+                            "class": "py-2.5 px-3 font-semibold text-right"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "tagName": "tbody",
+                  "attributes": {
+                    "class": "divide-y divide-slate-700/50"
+                  },
+                  "children": [
+                    {
+                      "tagName": "tr",
+                      "attributes": {
+                        "class": "hover:bg-slate-700/30 transition"
+                      },
+                      "children": [
+                        {
+                          "tagName": "td",
+                          "textContent": "VCH-2026-1042",
+                          "attributes": {
+                            "class": "py-2.5 px-3 font-mono text-emerald-400 font-semibold"
+                          }
+                        },
+                        {
+                          "tagName": "td",
+                          "textContent": "Keshav Enterprise Solutions",
+                          "attributes": {
+                            "class": "py-2.5 px-3 text-white"
+                          }
+                        },
+                        {
+                          "tagName": "td",
+                          "attributes": {
+                            "class": "py-2.5 px-3"
+                          },
+                          "children": [
+                            {
+                              "tagName": "span",
+                              "textContent": "Cleared",
+                              "attributes": {
+                                "class": "px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "tagName": "td",
+                          "textContent": "₹ 74,500.00",
+                          "attributes": {
+                            "class": "py-2.5 px-3 text-right font-mono font-bold text-white"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "tagName": "tr",
+                      "attributes": {
+                        "class": "hover:bg-slate-700/30 transition"
+                      },
+                      "children": [
+                        {
+                          "tagName": "td",
+                          "textContent": "VCH-2026-1043",
+                          "attributes": {
+                            "class": "py-2.5 px-3 font-mono text-emerald-400 font-semibold"
+                          }
+                        },
+                        {
+                          "tagName": "td",
+                          "textContent": "Global Logistics Hub",
+                          "attributes": {
+                            "class": "py-2.5 px-3 text-white"
+                          }
+                        },
+                        {
+                          "tagName": "td",
+                          "attributes": {
+                            "class": "py-2.5 px-3"
+                          },
+                          "children": [
+                            {
+                              "tagName": "span",
+                              "textContent": "Pending",
+                              "attributes": {
+                                "class": "px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "tagName": "td",
+                          "textContent": "₹ 18,200.00",
+                          "attributes": {
+                            "class": "py-2.5 px-3 text-right font-mono font-bold text-white"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "tagName": "tr",
+                      "attributes": {
+                        "class": "hover:bg-slate-700/30 transition"
+                      },
+                      "children": [
+                        {
+                          "tagName": "td",
+                          "textContent": "VCH-2026-1044",
+                          "attributes": {
+                            "class": "py-2.5 px-3 font-mono text-emerald-400 font-semibold"
+                          }
+                        },
+                        {
+                          "tagName": "td",
+                          "textContent": "Apex Telecom Ltd",
+                          "attributes": {
+                            "class": "py-2.5 px-3 text-white"
+                          }
+                        },
+                        {
+                          "tagName": "td",
+                          "attributes": {
+                            "class": "py-2.5 px-3"
+                          },
+                          "children": [
+                            {
+                              "tagName": "span",
+                              "textContent": "Cleared",
+                              "attributes": {
+                                "class": "px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "tagName": "td",
+                          "textContent": "₹ 1,56,220.00",
+                          "attributes": {
+                            "class": "py-2.5 px-3 text-right font-mono font-bold text-white"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tagName": "div",
+          "attributes": {
+            "class": "bg-slate-800/90 border border-slate-700/60 rounded-xl p-5 shadow-sm flex flex-col justify-between"
+          },
+          "children": [
+            {
+              "tagName": "div",
+              "children": [
+                {
+                  "tagName": "h3",
+                  "textContent": "Quick Actions",
+                  "attributes": {
+                    "class": "text-sm font-bold text-white uppercase tracking-wider mb-2"
+                  }
+                },
+                {
+                  "tagName": "p",
+                  "textContent": "Edit this specification in Tab 1 Monaco Editor and watch Tab 2 live-sync immediately without reloading.",
+                  "attributes": {
+                    "class": "text-xs text-slate-400 leading-relaxed mb-4"
+                  }
+                },
+                {
+                  "tagName": "div",
+                  "attributes": {
+                    "class": "space-y-2 mb-4"
+                  },
+                  "children": [
+                    {
+                      "tagName": "div",
+                      "attributes": {
+                        "class": "p-3 bg-slate-900/60 rounded-lg border border-slate-700/40 text-xs"
+                      },
+                      "children": [
+                        {
+                          "tagName": "span",
+                          "textContent": "Architecture: ",
+                          "attributes": {
+                            "class": "font-bold text-slate-300"
+                          }
+                        },
+                        {
+                          "tagName": "span",
+                          "textContent": "Zero Virtual DOM overhead",
+                          "attributes": {
+                            "class": "text-emerald-400"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "tagName": "div",
+                      "attributes": {
+                        "class": "p-3 bg-slate-900/60 rounded-lg border border-slate-700/40 text-xs"
+                      },
+                      "children": [
+                        {
+                          "tagName": "span",
+                          "textContent": "Channel: ",
+                          "attributes": {
+                            "class": "font-bold text-slate-300"
+                          }
+                        },
+                        {
+                          "tagName": "span",
+                          "textContent": "BroadcastChannel + localStorage",
+                          "attributes": {
+                            "class": "text-sky-400 font-mono"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tagName": "button",
+              "textContent": "⚡ Live Sync Active",
+              "attributes": {
+                "type": "button",
+                "class": "w-full py-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs rounded-lg shadow-md transition"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

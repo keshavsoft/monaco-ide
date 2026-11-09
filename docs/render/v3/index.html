@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>sample.json — Monaco IDE Render V3</title>
+    <!-- Compiled Standalone Tailwind CSS -->
+    <link rel="stylesheet" href="./style.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Monaco Editor Stylesheet -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/editor/editor.main.min.css">
+</head>
+
+<body class="bg-zinc-950 text-zinc-100 antialiased overflow-hidden m-0 p-0 font-sans">
+    <div class="h-screen w-screen flex flex-col overflow-hidden select-none">
+        <!-- 42px Compact Studio Header -->
+        <header class="h-[42px] bg-zinc-900 border-b border-zinc-800 flex items-center justify-between px-3 shrink-0">
+            <!-- Left: Brand & File Operations -->
+            <div class="flex items-center gap-2">
+                <a href="../" title="Back to Documentation"
+                    class="flex items-center gap-1.5 text-zinc-200 hover:text-white transition">
+                    <i class="bi bi-code-slash text-sky-400 text-base"></i>
+                    <span class="text-xs font-bold tracking-wider uppercase text-zinc-300">Monaco IDE</span>
+                    <span
+                        class="text-[10px] font-semibold text-emerald-400 bg-emerald-950/80 border border-emerald-800/80 px-1.5 py-0.2 rounded">render v3</span>
+                </a>
+
+                <div class="h-4 w-[1px] bg-zinc-800 mx-1"></div>
+
+                <!-- Open File (Ctrl+O) -->
+                <button id="openFileBtn" type="button" title="Open file from disk (Ctrl+O)"
+                    class="inline-flex items-center gap-1.5 bg-zinc-800 hover:bg-zinc-700 active:bg-zinc-900 border border-zinc-700/60 text-zinc-200 text-xs font-semibold px-2.5 py-1 rounded-md shadow-sm transition active:scale-95 cursor-pointer">
+                    <i class="bi bi-file-earmark-plus text-sky-400"></i>
+                    <span>File</span>
+                </button>
+                <input type="file" id="fileInput" class="hidden"
+                    accept=".json,.js,.mjs,.cjs,.ts,.tsx,.html,.htm,.css,.scss,.txt,.md,.xml,.svg,application/json,text/*">
+
+                <!-- Render in New Tab (Tab 2) -->
+                <button id="renderBtn" type="button" title="Render Base JSON in the separate preview tab"
+                    class="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white text-xs font-semibold px-2.5 py-1 rounded-md shadow-sm transition active:scale-95 cursor-pointer">
+                    <i class="bi bi-play-circle-fill text-white"></i>
+                    <span>Render Base</span>
+                    <i class="bi bi-box-arrow-up-right text-[10px] text-emerald-200"></i>
+                </button>
+            </div>
+
+            <!-- Right: Status & Active File Indicator Badge -->
+            <div class="flex items-center gap-2">
+                <!-- Tab 2 Live Sync Indicator -->
+                <span id="tab2SyncStatus"
+                    class="hidden text-[10px] font-semibold text-emerald-400 bg-emerald-950/80 border border-emerald-800 px-2 py-0.5 rounded flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Tab 2 Live</span>
+                </span>
+
+                <!-- Save Status Notification -->
+                <span id="saveStatus"
+                    class="hidden text-[10px] font-semibold text-emerald-400 bg-emerald-950/80 border border-emerald-800 px-2 py-0.5 rounded">
+                    Saved ✓
+                </span>
+
+                <!-- Active File Info Pill -->
+                <div
+                    class="inline-flex items-center gap-2 bg-zinc-800/80 border border-zinc-700/60 rounded-md px-2.5 py-1 text-xs">
+                    <i class="bi bi-filetype-json text-amber-400" id="fileIcon"></i>
+                    <span class="text-zinc-400 font-medium">Active:</span>
+                    <span id="fileName"
+                        class="text-zinc-100 font-semibold font-mono truncate max-w-[160px]">sample.json</span>
+                    <span id="dirtyDot" class="hidden w-2 h-2 rounded-full bg-amber-400 animate-pulse"
+                        title="Unsaved changes"></span>
+                    <span id="fileSize" class="text-[10px] text-zinc-400 bg-zinc-700/60 px-1.5 py-0.2 rounded">0.4 KB</span>
+                </div>
+
+                <div class="h-4 w-[1px] bg-zinc-800 mx-1"></div>
+
+                <!-- Navigation to Portal -->
+                <a href="../" title="Back to Docs Portal"
+                    class="text-zinc-400 hover:text-zinc-200 text-xs px-2 py-1 rounded hover:bg-zinc-800/60 transition flex items-center gap-1">
+                    <i class="bi bi-box-arrow-up-right text-[10px]"></i>
+                    <span class="hidden sm:inline">Docs</span>
+                </a>
+            </div>
+        </header>
+
+        <nav id="jsonViews" class="h-11 bg-zinc-900 border-b border-zinc-800 flex items-center gap-1 px-3 shrink-0" aria-label="JSON views">
+            <button class="view-tab active" data-view="base" type="button">Base</button><button class="view-tab" data-view="columns" type="button">Columns</button><button class="view-tab" data-view="template" type="button">Template</button><button class="view-tab" data-view="output" type="button">Output</button><span class="flex-1"></span><button id="buildBtn" type="button" class="view-action">Build</button><button id="renderOutputBtn" type="button" class="view-action" disabled>Render Output</button>
+        </nav>
+
+        <!-- Full-width Monaco editor; renderer opens in a separate browser tab. -->
+        <main class="flex-1 w-full bg-[#1e1e1e] overflow-hidden relative">
+            <div id="jsonEditor" class="w-full h-full"></div>
+        </main>
+
+        <!-- 22px Compact Studio Status Bar -->
+        <footer
+            class="h-[22px] bg-sky-950 border-t border-sky-800/60 px-3 flex items-center justify-between text-[11px] text-zinc-300 select-none shrink-0">
+            <!-- Left: Studio & Cursor Position -->
+            <div class="flex items-center gap-3">
+                <span class="flex items-center gap-1.5 text-sky-300 font-semibold">
+                    <i class="bi bi-cpu text-xs"></i>
+                    <span>Monaco Studio</span>
+                </span>
+                <span class="text-sky-800">|</span>
+                <span id="cursorPos" class="font-mono text-zinc-300">Ln 1, Col 1</span>
+            </div>
+
+            <!-- Right: Studio Controls (Wrap, Map, Encoding, Language) -->
+            <div class="flex items-center gap-3 font-mono text-[10px]">
+                <span id="toggleWordWrapBtn"
+                    class="status-bar-item text-zinc-400 rounded px-1.5 py-0.5 hover:text-white"
+                    title="Toggle Word Wrap (Alt+Z)">
+                    Wrap: Off
+                </span>
+                <span id="toggleMinimapBtn" class="status-bar-item text-zinc-400 rounded px-1.5 py-0.5 hover:text-white"
+                    title="Toggle Minimap">
+                    Map: Off
+                </span>
+                <span class="text-zinc-400">UTF-8</span>
+                <span class="text-zinc-400">Spaces: 2</span>
+                <span id="statusLanguage"
+                    class="text-sky-300 font-bold bg-sky-900/60 px-1.5 py-0.2 rounded border border-sky-700/60">
+                    JSON
+                </span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/loader.min.js"></script>
+    <script type="module" src="./js/v3.js"></script>
+</body>
+
+</html>

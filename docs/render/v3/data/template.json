@@ -1,0 +1,41 @@
+{
+  "tagName": "thead",
+  "attributes": {
+    "class": "bg-slate-800 text-slate-100"
+  },
+  "children": [
+    {
+      "tagName": "tr",
+      "children": [
+        {
+          "tagName": "th",
+          "textContent": "ID",
+          "attributes": {
+            "class": "px-3 py-2 text-left"
+          }
+        },
+        {
+          "tagName": "th",
+          "textContent": "Name",
+          "attributes": {
+            "class": "px-3 py-2 text-left"
+          }
+        },
+        {
+          "tagName": "th",
+          "textContent": "Status",
+          "attributes": {
+            "class": "px-3 py-2 text-left"
+          }
+        },
+        {
+          "tagName": "th",
+          "textContent": "Amount",
+          "attributes": {
+            "class": "px-3 py-2 text-right"
+          }
+        }
+      ]
+    }
+  ]
+}

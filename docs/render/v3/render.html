@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON-to-DOM Live Renderer — Tab 2</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        code,
+        pre,
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased">
+    <!-- Top Floating Live Control Bar -->
+    <header class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-12 flex items-center justify-between">
+            <!-- Left: Brand & Source File -->
+            <div class="flex items-center space-x-3">
+                <div class="flex items-center space-x-2">
+                    <span
+                        class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-black text-xs shadow-sm">JD</span>
+                    <span class="font-bold text-sm text-white tracking-tight">json-to-dom</span>
+                </div>
+                <span
+                    class="text-[10px] bg-emerald-950 text-emerald-400 font-semibold px-2 py-0.5 rounded border border-emerald-800/80">Tab
+                    2 Preview</span>
+
+                <div class="h-4 w-[1px] bg-slate-800"></div>
+
+                <div class="flex items-center gap-1.5 text-xs text-slate-400">
+                    <i class="bi bi-filetype-json text-amber-400"></i>
+                    <span class="text-slate-500">Source:</span>
+                    <span id="activeFileDisplay" class="font-mono text-slate-200 font-medium">sample.json</span>
+                </div>
+            </div>
+
+            <!-- Right: Status Indicators & Actions -->
+            <div class="flex items-center space-x-3 text-xs">
+                <!-- Sync Status Pill -->
+                <div id="syncBadge"
+                    class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-800 text-emerald-400 border border-slate-700/80 font-mono text-[11px]">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span id="syncText">Live Sync Connected</span>
+                </div>
+
+                <!-- Engine Badge -->
+                <span id="modeBadge"
+                    class="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-slate-800 text-sky-400 border border-slate-700">
+                    <i class="bi bi-cpu"></i>
+                    <span>v42 DOM Engine</span>
+                </span>
+
+                <!-- Re-render Action -->
+                <button id="refreshBtn" type="button" title="Request fresh content from Tab 1"
+                    class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 active:bg-slate-900 text-slate-300 hover:text-white rounded border border-slate-700 transition flex items-center gap-1 text-[11px] font-medium cursor-pointer">
+                    <i class="bi bi-arrow-repeat"></i>
+                    <span>Re-sync</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Error Alert Container (hidden when valid) -->
+    <div id="errorAlert" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 w-full">
+        <div class="p-4 bg-rose-950/90 border border-rose-800 rounded-xl text-rose-200 shadow-lg">
+            <div class="flex items-start gap-3">
+                <i class="bi bi-exclamation-triangle-fill text-rose-400 text-base mt-0.5"></i>
+                <div class="flex-1">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-rose-300">Syntax / Compilation Error</h3>
+                    <pre id="errorMessage"
+                        class="mt-1 text-xs font-mono text-rose-200 whitespace-pre-wrap break-all leading-relaxed"></pre>
+                    <p class="text-[11px] text-rose-400 mt-2">Tab 2 is still listening. Fix the syntax in Tab 1 Monaco Editor to auto-recover instantly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Live DOM Render Mount Point -->
+    <main class="flex-1 w-full flex flex-col">
+        <div id="app" class="w-full flex-1">
+            <!-- Native DOM Elements dynamically mounted here by jsonToDom -->
+            <div class="p-12 text-center text-slate-500 text-sm">
+                <div class="inline-block animate-spin text-emerald-400 mb-3 text-xl">
+                    <i class="bi bi-arrow-repeat"></i>
+                </div>
+                <p>Connecting to Tab 1 Monaco Editor…</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Minimal Studio Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-3 text-center text-[11px] text-slate-500">
+        <span>json-to-dom v42</span> &bull; <span>KeshavSoft</span> &bull; <span>Zero Virtual DOM Overhead</span> &bull; <span class="text-slate-400 font-mono">Controlled from Tab 1</span>
+    </footer>
+
+    <!-- Standalone Engine Bundle -->
+    <script type="module" src="./js/lib/json-to-dom.min.js"></script>
+
+    <!-- Tab 2 Receiver & Compiler Script -->
+    <script type="module">
+        import jsonToDom from "./js/lib/json-to-dom.min.js";
+
+        const CHANNEL_NAME = 'keshavsoft-render-v1';
+        const STORAGE_KEY_CONTENT = 'keshavsoft_render_v1_content';
+        const STORAGE_KEY_META = 'keshavsoft_render_v1_meta';
+
+        const appEl = document.getElementById('app');
+        const errorAlertEl = document.getElementById('errorAlert');
+        const errorMessageEl = document.getElementById('errorMessage');
+        const activeFileDisplayEl = document.getElementById('activeFileDisplay');
+        const syncTextEl = document.getElementById('syncText');
+        const syncBadgeEl = document.getElementById('syncBadge');
+        const modeBadgeEl = document.getElementById('modeBadge');
+        const refreshBtn = document.getElementById('refreshBtn');
+
+        let channel = null;
+
+        function setSyncStatus(text, isLive = true) {
+            if (syncTextEl) syncTextEl.textContent = text;
+            if (syncBadgeEl) {
+                if (isLive) {
+                    syncBadgeEl.className = 'flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-800 text-emerald-400 border border-slate-700/80 font-mono text-[11px]';
+                } else {
+                    syncBadgeEl.className = 'flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-800 text-amber-400 border border-slate-700/80 font-mono text-[11px]';
+                }
+            }
+        }
+
+        function showError(message) {
+            if (errorAlertEl && errorMessageEl) {
+                errorMessageEl.textContent = message;
+                errorAlertEl.classList.remove('hidden');
+            }
+        }
+
+        function hideError() {
+            if (errorAlertEl) {
+                errorAlertEl.classList.add('hidden');
+            }
+        }
+
+        /**
+         * Compiles and renders raw content (JSON specification or HTML markup) into #app
+         */
+        export function renderContent(rawContent, meta = {}) {
+            if (!rawContent || !rawContent.trim()) {
+                appEl.innerHTML = '<div class="p-12 text-center text-slate-500 text-xs">Waiting for content from Tab 1…</div>';
+                hideError();
+                return;
+            }
+
+            if (meta.filename && activeFileDisplayEl) {
+                activeFileDisplayEl.textContent = meta.filename;
+            }
+
+            const trimmed = rawContent.trim();
+
+            // 1. Attempt JSON-to-DOM parsing
+            if (trimmed.startsWith('{') || trimmed.startsWith('[')) {
+                try {
+                    const parsed = JSON.parse(rawContent);
+                    hideError();
+
+                    // Clear previous DOM tree
+                    appEl.innerHTML = '';
+
+                    // Orchestrate with jsonToDom
+                    const orchestrator = window.ks?.jsonToDom?.appendToDom || jsonToDom;
+                    orchestrator({ jsonSpec: parsed, targetHtmlId: 'app' });
+
+                    if (modeBadgeEl) {
+                        modeBadgeEl.innerHTML = '<i class="bi bi-diagram-3-fill text-emerald-400 mr-1"></i> JSON-to-DOM';
+                    }
+                    setSyncStatus('Live Sync: Rendered ✓', true);
+                    return;
+                } catch (err) {
+                    // Check if it's HTML despite brace or show syntax error
+                    if (trimmed.startsWith('<')) {
+                        // Fallback to HTML
+                    } else {
+                        showError(err.message);
+                        setSyncStatus('Syntax Error in JSON', false);
+                        return;
+                    }
+                }
+            }
+
+            // 2. HTML Direct Rendering
+            if (trimmed.startsWith('<') || meta.language === 'html' || meta.filename?.endsWith('.html')) {
+                hideError();
+                appEl.innerHTML = trimmed;
+                if (modeBadgeEl) {
+                    modeBadgeEl.innerHTML = '<i class="bi bi-filetype-html text-sky-400 mr-1"></i> HTML Mode';
+                }
+                setSyncStatus('Live Sync: Rendered ✓', true);
+                return;
+            }
+
+            // 3. Fallback text display
+            hideError();
+            appEl.innerHTML = `<pre class="p-6 text-xs font-mono text-slate-300 whitespace-pre-wrap">${escapeHtml(trimmed)}</pre>`;
+            setSyncStatus('Plaintext Display', true);
+        }
+
+        function escapeHtml(str) {
+            return str
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+
+        function renderSpecIntoTarget(spec, targetId) {
+            const target = document.getElementById(targetId);
+            if (!target) { showError(`Target element #${targetId} was not found. Render Base first.`); setSyncStatus('Target not found', false); return; }
+            const staging = document.createElement('div'); staging.id = `ks-render-staging-${Date.now()}`; staging.style.display = 'none'; document.body.appendChild(staging);
+            try {
+                const orchestrator = window.ks?.jsonToDom?.appendToDom || jsonToDom;
+                orchestrator({ jsonSpec: spec, targetHtmlId: staging.id });
+                const replacement = staging.firstElementChild;
+                if (!replacement) throw new Error('The JSON-to-DOM engine did not create an element.');
+                const oldTarget = document.getElementById(targetId); replacement.id = targetId; oldTarget.replaceWith(replacement);
+                hideError(); if (activeFileDisplayEl) activeFileDisplayEl.textContent = 'output.json'; setSyncStatus(`Output rendered into #${targetId}`, true);
+            } catch (error) { showError(error.message); setSyncStatus('Output render failed', false); } finally { staging.remove(); }
+        }
+        function initReceiver() {
+            // Setup BroadcastChannel
+            try {
+                channel = new BroadcastChannel(CHANNEL_NAME);
+                channel.onmessage = (event) => {
+                    const msg = event.data || {};
+                    if (msg.type === 'CONTENT_UPDATE' || msg.type === 'RENDER') {
+                        renderContent(msg.content, msg);
+                    } else if (msg.type === 'RENDER_OUTPUT') {
+                        renderSpecIntoTarget(msg.spec, msg.targetId || 'PR');
+                    }
+                };
+            } catch (err) {
+                console.warn('BroadcastChannel error:', err);
+            }
+
+            // 1. Render immediate cached content from localStorage if available
+            let hasRendered = false;
+            try {
+                const cachedContent = localStorage.getItem(STORAGE_KEY_CONTENT);
+                const cachedMeta = JSON.parse(localStorage.getItem(STORAGE_KEY_META) || '{}');
+                if (cachedContent) {
+                    renderContent(cachedContent, cachedMeta);
+                    hasRendered = true;
+                }
+            } catch (err) {
+                console.warn('LocalStorage read error:', err);
+            }
+
+            // Fallback: If no cached content yet, load sample.json
+            if (!hasRendered) {
+                fetch('./sample.json')
+                    .then(res => res.text())
+                    .then(text => {
+                        const current = localStorage.getItem(STORAGE_KEY_CONTENT);
+                        if (!current) {
+                            renderContent(text, { filename: 'sample.json', language: 'json' });
+                        }
+                    })
+                    .catch(e => console.warn('Fallback load error:', e));
+            }
+
+            // 2. Notify Tab 1 that Tab 2 is ready
+            if (channel) {
+                channel.postMessage({ type: 'TAB_READY' });
+            }
+
+            // 3. Listen to window storage event for cross-tab sync backup
+            window.addEventListener('storage', (e) => {
+                if (e.key === STORAGE_KEY_CONTENT && e.newValue) {
+                    const meta = JSON.parse(localStorage.getItem(STORAGE_KEY_META) || '{}');
+                    renderContent(e.newValue, meta);
+                }
+            });
+
+            // 4. Manual refresh button
+            if (refreshBtn) {
+                refreshBtn.addEventListener('click', () => {
+                    setSyncStatus('Re-requesting…', true);
+                    if (channel) {
+                        channel.postMessage({ type: 'REQUEST_CONTENT' });
+                    }
+                    const cached = localStorage.getItem(STORAGE_KEY_CONTENT);
+                    const meta = JSON.parse(localStorage.getItem(STORAGE_KEY_META) || '{}');
+                    if (cached) renderContent(cached, meta);
+                });
+            }
+        }
+
+        initReceiver();
+    </script>
+</body>
+
+</html>
