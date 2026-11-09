@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Context Menu Inspection — Heavy Story &amp; Architecture</title>
+  <link rel="stylesheet" href="../v2/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body class="bg-zinc-950 text-zinc-100 antialiased font-sans min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-white">
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800 px-4 sm:px-6 py-3">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="../index.html" class="flex items-center gap-1.5 text-zinc-400 hover:text-white transition text-xs font-semibold">
+          <i class="bi bi-chevron-left text-xs"></i>
+          <span>jsonpathly Hub</span>
+        </a>
+        <div class="h-4 w-[1px] bg-zinc-800"></div>
+        <span class="text-xs font-mono font-bold text-amber-400 bg-amber-950 border border-amber-800 px-2 py-0.5 rounded">Task 1</span>
+        <span class="text-sm font-bold text-white">Context Menu &amp; Alt+Click</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="./v1/proposal.md" target="_blank" class="text-xs text-zinc-400 hover:text-zinc-200 transition font-mono">
+          <i class="bi bi-file-earmark-text"></i> Proposal ADR
+        </a>
+        <a href="./v1/index.html" class="inline-flex items-center gap-1.5 bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold px-3.5 py-1.5 rounded-lg shadow transition">
+          <i class="bi bi-play-fill text-sm"></i> Launch V1
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Heavy Story Container -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full space-y-10">
+    <!-- Header Hero -->
+    <div class="border-b border-zinc-800 pb-8">
+      <div class="inline-flex items-center gap-2 bg-amber-950/60 border border-amber-800/80 px-3 py-1 rounded-full text-xs font-mono text-amber-300 mb-3">
+        <i class="bi bi-lightning-charge-fill"></i>
+        <span>Zero-Typing AST Exploration</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
+        Right-Click Node Inspection &amp; Alt+Click
+      </h1>
+      <p class="text-base text-zinc-300 leading-relaxed">
+        Why should developers memorize and type complex paths through 11,000 lines of AST? Invert the workflow: <strong>point at any line in Monaco, right-click, and let the editor construct the query for you.</strong>
+      </p>
+    </div>
+
+    <!-- The Problem Narrative -->
+    <section class="bg-zinc-900/40 border border-zinc-800/80 rounded-xl p-6 sm:p-7 space-y-4">
+      <div class="flex items-center gap-2 text-amber-400 text-xs font-bold uppercase tracking-wider">
+        <i class="bi bi-exclamation-triangle"></i>
+        <span>The Problem</span>
+      </div>
+      <h2 class="text-xl font-bold text-white">The Friction of Manual Query Typing</h2>
+      <p class="text-sm text-zinc-400 leading-relaxed">
+        When inspecting large AST documents like Babel scans (<code class="text-sky-300 font-mono">raw-ast.json</code>), nodes are deeply nested inside multiple layers of program bodies, declarations, and location tokens:
+      </p>
+      <div class="bg-zinc-950 border border-zinc-800 rounded-lg p-3.5 font-mono text-xs text-zinc-400 overflow-x-auto">
+        <span class="text-amber-300">$.rawAst.program.body[0].declarations[0].init.callee.name</span>
+      </div>
+      <p class="text-sm text-zinc-400 leading-relaxed">
+        Typing this path by hand requires scrolling through thousands of lines to verify key names, remembering array indices, and avoiding single-character typos that cause silent query failures.
+      </p>
+    </section>
+
+    <!-- The Architecture Solution -->
+    <section class="bg-zinc-900/40 border border-zinc-800/80 rounded-xl p-6 sm:p-7 space-y-4">
+      <div class="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+        <i class="bi bi-check-circle"></i>
+        <span>The Solution</span>
+      </div>
+      <h2 class="text-xl font-bold text-white">How Path Reconstruction Works (<code class="text-zinc-300 font-mono">pathResolver.js</code>)</h2>
+      <p class="text-sm text-zinc-400 leading-relaxed">
+        When the user right-clicks or presses <kbd class="bg-zinc-800 border border-zinc-700 px-1.5 py-0.5 rounded text-xs text-zinc-200">Alt + Click</kbd> on any line in the Left Monaco Editor:
+      </p>
+      <ol class="list-decimal list-inside space-y-2 text-sm text-zinc-300 leading-relaxed">
+        <li><strong>Cursor Capture</strong>: Monaco delivers the exact line number (<code class="text-sky-300 font-mono">pos.lineNumber</code>).</li>
+        <li><strong>Hierarchical Scope Walk</strong>: <code class="text-amber-300 font-mono">pathResolver.js</code> scans backwards from line 1, tracking object scopes (<code class="text-zinc-400 font-mono">{ }</code>), array scopes (<code class="text-zinc-400 font-mono">[ ]</code>), and property keys.</li>
+        <li><strong>RFC 9535 Assembly</strong>: Assembles the canonical JSONPath string in under <strong>0.1ms</strong>.</li>
+        <li><strong>Instant Query &amp; Render</strong>: Injects the path into the top search bar, highlights the source line, and immediately executes <code class="text-sky-300 font-mono">jsonpathly.query()</code> on the Right Editor.</li>
+      </ol>
+    </section>
+
+    <!-- Launch CTA Card -->
+    <section class="bg-gradient-to-r from-amber-950/40 via-zinc-900 to-zinc-900 border border-amber-800/80 rounded-xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+      <div>
+        <span class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">Interactive Testbed</span>
+        <h3 class="text-2xl font-bold text-white mt-1">Ready to Test Context Menu V1?</h3>
+        <p class="text-xs text-zinc-400 mt-1 max-w-lg">
+          Experience zero-typing AST querying live with dual Monaco editors and embedded AST data.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-3 shrink-0">
+        <a href="./v1/index.html" class="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white font-bold text-sm px-6 py-3 rounded-lg shadow-lg shadow-amber-950/60 transition">
+          <i class="bi bi-play-circle-fill text-base"></i>
+          <span>Launch Context Menu V1</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-zinc-900 py-6 px-4 text-center text-xs text-zinc-500 font-mono">
+    <span>KeshavSoft &bull; Context Menu Task Laboratory &bull; jsonpathly</span>
+  </footer>
+</body>
+
+</html>
+

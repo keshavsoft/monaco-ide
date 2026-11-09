@@ -238,6 +238,90 @@
           </div>
         </div>
 
+        <!-- Section: V3 Component Laboratories (Isolated Task Editions) -->
+        <div class="bg-zinc-900/40 border border-zinc-800 rounded-xl p-6">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <i class="bi bi-cpu text-purple-400 text-lg"></i>
+              <h3 class="text-base font-bold text-white">V3 Component Laboratories (Isolated Evaluation Editions)</h3>
+            </div>
+            <span class="text-[11px] font-mono text-zinc-500">4 Isolated Tasks</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Lab 1: Context Menu -->
+            <div class="bg-zinc-950/80 border border-amber-900/50 hover:border-amber-700 rounded-lg p-4 transition flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-bold font-mono text-amber-400 bg-amber-950 border border-amber-800 px-2 py-0.5 rounded">Task 1: Context Menu</span>
+                  <span class="text-[10px] text-amber-300 font-mono">Alt+I / Alt+Click</span>
+                </div>
+                <h4 class="text-sm font-semibold text-white mb-1">Right-Click Node Inspection</h4>
+                <p class="text-xs text-zinc-400 leading-normal">Right-click any node in Left Monaco ➔ "Inspect Node with JSONPath". Resolves path and evaluates with zero typing.</p>
+              </div>
+              <div class="pt-3 mt-3 border-t border-zinc-800/80 flex items-center justify-between">
+                <a href="./jsonpathly/context-menu/v1/index.html" class="inline-flex items-center gap-1.5 text-xs text-amber-300 font-semibold hover:underline">
+                  <i class="bi bi-play-circle"></i> Launch Context Menu V1
+                </a>
+                <a href="./jsonpathly/context-menu/v1/proposal.md" target="_blank" class="text-[11px] text-zinc-500 hover:text-zinc-300 font-mono">ADR</a>
+              </div>
+            </div>
+
+            <!-- Lab 2: Traceability -->
+            <div class="bg-zinc-950/80 border border-sky-900/50 hover:border-sky-700 rounded-lg p-4 transition flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-bold font-mono text-sky-400 bg-sky-950 border border-sky-800 px-2 py-0.5 rounded">Task 2: Traceability</span>
+                  <span class="text-[10px] text-sky-300 font-mono">Click-to-Locate</span>
+                </div>
+                <h4 class="text-sm font-semibold text-white mb-1">Synchronized Source Highlighting</h4>
+                <p class="text-xs text-zinc-400 leading-normal">Click any line in the Right Editor ➔ Left Editor automatically scrolls to and highlights that source code line.</p>
+              </div>
+              <div class="pt-3 mt-3 border-t border-zinc-800/80 flex items-center justify-between">
+                <a href="./jsonpathly/traceability/v1/index.html" class="inline-flex items-center gap-1.5 text-xs text-sky-300 font-semibold hover:underline">
+                  <i class="bi bi-play-circle"></i> Launch Traceability V1
+                </a>
+                <a href="./jsonpathly/traceability/v1/proposal.md" target="_blank" class="text-[11px] text-zinc-500 hover:text-zinc-300 font-mono">ADR</a>
+              </div>
+            </div>
+
+            <!-- Lab 3: Autocomplete -->
+            <div class="bg-zinc-950/80 border border-teal-900/50 hover:border-teal-700 rounded-lg p-4 transition flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-bold font-mono text-teal-400 bg-teal-950 border border-teal-800 px-2 py-0.5 rounded">Task 3: Autocomplete</span>
+                  <span class="text-[10px] text-teal-300 font-mono">Arrow / Tab / Enter</span>
+                </div>
+                <h4 class="text-sm font-semibold text-white mb-1">Dynamic Key Introspection</h4>
+                <p class="text-xs text-zinc-400 leading-normal">Type $ or $. in the search bar ➔ a floating palette suggests child keys from the loaded JSON tree in real time.</p>
+              </div>
+              <div class="pt-3 mt-3 border-t border-zinc-800/80 flex items-center justify-between">
+                <a href="./jsonpathly/autocomplete/v1/index.html" class="inline-flex items-center gap-1.5 text-xs text-teal-300 font-semibold hover:underline">
+                  <i class="bi bi-play-circle"></i> Launch Autocomplete V1
+                </a>
+                <a href="./jsonpathly/autocomplete/v1/proposal.md" target="_blank" class="text-[11px] text-zinc-500 hover:text-zinc-300 font-mono">ADR</a>
+              </div>
+            </div>
+
+            <!-- Lab 4: Multi-Match Stepper -->
+            <div class="bg-zinc-950/80 border border-purple-900/50 hover:border-purple-700 rounded-lg p-4 transition flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-bold font-mono text-purple-400 bg-purple-950 border border-purple-800 px-2 py-0.5 rounded">Task 4: Multi-Match</span>
+                  <span class="text-[10px] text-purple-300 font-mono">F3 / Shift+F3</span>
+                </div>
+                <h4 class="text-sm font-semibold text-white mb-1">Contextual Match Stepper</h4>
+                <p class="text-xs text-zinc-400 leading-normal">When queries return arrays (e.g. body[*]), a discreet stepper appears to cycle matches with synchronized source tracking.</p>
+              </div>
+              <div class="pt-3 mt-3 border-t border-zinc-800/80 flex items-center justify-between">
+                <a href="./jsonpathly/multi-match/v1/index.html" class="inline-flex items-center gap-1.5 text-xs text-purple-300 font-semibold hover:underline">
+                  <i class="bi bi-play-circle"></i> Launch Multi-Match V1
+                </a>
+                <a href="./jsonpathly/multi-match/v1/proposal.md" target="_blank" class="text-[11px] text-zinc-500 hover:text-zinc-300 font-mono">ADR</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Card jsonpathly v1 (New Flagship AST Visualizer) -->
         <div class="rounded-xl p-6 sm:p-7 card-hover bg-gradient-to-r from-sky-950/40 via-zinc-900/60 to-indigo-950/40 border border-sky-800/80">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">

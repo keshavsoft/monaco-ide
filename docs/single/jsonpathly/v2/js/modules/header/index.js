@@ -7,7 +7,14 @@ export function initHeader() {
     if (headerEl) {
         bindEvents(headerEl, bindings, actions);
     }
+
+    // Keyboard shortcut Ctrl+O to open file
+    window.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'o') {
+            e.preventDefault();
+            actions.openFile();
+        }
+    });
 }
 
 export default initHeader;
-

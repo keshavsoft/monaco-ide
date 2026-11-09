@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monaco IDE — jsonpathly Suite & Laboratory Hub</title>
+  <!-- Compiled Tailwind CSS -->
+  <link rel="stylesheet" href="./v2/style.css">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    .card-hover {
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-hover:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(56, 189, 248, 0.3);
+    }
+  </style>
+</head>
+
+<body class="bg-zinc-950 text-zinc-100 antialiased font-sans min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-white">
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/80 px-4 sm:px-6 py-3">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="../index.html" title="Back to Single Editions Portal"
+          class="flex items-center gap-2 text-zinc-400 hover:text-white transition">
+          <i class="bi bi-chevron-left text-xs"></i>
+          <span class="text-xs font-semibold">Single Portal</span>
+        </a>
+        <div class="h-4 w-[1px] bg-zinc-800"></div>
+        <div class="flex items-center gap-2">
+          <i class="bi bi-search text-sky-400 text-base"></i>
+          <span class="text-sm font-bold tracking-tight text-white font-mono">jsonpathly Hub</span>
+          <span class="text-[10px] font-semibold text-emerald-400 bg-emerald-950/80 border border-emerald-800/80 px-1.5 py-0.2 rounded font-mono">Suite</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 text-xs">
+        <a href="../index.html" class="text-zinc-400 hover:text-zinc-200 transition">All Editions</a>
+        <a href="../../index.html" class="text-zinc-400 hover:text-zinc-200 transition">Full Monaco Studio</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full">
+    <!-- Hero Section -->
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <div class="inline-flex items-center gap-2 bg-sky-950/60 border border-sky-800/60 px-3 py-1 rounded-full text-xs font-mono text-sky-300 mb-4">
+        <i class="bi bi-cpu text-sky-400"></i>
+        <span>RFC 9535 Browser-Native Engine</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
+        JSONPathly Suite &amp; Laboratories
+      </h1>
+      <p class="text-sm sm:text-base text-zinc-400 leading-relaxed">
+        High-performance in-browser JSON AST visualizer and query engine powered by <code class="text-sky-300 font-mono">jsonpathly</code> and dual Monaco Editors. Zero server backends, zero Node.js dependencies, evaluating deep 11,000-line schemas in <strong>0.7ms</strong>.
+      </p>
+    </div>
+
+    <!-- Section 1: Core Evolution Track (Menu 1) -->
+    <section class="mb-14">
+      <div class="flex items-center justify-between mb-5 border-b border-zinc-800 pb-3">
+        <div>
+          <span class="text-[11px] font-mono uppercase tracking-wider text-emerald-400 font-bold">Track 1</span>
+          <h2 class="text-xl font-bold text-white">Core Version Evolution</h2>
+        </div>
+        <span class="text-xs font-mono text-zinc-500">v1 ➔ v2 ➔ v3</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <!-- V1 Card -->
+        <div class="bg-zinc-900/40 border border-zinc-800 rounded-xl p-5 card-hover flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-mono font-bold text-sky-400 bg-sky-950 border border-sky-800 px-2 py-0.5 rounded">V1</span>
+              <span class="text-[10px] text-zinc-500 font-mono">Initial Lab</span>
+            </div>
+            <h3 class="text-base font-bold text-white mb-1.5">Dual Monaco Prototype</h3>
+            <p class="text-xs text-zinc-400 leading-relaxed mb-4">
+              Validated in-memory RFC 9535 query evaluation with dual Monaco editors and flavour toggles (Tree vs Paths).
+            </p>
+          </div>
+          <div class="pt-3 border-t border-zinc-800/80 flex items-center justify-between">
+            <a href="./v1/index.html" class="inline-flex items-center gap-1.5 text-xs text-sky-400 font-semibold hover:underline">
+              <i class="bi bi-play-circle"></i> Launch V1
+            </a>
+            <span class="text-[10px] font-mono text-zinc-500">Feature Lab</span>
+          </div>
+        </div>
+
+        <!-- V2 Card (Flagship) -->
+        <div class="bg-gradient-to-b from-emerald-950/20 to-zinc-900/60 border border-emerald-800/80 rounded-xl p-5 card-hover flex flex-col justify-between shadow-lg shadow-emerald-950/30">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-mono font-bold text-emerald-400 bg-emerald-950 border border-emerald-800 px-2 py-0.5 rounded">V2</span>
+              <span class="text-[10px] font-bold text-emerald-300 bg-emerald-950/80 border border-emerald-800 px-1.5 py-0.2 rounded font-mono">Recommended</span>
+            </div>
+            <h3 class="text-base font-bold text-white mb-1.5">Ruthless Simplicity</h3>
+            <p class="text-xs text-zinc-300 leading-relaxed mb-4">
+              Single 42px header, 100% distraction-free 50/50 dual Monaco canvas, zero clutter, and declarative <code class="text-emerald-300">instructions.json</code> lifecycle.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-zinc-800/80 flex items-center justify-between">
+            <a href="./v2/index.html" class="inline-flex items-center gap-1.5 text-xs text-emerald-300 font-bold hover:underline">
+              <i class="bi bi-play-circle-fill"></i> Launch V2
+            </a>
+            <a href="./v2/proposal.md" target="_blank" class="text-[11px] text-zinc-400 hover:text-zinc-200 font-mono">Proposal ADR</a>
+          </div>
+        </div>
+
+        <!-- V3 Card (Staging) -->
+        <div class="bg-zinc-900/30 border border-zinc-800/60 rounded-xl p-5 flex flex-col justify-between opacity-80">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-mono font-bold text-purple-400 bg-purple-950/60 border border-purple-800/60 px-2 py-0.5 rounded">V3</span>
+              <span class="text-[10px] text-purple-300 font-mono">Staging Ground</span>
+            </div>
+            <h3 class="text-base font-bold text-white mb-1.5">Unified Integration Hub</h3>
+            <p class="text-xs text-zinc-400 leading-relaxed mb-4">
+              Reserved for composing the 4 isolated component laboratories into a finalized, unified production flagship.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-zinc-800/80 flex items-center justify-between">
+            <a href="./v3/proposal.md" target="_blank" class="inline-flex items-center gap-1.5 text-xs text-purple-400 hover:underline font-mono">
+              <i class="bi bi-file-earmark-text"></i> Read V3 Blueprint
+            </a>
+            <span class="text-[10px] text-zinc-500 font-mono">In Lab Testing</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Feature Laboratories Track (Menu 2) -->
+    <section class="mb-14">
+      <div class="flex items-center justify-between mb-5 border-b border-zinc-800 pb-3">
+        <div>
+          <span class="text-[11px] font-mono uppercase tracking-wider text-sky-400 font-bold">Track 2</span>
+          <h2 class="text-xl font-bold text-white">Component Task Laboratories (Isolated Proofs)</h2>
+        </div>
+        <span class="text-xs font-mono text-zinc-500">Isolate • Validate • Integrate</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <!-- Lab 1: Context Menu -->
+        <div class="bg-zinc-900/40 border border-zinc-800 hover:border-amber-700/80 rounded-xl p-6 card-hover flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-mono font-bold text-amber-400 bg-amber-950 border border-amber-800 px-2 py-0.5 rounded">Task 1</span>
+              <span class="text-[10px] text-amber-300 font-mono bg-amber-950/60 border border-amber-900 px-1.5 py-0.2 rounded">Alt+I / Alt+Click</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Right-Click Node Inspection</h3>
+            <p class="text-xs text-zinc-400 leading-relaxed mb-4">
+              Right-click any node in the Left Monaco Editor to trigger <span class="text-zinc-200 font-mono">"Inspect Node with JSONPath"</span>. Automatically resolves the RFC 9535 path from root and queries it instantly without any manual typing.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-zinc-800/80 flex items-center justify-between">
+            <a href="./context-menu/index.html" class="inline-flex items-center gap-1.5 text-xs text-amber-400 font-semibold hover:underline">
+              <i class="bi bi-journal-text"></i> Explore Heavy Story
+            </a>
+            <a href="./context-menu/v1/index.html" class="inline-flex items-center gap-1 text-xs bg-amber-950/80 hover:bg-amber-900 text-amber-300 border border-amber-800 px-3 py-1.5 rounded transition">
+              <i class="bi bi-play-fill"></i> Launch V1
+            </a>
+          </div>
+        </div>
+
+        <!-- Lab 2: Traceability -->
+        <div class="bg-zinc-900/40 border border-zinc-800 hover:border-sky-700/80 rounded-xl p-6 card-hover flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-mono font-bold text-sky-400 bg-sky-950 border border-sky-800 px-2 py-0.5 rounded">Task 2</span>
+              <span class="text-[10px] text-sky-300 font-mono bg-sky-950/60 border border-sky-900 px-1.5 py-0.2 rounded">Click-to-Locate</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Synchronized Source Highlighting</h3>
+            <p class="text-xs text-zinc-400 leading-relaxed mb-4">
+              Solves the disconnect between editors. Executing any query or clicking any property in the Right Editor automatically scrolls the Left Editor to that exact line and marks it with an illuminated line decoration.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-zinc-800/80 flex items-center justify-between">
+            <a href="./traceability/index.html" class="inline-flex items-center gap-1.5 text-xs text-sky-400 font-semibold hover:underline">
+              <i class="bi bi-journal-text"></i> Explore Heavy Story
+            </a>
+            <a href="./traceability/v1/index.html" class="inline-flex items-center gap-1 text-xs bg-sky-950/80 hover:bg-sky-900 text-sky-300 border border-sky-800 px-3 py-1.5 rounded transition">
+              <i class="bi bi-play-fill"></i> Launch V1
+            </a>
+          </div>
+        </div>
+
+        <!-- Lab 3: Autocomplete -->
+        <div class="bg-zinc-900/40 border border-zinc-800 hover:border-teal-700/80 rounded-xl p-6 card-hover flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-mono font-bold text-teal-400 bg-teal-950 border border-teal-800 px-2 py-0.5 rounded">Task 3</span>
+              <span class="text-[10px] text-teal-300 font-mono bg-teal-950/60 border border-teal-900 px-1.5 py-0.2 rounded">Arrow / Tab Navigation</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Dynamic Key Introspection</h3>
+            <p class="text-xs text-zinc-400 leading-relaxed mb-4">
+              Eliminates blind typing. Typing <code class="text-teal-300 font-mono">$</code> or <code class="text-teal-300 font-mono">$.rawAst.</code> in the search bar triggers live in-memory schema introspection, offering a floating palette of valid child keys.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-zinc-800/80 flex items-center justify-between">
+            <a href="./autocomplete/index.html" class="inline-flex items-center gap-1.5 text-xs text-teal-400 font-semibold hover:underline">
+              <i class="bi bi-journal-text"></i> Explore Heavy Story
+            </a>
+            <a href="./autocomplete/v1/index.html" class="inline-flex items-center gap-1 text-xs bg-teal-950/80 hover:bg-teal-900 text-teal-300 border border-teal-800 px-3 py-1.5 rounded transition">
+              <i class="bi bi-play-fill"></i> Launch V1
+            </a>
+          </div>
+        </div>
+
+        <!-- Lab 4: Multi-Match Stepper -->
+        <div class="bg-zinc-900/40 border border-zinc-800 hover:border-purple-700/80 rounded-xl p-6 card-hover flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-mono font-bold text-purple-400 bg-purple-950 border border-purple-800 px-2 py-0.5 rounded">Task 4</span>
+              <span class="text-[10px] text-purple-300 font-mono bg-purple-950/60 border border-purple-900 px-1.5 py-0.2 rounded">F3 / Shift+F3</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Contextual Match Stepper</h3>
+            <p class="text-xs text-zinc-400 leading-relaxed mb-4">
+              Tames 100+ match array queries (e.g. <span class="text-zinc-200 font-mono">body[*]</span>). Displays a subtle <span class="text-purple-300 font-mono">[ 1 of 14 ]</span> stepper in the header, cycling matches with synchronized Left-Right scrolling.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-zinc-800/80 flex items-center justify-between">
+            <a href="./multi-match/index.html" class="inline-flex items-center gap-1.5 text-xs text-purple-400 font-semibold hover:underline">
+              <i class="bi bi-journal-text"></i> Explore Heavy Story
+            </a>
+            <a href="./multi-match/v1/index.html" class="inline-flex items-center gap-1 text-xs bg-purple-950/80 hover:bg-purple-900 text-purple-300 border border-purple-800 px-3 py-1.5 rounded transition">
+              <i class="bi bi-play-fill"></i> Launch V1
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-zinc-900 py-6 px-4 sm:px-6 text-center text-xs text-zinc-500 font-mono select-none">
+    <span>KeshavSoft &bull; Monaco IDE Single Architecture Suite &bull; RFC 9535 jsonpathly</span>
+  </footer>
+</body>
+
+</html>
+

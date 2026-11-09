@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Multi-Match Stepper — Heavy Story &amp; Architecture</title>
+  <link rel="stylesheet" href="../v2/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body class="bg-zinc-950 text-zinc-100 antialiased font-sans min-h-screen flex flex-col justify-between selection:bg-purple-500 selection:text-white">
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800 px-4 sm:px-6 py-3">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="../index.html" class="flex items-center gap-1.5 text-zinc-400 hover:text-white transition text-xs font-semibold">
+          <i class="bi bi-chevron-left text-xs"></i>
+          <span>jsonpathly Hub</span>
+        </a>
+        <div class="h-4 w-[1px] bg-zinc-800"></div>
+        <span class="text-xs font-mono font-bold text-purple-400 bg-purple-950 border border-purple-800 px-2 py-0.5 rounded">Task 4</span>
+        <span class="text-sm font-bold text-white">Contextual Multi-Match Stepper</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="./v1/proposal.md" target="_blank" class="text-xs text-zinc-400 hover:text-zinc-200 transition font-mono">
+          <i class="bi bi-file-earmark-text"></i> Proposal ADR
+        </a>
+        <a href="./v1/index.html" class="inline-flex items-center gap-1.5 bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold px-3.5 py-1.5 rounded-lg shadow transition">
+          <i class="bi bi-play-fill text-sm"></i> Launch V1
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Heavy Story Container -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full space-y-10">
+    <!-- Header Hero -->
+    <div class="border-b border-zinc-800 pb-8">
+      <div class="inline-flex items-center gap-2 bg-purple-950/60 border border-purple-800/80 px-3 py-1 rounded-full text-xs font-mono text-purple-300 mb-3">
+        <i class="bi bi-signpost-split-fill"></i>
+        <span>Collection Traversal &amp; Stepping</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
+        Contextual Multi-Match Stepper &amp; Traversal
+      </h1>
+      <p class="text-base text-zinc-300 leading-relaxed">
+        Never get overwhelmed by 100+ AST matches. Discover how contextual steppers allow developers to cycle through matching collections with synchronized Left-Right highlighting.
+      </p>
+    </div>
+
+    <!-- The Problem Narrative -->
+    <section class="bg-zinc-900/40 border border-zinc-800/80 rounded-xl p-6 sm:p-7 space-y-4">
+      <div class="flex items-center gap-2 text-purple-400 text-xs font-bold uppercase tracking-wider">
+        <i class="bi bi-exclamation-triangle"></i>
+        <span>The Problem</span>
+      </div>
+      <h2 class="text-xl font-bold text-white">The Array Overload Problem</h2>
+      <p class="text-sm text-zinc-400 leading-relaxed">
+        When a user queries a wildcard AST collection, such as:
+      </p>
+      <div class="bg-zinc-950 border border-zinc-800 rounded-lg p-3.5 font-mono text-xs text-purple-300 overflow-x-auto">
+        $.rawAst.program.body[*]
+      </div>
+      <p class="text-sm text-zinc-400 leading-relaxed">
+        The Right Editor dumps 14, 50, or 200 items in a giant JSON array. The user has no way to correlate item #7 in the right output array with its corresponding line in the left source tree.
+      </p>
+    </section>
+
+    <!-- The Architecture Solution -->
+    <section class="bg-zinc-900/40 border border-zinc-800/80 rounded-xl p-6 sm:p-7 space-y-4">
+      <div class="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+        <i class="bi bi-check-circle"></i>
+        <span>The Solution</span>
+      </div>
+      <h2 class="text-xl font-bold text-white">How Contextual Stepping Works (<code class="text-zinc-300 font-mono">stepper/actions.js</code>)</h2>
+      <p class="text-sm text-zinc-400 leading-relaxed">
+        Rather than cluttering the screen permanently, the stepper is strictly contextual:
+      </p>
+      <ol class="list-decimal list-inside space-y-2 text-sm text-zinc-300 leading-relaxed">
+        <li><strong>Automatic Visibility Detection</strong>: If a query returns 0 or 1 match, the stepper stays completely hidden, maintaining the clean simplicity of V2.</li>
+        <li><strong>Contextual Stepper Pill</strong>: When matches &gt; 1, a subtle pill appears in the top header: <code class="text-purple-300 font-mono">[ ◄ ] 1 of 14 [ ► ]</code>.</li>
+        <li><strong>Synchronized Stepping</strong>: Pressing <kbd class="bg-zinc-800 border border-zinc-700 px-1.5 py-0.5 rounded text-xs text-zinc-200">F3</kbd> (Forward) or <kbd class="bg-zinc-800 border border-zinc-700 px-1.5 py-0.5 rounded text-xs text-zinc-200">Shift + F3</kbd> (Backward) cycles to the next match, immediately illuminating that node's source line on the Left Monaco Editor.</li>
+      </ol>
+    </section>
+
+    <!-- Launch CTA Card -->
+    <section class="bg-gradient-to-r from-purple-950/40 via-zinc-900 to-zinc-900 border border-purple-800/80 rounded-xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+      <div>
+        <span class="text-xs font-mono font-bold text-purple-400 uppercase tracking-wider">Interactive Testbed</span>
+        <h3 class="text-2xl font-bold text-white mt-1">Ready to Test Multi-Match Stepper V1?</h3>
+        <p class="text-xs text-zinc-400 mt-1 max-w-lg">
+          Query <code class="text-purple-300 font-mono">$.rawAst.program.body[*]</code> and use <kbd class="bg-zinc-800 px-1.5 py-0.5 rounded text-[11px] text-zinc-200">F3</kbd> to step through matches live.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-3 shrink-0">
+        <a href="./v1/index.html" class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-sm px-6 py-3 rounded-lg shadow-lg shadow-purple-950/60 transition">
+          <i class="bi bi-play-circle-fill text-base"></i>
+          <span>Launch Multi-Match V1</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-zinc-900 py-6 px-4 text-center text-xs text-zinc-500 font-mono">
+    <span>KeshavSoft &bull; Multi-Match Stepper Task Laboratory &bull; jsonpathly</span>
+  </footer>
+</body>
+
+</html>
+

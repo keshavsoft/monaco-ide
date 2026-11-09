@@ -35,7 +35,7 @@ export const actions = {
 
         try {
             const matches = query(parsedData, expr);
-            if (!matches || matches.length === 0) {
+            if (matches === undefined || (Array.isArray(matches) && matches.length === 0)) {
                 state.resultEditor.setValue(`// Zero matches found for: ${expr}\n[]\n`);
                 return;
             }

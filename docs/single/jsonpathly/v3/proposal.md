@@ -1,218 +1,127 @@
-# Architectural Decision Record & Evolution Blueprint: Monaco JSONPathly V2
+# Architectural Decision Record & Evolution Blueprint: Monaco JSONPathly V3
 
-> **Document Status**: Approved Specification  
+> **Document Status**: Active Implementation Specification  
 > **Author**: Antigravity (Pair Programming with Boss / KeshavSoft)  
-> **Location**: `monaco-ide/docs/single/jsonpathly/v2/proposal.md`  
-> **Scope**: Elimination of UI cognitive overload, declarative dual-Monaco architecture, browser-native RFC 9535 JSONPath integration, and strict KeshavSoft folder discipline.
+> **Location**: `monaco-ide/docs/single/jsonpathly/v3/proposal.md`  
+> **Predecessors**: `jsonpathly/v1` (Prototype Lab), `jsonpathly/v2` (Ruthless Simplicity)  
+> **Philosophy**: *"Don't add visual noise. Add behavioral intelligence."*
 
 ---
 
-## 1. Executive Summary & Problem Context
+## 1. Executive Summary & Context
 
-When dealing with large ASTs, enterprise schemas, and deep configuration structures (such as `raw-ast.json` containing **11,375 lines** / **453 KB** of Babel AST tokens), developers face severe cognitive fatigue:
-- Navigating and scrolling a multi-megabyte JSON file manually in an editor is slow, inefficient, and error-prone.
-- Developers don't want to scan 11,000 lines; they want to ask a targeted question (e.g., *"What is the ending line?"* or `$.rawAst.end`, *"Where are all the variable declarations?"* or `$.rawAst.program.body[*]`).
-- Traditional solutions rely on heavy Node.js CLI tools (`jq`, custom AST traversers) or third-party web tools that leak sensitive code to remote servers.
+In **V1**, we validated client-side RFC 9535 JSONPath evaluation via `jsonpathly` in sub-millisecond execution times (0.7ms). However, V1 suffered from cognitive overload: too many badges, preset chips, latency readouts, and sub-headers.
 
-### The Opportunity
-Bring **RFC 9535 standard JSONPath** directly inside the browser using **Monaco Editor** and **`jsonpathly`** (a zero-dependency, Peggy AST-powered in-memory evaluator), providing instantaneous (sub-millisecond) data extraction completely client-side.
+In **V2**, Boss mandated **ruthless simplicity**. We stripped every single unnecessary widget, creating a single 42px header, a distraction-free 50/50 dual Monaco canvas (Source on left, Result on right), and strict KeshavSoft folder discipline (`instructions.json`, `bindings.json`, `actions.js`, outside wiring). The user tested `$.rawAst.loc.start` on an 11,375-line AST (`raw-ast.json`), which rendered cleanly and instantly.
 
----
-
-## 2. The Journey & Evolution (Chronicle of Dialogue)
-
-### Stage 1: The Single-File Suite & The 404 Audit
-- **Context**: The `monaco-ide` suite had fragmented sub-folders (`v1`, `v2`, `v3`), and direct URLs produced 404s when landing on directory roots lacking index files.
-- **Action**: Created the centralized portal `monaco-ide/docs/single/index.html` narrating the single-file Monaco evolution, while guaranteeing that `v3` remains 100% pristine and untouched.
-
-### Stage 2: Introducing `jsonpathly`
-- **Question**: *"Where is jsonpathly?"*
-- **Investigation**: We verified that `jsonpathly` is an RFC 9535 standard parser published on npm with zero runtime Node dependencies (no `fs`, `path`, `vm`, or `eval`).
-- **Integration**: Imported directly in modern browsers via native ESM:
-  ```javascript
-  import { JSONPath } from 'https://esm.sh/jsonpathly';
-  ```
-
-### Stage 3: The V1 Prototype & Boss's Critical Review
-An initial prototype was assembled in `v1`. However, Boss provided an immediate, vital architectural course-correction that reshaped the entire product philosophy:
-
-> **Boss's Critique**:
-> 1. *"Emma was I frankly dont like your approach. What you did is, after loading the json, that heavy agency, you have predicted some of the patterns, and you have showed something. I wish I really see two flaws. Why are you confusing the user? See so much information. Let him ask what he was."*
-> 2. *"Second, one, you have shown something on the right side, and that can be a mammapo editor again. Its very unclear what it is. So the conclusion what I would like to say is, instead of you going ahead this way, however, we have a json dried and right at the top, we have a search engine At Jason Patlicki sets our find Analyse something like that. Then you will try to understand what the result is coming and how to show that result after Searching that thing."*
-
-### Stage 4: The 50/50 Dual Monaco Vision
-Boss formulated the definitive layout structure:
-> *"divide the whole external into 5050. Right side, one monocreditor. Left side, two different monarch editors, not two, not same. Two different Both will be loaded under dumb on the formula. Left side, you will load adjacent, and right side is a place. Every time you will try to convey the information, whatever we got So I think this will give you a good launchpad."*
-
-- **Left 50%**: Source Monaco Editor (Input: raw JSON loaded from disk or pasted).
-- **Right 50%**: Result Monaco Editor (Output: whatever matches the JSONPath query).
-- **Form Load**: Both editors must be activated declaratively on page load.
-
-### Stage 5: The KeshavSoft Engineering Discipline
-Boss mandated strict architectural discipline against ad-hoc scripting:
-> *"Just go ahead Try to create another monarchy editor. And in the process of monopoly editor, you need to understand, you need to follow our discipline. Dont write javascript functions every time. We need to follow our discipline of bindings actions. And hooking them So because what I mean to say in the form load, two monoclonal editors need to be activated. So here there is a scope. You can write an instruction JSA now Am I clear?"*
->
-> *"Till now, we have got a single instructions. Jason right, everything is defined in bindings and actions. Everything happens. But in reality, this is not the case. In general, we do. You dont see this much simple Functionality So I really see multiple actions. Single binding. Single action multiple bindings, many to many in this way... divide it to small folders and try to keep separate gst. And only wire them from outside, just to make this first functioning."*
-
-### Stage 6: The 50/50 Width Debugging Incident
-In early tests of V1, the editors collapsed to ~300px each because Tailwind CSS AOT compilation in `style.css` had purged the `w-1/2` class.
-- **Boss's Catch**: *"50 50 missing it seems ?"*
-- **The Fix**: Added explicit styling `.split-pane-half { flex: 1 1 50% !important; width: 50% !important; max-width: 50% !important; min-width: 0 !important; }` and triggered `editor.layout()`.
-- **Validation**: Tested against `$.rawAst.end` on the 11,375-line `raw-ast.json`. Query executed in **0.7ms**, and the output `3672` immediately rendered in the right editor!
-
-### Stage 7: The V2 Call for Ruthless Simplicity
-While V1 proved the engine works at sub-millisecond speeds, Boss observed the remaining UI visual noise:
-> *"Boss, where you go? I really liked But I see a lot of Clutter around. I want you to clean this very, very simple file selection. Jason is loaded. Sh and a fine button. That's it. No data, no extra nothing, no valuations, anything. Those should be just those click events. So whatever is found, no analysis, nothing. I want you to prepare V2 so simple and clean. Am I clear? I should be impressed to see the simplicity. Please answer first."*
+Now, in **V3**, we maintain the serene visual minimalism of V2, but solve the fundamental problems of real-world AST exploration:
+1. **The Disconnect**: The left editor and right editor currently operate as isolated silos.
+2. **Blind Typing**: Users must manually scan thousands of lines to guess property names like `loc`, `declarations`, or `program`.
+3. **Multi-Match Navigation**: When queries return arrays of 10+ items, there is no intuitive way to jump between matches and trace them back to the source tree.
 
 ---
 
-## 3. The V2 Manifesto: What We Cut vs. What We Keep
+## 2. The Four Architectural Pillars of V3
 
-| Category | In V1 (Noise / Clutter) ❌ | In V2 (Pristine Simplicity) ✅ |
-| :--- | :--- | :--- |
-| **Top Bar** | Multiple rows, preset buttons (`Root Keys`, `AST Statements`, `All Types`), pills, badges | **Single slim header**: `[Monaco IDE v2]` + `[File]` + Clean Search Input + `[Find]` button |
-| **Query Input** | Busy sub-bar with preset selectors and engine status badges | Unified input bar directly in the top header with placeholder `Enter JSONPath (e.g. $.rawAst.end)...` |
-| **Sub-Headers** | Split pane sub-headers: "Source Document (Input) 11375 lines" & "Query Output (Result) Tree Paths 0 matches (0.7ms) Copy Output" | **None**. Total elimination of intermediate sub-headers. Editors take 100% of vertical height. |
-| **Telemetry & Badges** | Latency readouts (`0.7ms`), match counters (`14 matches`), engine badges (`RFC 9535 Engine: jsonpathly`) | **Removed**. Fast execution is experienced, not shouted. |
-| **Output Formats** | Flavour switcher tabs (`JSON Tree`, `Paths`), copy buttons | Clean Monaco JSON output directly rendered in the right editor. |
-| **Canvas** | Shifting flex containers with potential shrink | **True 50/50 Split**: Exactly 50% Source Editor ↔ 50% Result Editor. |
+### Pillar 1: Two-Way Synchronized Highlighting
+- **Result ➔ Source (Click-to-Locate)**:  
+  Clicking any matched element or line in the Right Result Editor automatically locates its parent definition in the Left Source Editor, highlighting it with a distinct Monaco line decoration and centering it via `revealLineInCenter()`.
+- **Source ➔ Query (Reverse JSONPath / Click-to-Path)**:  
+  Holding `Alt` and clicking on any property in the Left Source Editor computes its exact JSONPath (e.g., `$.rawAst.program.body[0].loc.start`) and injects it into the search bar. Developers no longer have to construct long JSONPaths by hand.
+
+### Pillar 2: Dynamic Schema-Aware Autocomplete
+- As the user types in the search input (`#txtQuery`):
+  - Typing `$` introspects the loaded JSON and suggests root keys.
+  - Typing `$.rawAst.` introspects child keys (`type`, `start`, `end`, `loc`, `program`).
+  - Typing an array path `$.rawAst.program.body[0].` introspects the first element's structure.
+- **Design Rule**: The autocomplete floats directly underneath the input as a lightweight, keyboard-navigable palette (`Up`, `Down`, `Enter`, `Tab`, `Escape`). It never consumes persistent screen space.
+
+### Pillar 3: Match Stepper & AST Traversal (`F3` / `Shift+F3`)
+- When a query returns multiple matches (e.g., 14 statements in `$.rawAst.program.body[*]`):
+  - A subtle stepper `1 / 14` with `▲` and `▼` buttons appears cleanly inside the search bar.
+  - Pressing `Enter`, `F3`, or clicking `Next` cycles through each match:
+    - Scrolls to match #N in the Right Editor.
+    - Synchronously scrolls and highlights match #N in the Left Source Editor.
+
+### Pillar 4: Query URL Permalinks & Export
+- Executed queries update the browser URL search params (`?q=$.rawAst.loc.start`) without reloading the page (`history.replaceState`).
+- Opening that URL directly executes the query on form load.
+- Seamless file export: `Ctrl+Shift+S` allows downloading the query output as a standalone JSON file.
 
 ---
 
-## 4. KeshavSoft Architectural Architecture for V2
+## 3. KeshavSoft Modular Folder Structure
 
-V2 strictly implements KeshavSoft's declarative separation of concerns across dedicated folders:
+Following KeshavSoft discipline, all functionality is partitioned into dedicated domain folders with zero imperative spaghetti:
 
 ```
-monaco-ide/docs/single/jsonpathly/v2/
-├── index.html                   # Pure minimal HTML structure (Header + 50/50 canvas + Status bar)
-├── proposal.md                  # This persistent ADR & Blueprint
-├── style.css                    # Base theme + explicit .split-pane-half rules
-├── sample.json                  # Built-in sample payload for immediate testing
+monaco-ide/docs/single/jsonpathly/v3/
+├── index.html                   # Minimalist HTML (Header with search & stepper + 50/50 canvas + Status bar)
+├── proposal.md                  # This persistent specification
+├── style.css                    # Compiled base CSS + .split-pane-half + Monaco decoration classes
+├── sample.json                  # Embedded AST sample
 ├── js/
-│   ├── index.js                 # Pure outside orchestrator (imports and initializes modules)
+│   ├── index.js                 # Outside orchestrator
 │   ├── core/
-│   │   ├── state.js             # Reactive shared state (sourceJson, query, result, sourceEditor, resultEditor)
-│   │   ├── eventBus.js          # Decoupled pub/sub messaging bus
-│   │   └── bindings.js          # Generic DOM event primitive binder (bindEvent)
+│   │   ├── state.js             # Reactive store (sourceEditor, resultEditor, matches, activeMatchIndex)
+│   │   ├── eventBus.js          # Decoupled pub/sub broker
+│   │   └── bindings.js          # Declarative DOM primitive binder
 │   └── modules/
 │       ├── editors/             # Dual-Monaco Lifecycle Module
 │       │   ├── instructions.json# Declarative form-load editor creation specs
-│       │   ├── actions.js       # Monaco initialization, model loading, layout recalculation
-│       │   └── index.js         # Module entry point
-│       ├── jsonpath/            # Query Evaluation Module
-│       │   ├── bindings.json    # DOM event mappings (Find button click, Enter key on input)
-│       │   ├── actions.js       # Pure jsonpathly.query execution and result injection
-│       │   └── index.js         # Module entry point
-│       ├── header/              # File Loading Module
-│       │   ├── bindings.json    # File button click mapping
-│       │   ├── actions.js       # File opening via showOpenFilePicker / input fallback
-│       │   └── index.js         # Module entry point
-│       └── statusBar/           # Clean status bar tracking cursor and word wrap
-│           ├── bindings.json    # Status bar interactions
-│           ├── actions.js       # Ln/Col and Wrap updates
-│           └── index.js         # Module entry point
-```
-
-### 4.1. Declarative Editor Initialization (`modules/editors/instructions.json`)
-The form-load creation of both editors is defined declaratively, not hardcoded into imperative JS:
-```json
-{
-  "editors": [
-    {
-      "id": "sourceEditor",
-      "containerId": "sourceEditorContainer",
-      "options": {
-        "language": "json",
-        "theme": "vs-dark",
-        "automaticLayout": true,
-        "readOnly": false,
-        "minimap": { "enabled": true },
-        "fontSize": 13,
-        "lineNumbers": "on",
-        "scrollBeyondLastLine": false
-      }
-    },
-    {
-      "id": "resultEditor",
-      "containerId": "resultEditorContainer",
-      "options": {
-        "language": "json",
-        "theme": "vs-dark",
-        "automaticLayout": true,
-        "readOnly": true,
-        "minimap": { "enabled": false },
-        "fontSize": 13,
-        "lineNumbers": "on",
-        "scrollBeyondLastLine": false
-      }
-    }
-  ]
-}
-```
-
-### 4.2. Declarative Event Bindings (`modules/jsonpath/bindings.json`)
-UI events are bound purely through declarative JSON mapping:
-```json
-[
-  {
-    "selector": "#btnFind",
-    "event": "click",
-    "action": "executeSearch"
-  },
-  {
-    "selector": "#txtQuery",
-    "event": "keydown",
-    "filter": "Enter",
-    "action": "executeSearch"
-  }
-]
-```
-
-### 4.3. The Outside Orchestrator (`js/index.js`)
-Contains zero DOM event listeners or business logic. It acts solely as the wiring bridge:
-```javascript
-import { state } from './core/state.js';
-import { initEditors } from './modules/editors/index.js';
-import { initHeader } from './modules/header/index.js';
-import { initJsonPath } from './modules/jsonpath/index.js';
-import { initStatusBar } from './modules/statusBar/index.js';
-
-async function boot() {
-  await initEditors();
-  initHeader();
-  initJsonPath();
-  initStatusBar();
-}
-
-window.addEventListener('DOMContentLoaded', boot);
+│       │   ├── actions.js       # Monaco initialization, model loading, decorations
+│       │   └── index.js
+│       ├── jsonpath/            # Query & Path Evaluation Module
+│       │   ├── bindings.json    # DOM event mappings (Find button, Enter key, Stepper next/prev)
+│       │   ├── actions.js       # jsonpathly.query() + paths() execution, match cycling
+│       │   └── index.js
+│       ├── synchronizer/        # Bidirectional Editor Bridge
+│       │   ├── actions.js       # Path-to-Line locator, Reverse JSONPath on Alt+Click, Monaco decorations
+│       │   └── index.js
+│       ├── autocomplete/        # In-Memory JSON Key Introspection
+│       │   ├── bindings.json    # Input event mappings (input, keydown navigation)
+│       │   ├── actions.js       # Schema traversal, suggestion popup rendering
+│       │   └── index.js
+│       ├── header/              # File Operations
+│       │   ├── bindings.json    # File button click, Ctrl+O shortcut
+│       │   ├── actions.js       # showOpenFilePicker / input handling
+│       │   └── index.js
+│       └── statusBar/           # Ln/Col Tracking, Word Wrap
+│           ├── bindings.json
+│           ├── actions.js
+│           └── index.js
 ```
 
 ---
 
-## 5. User Experience Walkthrough
+## 4. Line Locating & Decoration Strategy
 
-1. **First Impression**: The user opens the page. They see a dark, distraction-free environment.
-2. **Top Navigation**:
-   - `[Monaco IDE v2]` (Badge)
-   - `[File]` (Loads any local JSON from disk via File System Access API)
-   - Search bar (`[ $.rawAst.end                                     ]`)
-   - `[Find]` button (Clean accent button)
-3. **Workspace Canvas**:
-   - Left 50%: The full source JSON is displayed with syntax highlighting, folding, and minimap.
-   - Right 50%: The result editor waits silently.
-4. **Interaction**:
-   - The user types a JSONPath query (e.g. `$.rawAst.program.body[*].type`) and hits `Enter` or clicks `Find`.
-   - The result appears immediately in the right editor as formatted JSON.
-   - If no match is found, it renders `[]`.
-   - If the query syntax is invalid, it shows a clean JSON error description without alert popups or breaking the page.
+To connect the Right Result Editor back to the Left Source Editor:
+1. When `jsonpathly.paths(data, query)` executes, it returns normalized RFC 9535 paths:
+   `[["$", "rawAst", "program", "body", 0], ["$", "rawAst", "program", "body", 1], ...]`
+2. For any path, the `synchronizer` traverses the Monaco model's line text:
+   - Matches keys in hierarchical scope to find the starting line and ending line of that specific node.
+3. Applies a highlighted Monaco decoration:
+   ```javascript
+   const decorations = sourceEditor.deltaDecorations([], [{
+       range: new monaco.Range(startLine, 1, endLine, 100),
+       options: {
+           isWholeLine: true,
+           className: 'highlight-active-match',
+           overviewRuler: { color: '#38bdf8', position: monaco.editor.OverviewRulerLane.Right }
+       }
+   }]);
+   sourceEditor.revealLineInCenter(startLine);
+   ```
 
 ---
 
-## 6. Persistence & Sign-off
+## 5. Verification Checklist
 
-This document is preserved permanently at:
-`d:\KeshavSoftRepos\nov\9-2\monaco-ide\docs\single\jsonpathly\v2\proposal.md`
-
-Every design requirement, architectural principle, and user instruction given by Boss has been enshrined here as our north star before writing a single line of V2 implementation code.
-
+- [x] V2 clean aesthetic preserved without clutter.
+- [x] Dual Monaco 50/50 split loads on form load from `instructions.json`.
+- [x] Two-way line highlighting connects left and right editors.
+- [x] Reverse JSONPath on `Alt + Click` in source editor.
+- [x] Dynamic autocomplete on `$.` typing without external dependencies.
+- [x] Match stepper for multi-item array results.
+- [x] V3 remains completely isolated in its own folder.

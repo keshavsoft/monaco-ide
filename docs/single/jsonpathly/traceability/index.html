@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Traceability &amp; Highlighting — Heavy Story &amp; Architecture</title>
+  <link rel="stylesheet" href="../v2/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body class="bg-zinc-950 text-zinc-100 antialiased font-sans min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-white">
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800 px-4 sm:px-6 py-3">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="../index.html" class="flex items-center gap-1.5 text-zinc-400 hover:text-white transition text-xs font-semibold">
+          <i class="bi bi-chevron-left text-xs"></i>
+          <span>jsonpathly Hub</span>
+        </a>
+        <div class="h-4 w-[1px] bg-zinc-800"></div>
+        <span class="text-xs font-mono font-bold text-sky-400 bg-sky-950 border border-sky-800 px-2 py-0.5 rounded">Task 2</span>
+        <span class="text-sm font-bold text-white">Two-Way Traceability</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="./v1/proposal.md" target="_blank" class="text-xs text-zinc-400 hover:text-zinc-200 transition font-mono">
+          <i class="bi bi-file-earmark-text"></i> Proposal ADR
+        </a>
+        <a href="./v1/index.html" class="inline-flex items-center gap-1.5 bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold px-3.5 py-1.5 rounded-lg shadow transition">
+          <i class="bi bi-play-fill text-sm"></i> Launch V1
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Heavy Story Container -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full space-y-10">
+    <!-- Header Hero -->
+    <div class="border-b border-zinc-800 pb-8">
+      <div class="inline-flex items-center gap-2 bg-sky-950/60 border border-sky-800/80 px-3 py-1 rounded-full text-xs font-mono text-sky-300 mb-3">
+        <i class="bi bi-eye-fill"></i>
+        <span>Two-Way Editor Synchronization</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
+        Two-Way Traceability &amp; Synchronized Highlighting
+      </h1>
+      <p class="text-base text-zinc-300 leading-relaxed">
+        Never leave the developer wondering: <em>"Where in the 11,375-line source did this extracted result come from?"</em> Build a live visual bridge between the Query Result and the Source Tree.
+      </p>
+    </div>
+
+    <!-- The Problem Narrative -->
+    <section class="bg-zinc-900/40 border border-zinc-800/80 rounded-xl p-6 sm:p-7 space-y-4">
+      <div class="flex items-center gap-2 text-sky-400 text-xs font-bold uppercase tracking-wider">
+        <i class="bi bi-exclamation-triangle"></i>
+        <span>The Problem</span>
+      </div>
+      <h2 class="text-xl font-bold text-white">The Disconnected Editors Dilemma</h2>
+      <p class="text-sm text-zinc-400 leading-relaxed">
+        In a 50/50 dual Monaco setup, having the source JSON on the left and the query result on the right is only half the battle. If you query <code class="text-sky-300 font-mono">$.rawAst.loc.start</code> and see:
+      </p>
+      <div class="bg-zinc-950 border border-zinc-800 rounded-lg p-3.5 font-mono text-xs text-emerald-400 overflow-x-auto">
+        { "line": 1, "column": 0, "index": 0 }
+      </div>
+      <p class="text-sm text-zinc-400 leading-relaxed">
+        You still don't know where that object lives within the 11,000 lines on the left. The user must manually scroll, guess, or use <kbd class="bg-zinc-800 border border-zinc-700 px-1.5 py-0.5 rounded text-xs text-zinc-200">Ctrl+F</kbd> to hunt down the block.
+      </p>
+    </section>
+
+    <!-- The Architecture Solution -->
+    <section class="bg-zinc-900/40 border border-zinc-800/80 rounded-xl p-6 sm:p-7 space-y-4">
+      <div class="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+        <i class="bi bi-check-circle"></i>
+        <span>The Solution</span>
+      </div>
+      <h2 class="text-xl font-bold text-white">The Synchronized Highlighting Engine</h2>
+      <p class="text-sm text-zinc-400 leading-relaxed">
+        The Traceability module hooks the lifecycle of both Monaco editor instances:
+      </p>
+      <ol class="list-decimal list-inside space-y-2 text-sm text-zinc-300 leading-relaxed">
+        <li><strong>Automatic Query Tracking</strong>: Upon executing any search, <code class="text-sky-300 font-mono">actions.highlightPathInSource()</code> extracts the target key, searches the Monaco model text, applies a glowing blue Monaco line decoration, and centers it via <code class="text-amber-300 font-mono">revealLineInCenter()</code>.</li>
+        <li><strong>Click-to-Locate</strong>: Clicking any line or property in the Right Result Editor inspects the clicked key and immediately scrolls the Left Source Editor to that exact location.</li>
+        <li><strong>Zero Performance Penalty</strong>: Uses Monaco's high-performance native <code class="text-zinc-400 font-mono">deltaDecorations</code> API with zero DOM re-rendering overhead.</li>
+      </ol>
+    </section>
+
+    <!-- Launch CTA Card -->
+    <section class="bg-gradient-to-r from-sky-950/40 via-zinc-900 to-zinc-900 border border-sky-800/80 rounded-xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+      <div>
+        <span class="text-xs font-mono font-bold text-sky-400 uppercase tracking-wider">Interactive Testbed</span>
+        <h3 class="text-2xl font-bold text-white mt-1">Ready to Test Traceability V1?</h3>
+        <p class="text-xs text-zinc-400 mt-1 max-w-lg">
+          Experience synchronized line-jumping and visual confirmation between dual Monaco editors live.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-3 shrink-0">
+        <a href="./v1/index.html" class="inline-flex items-center gap-2 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-sm px-6 py-3 rounded-lg shadow-lg shadow-sky-950/60 transition">
+          <i class="bi bi-play-circle-fill text-base"></i>
+          <span>Launch Traceability V1</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-zinc-900 py-6 px-4 text-center text-xs text-zinc-500 font-mono">
+    <span>KeshavSoft &bull; Traceability Task Laboratory &bull; jsonpathly</span>
+  </footer>
+</body>
+
+</html>
+
