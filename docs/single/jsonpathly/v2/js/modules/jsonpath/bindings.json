@@ -1,0 +1,21 @@
+[
+  {
+    "event": "click",
+    "selector": "#btnFind",
+    "action": "executeSearch",
+    "narration": "Execute JSONPath query on Find button click"
+  },
+  {
+    "event": "keydown",
+    "selector": "#txtQuery",
+    "action": "handleKeydown",
+    "narration": "Execute JSONPath query when Enter key is pressed"
+  },
+  {
+    "event": "click",
+    "selector": "#btnClear",
+    "action": "clearQuery",
+    "narration": "Clear query input and reset result editor"
+  }
+]
+

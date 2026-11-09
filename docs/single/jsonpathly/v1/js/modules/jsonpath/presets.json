@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Root Keys",
+    "query": "$.*",
+    "description": "Extract all top-level keys and direct values"
+  },
+  {
+    "name": "AST Statements",
+    "query": "$.rawAst.program.body[*]",
+    "description": "All statement nodes in the main program body"
+  },
+  {
+    "name": "All Types",
+    "query": "$..type",
+    "description": "Extract every AST node type throughout the entire tree"
+  },
+  {
+    "name": "Variable Declarations",
+    "query": "$..[?@.type == 'VariableDeclaration']",
+    "description": "Locate all VariableDeclaration AST nodes"
+  },
+  {
+    "name": "Function Declarations",
+    "query": "$..[?@.type == 'FunctionDeclaration']",
+    "description": "Locate all FunctionDeclaration AST nodes"
+  },
+  {
+    "name": "All Identifiers",
+    "query": "$..name",
+    "description": "Extract all variable, function, and parameter names"
+  },
+  {
+    "name": "Comments",
+    "query": "$.rawAst.comments[*]",
+    "description": "Extract all source code comments in AST"
+  }
+]
+

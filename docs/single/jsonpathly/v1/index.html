@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Monaco IDE Single — jsonpathly V1 (Dual Monaco Split)</title>
+    <!-- Compiled Standalone Tailwind CSS -->
+    <link rel="stylesheet" href="./style.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Monaco Editor Stylesheet -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/editor/editor.main.min.css">
+    <style>
+        /* Explicit 50/50 flex split panes */
+        .split-pane-half {
+            flex: 1 1 50% !important;
+            width: 50% !important;
+            max-width: 50% !important;
+            min-width: 0 !important;
+        }
+    </style>
+</head>
+
+<body class="bg-zinc-950 text-zinc-100 antialiased overflow-hidden m-0 p-0 font-sans">
+    <div class="h-screen w-screen flex flex-col overflow-hidden select-none">
+        <!-- 42px Compact Studio Header -->
+        <header class="h-[42px] bg-zinc-900 border-b border-zinc-800 flex items-center justify-between px-3 shrink-0">
+            <!-- Left: Brand & File Operations -->
+            <div class="flex items-center gap-2">
+                <a href="../../index.html" title="Back to Single Editions Portal"
+                    class="flex items-center gap-1.5 text-zinc-200 hover:text-white transition">
+                    <i class="bi bi-code-slash text-sky-400 text-base"></i>
+                    <span class="text-xs font-bold tracking-wider uppercase text-zinc-300">Monaco IDE</span>
+                    <span class="text-[10px] font-semibold text-emerald-400 bg-emerald-950/80 border border-emerald-800/80 px-1.5 py-0.2 rounded font-mono">jsonpathly v1</span>
+                </a>
+
+                <div class="h-4 w-[1px] bg-zinc-800 mx-1"></div>
+
+                <!-- Open File (Ctrl+O) -->
+                <button id="openFileBtn" type="button" title="Open JSON file from disk (Ctrl+O)"
+                    class="inline-flex items-center gap-1.5 bg-zinc-800 hover:bg-zinc-700 active:bg-zinc-900 border border-zinc-700/60 text-zinc-200 text-xs font-semibold px-2.5 py-1 rounded-md shadow-sm transition active:scale-95 cursor-pointer">
+                    <i class="bi bi-file-earmark-plus text-sky-400"></i>
+                    <span>File</span>
+                </button>
+                <input type="file" id="fileInput" class="hidden"
+                    accept=".json,.js,.mjs,.cjs,.ts,.tsx,.html,.htm,.css,.scss,.txt,.md,.xml,.svg,application/json,text/*">
+            </div>
+
+            <!-- Right: Status & Active File Indicator Badge -->
+            <div class="flex items-center gap-2">
+                <!-- Save Status Notification -->
+                <span id="saveStatus"
+                    class="hidden text-[10px] font-semibold text-emerald-400 bg-emerald-950/80 border border-emerald-800 px-2 py-0.5 rounded">
+                    Saved ✓
+                </span>
+
+                <!-- Active File Info Pill -->
+                <div
+                    class="inline-flex items-center gap-2 bg-zinc-800/80 border border-zinc-700/60 rounded-md px-2.5 py-1 text-xs">
+                    <i class="bi bi-filetype-json text-amber-400" id="fileIcon"></i>
+                    <span class="text-zinc-400 font-medium">Active:</span>
+                    <span id="fileName"
+                        class="text-zinc-100 font-semibold font-mono truncate max-w-[160px]">sample.json</span>
+                    <span id="dirtyDot" class="hidden w-2 h-2 rounded-full bg-amber-400 animate-pulse"
+                        title="Unsaved changes"></span>
+                    <span id="fileSize" class="text-[10px] text-zinc-400 bg-zinc-700/60 px-1.5 py-0.2 rounded">0.4 KB</span>
+                </div>
+
+                <div class="h-4 w-[1px] bg-zinc-800 mx-1"></div>
+
+                <!-- Navigation to Single Portal -->
+                <a href="../../index.html" title="Back to Single Editions Hub"
+                    class="text-zinc-400 hover:text-zinc-200 text-xs px-2 py-1 rounded hover:bg-zinc-800/60 transition flex items-center gap-1">
+                    <i class="bi bi-grid text-[10px]"></i>
+                    <span class="hidden sm:inline">Single Hub</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Top Search Engine Bar (Clean & Full-Width) -->
+        <div id="jsonPathToolbar" class="h-[40px] bg-zinc-900/95 border-b border-zinc-800 px-3 flex items-center justify-between gap-3 shrink-0 select-none">
+            <!-- Left: Search Query Input -->
+            <div class="flex items-center gap-2 flex-1">
+                <div class="relative flex-1 flex items-center">
+                    <span class="absolute left-2.5 text-sky-400 font-mono text-xs select-none">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input id="jsonPathQueryInput" type="text"
+                        placeholder="Search JSON with JSONPath (e.g. $.rawAst.program.body[*].expression or $..type)..."
+                        class="w-full bg-zinc-950 border border-zinc-700/80 rounded pl-7 pr-7 py-1 text-xs font-mono text-sky-200 placeholder-zinc-500 focus:outline-none focus:border-sky-500 transition shadow-inner">
+                    <button id="clearQueryBtn" type="button" title="Clear expression"
+                        class="absolute right-2 text-zinc-500 hover:text-zinc-200 text-xs">
+                        <i class="bi bi-x-circle-fill"></i>
+                    </button>
+                </div>
+
+                <!-- Run / Search Button -->
+                <button id="runJsonPathBtn" type="button" title="Find Matches (Enter)"
+                    class="inline-flex items-center gap-1.5 bg-sky-600 hover:bg-sky-500 active:bg-sky-700 text-white text-xs font-semibold px-3 py-1 rounded shadow-sm transition active:scale-95 cursor-pointer shrink-0">
+                    <i class="bi bi-search text-[10px]"></i>
+                    <span>Find</span>
+                </button>
+            </div>
+
+            <!-- Right: Match Navigator & Quick Actions -->
+            <div class="flex items-center gap-2 text-xs font-mono">
+                <div id="searchStatsContainer" class="flex items-center gap-1.5 text-zinc-400">
+                    <span id="searchStatsBadge" class="text-zinc-500 text-[11px]">Ready to search</span>
+                </div>
+
+                <button id="copyResultBtn" type="button" title="Copy right editor JSON to clipboard"
+                    class="inline-flex items-center gap-1 text-zinc-400 hover:text-sky-300 border border-zinc-700/80 px-2 py-1 rounded bg-zinc-800/80 text-[11px] transition">
+                    <i class="bi bi-clipboard"></i>
+                    <span>Copy Output</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Workspace Body: 50/50 Dual Monaco Split Canvas -->
+        <main class="flex-1 flex flex-row overflow-hidden w-full h-full">
+            <!-- Left 50%: Source Monaco Editor Pane -->
+            <section class="split-pane-half h-full flex flex-col border-r border-zinc-800 overflow-hidden">
+                <div class="h-[28px] bg-zinc-900 border-b border-zinc-800 px-3 flex items-center justify-between text-xs text-zinc-400 select-none shrink-0">
+                    <span class="font-semibold text-zinc-200 flex items-center gap-1.5">
+                        <i class="bi bi-file-earmark-code text-sky-400"></i>
+                        <span>Source Document (Input)</span>
+                    </span>
+                    <span id="sourceEditorStats" class="text-[11px] font-mono text-zinc-500">Lines: 0</span>
+                </div>
+                <div id="sourceEditorContainer" class="flex-1 w-full h-full bg-[#1e1e1e] overflow-hidden"></div>
+            </section>
+
+            <!-- Right 50%: Query Output Monaco Editor Pane -->
+            <section class="split-pane-half h-full flex flex-col bg-zinc-950 overflow-hidden">
+                <div id="resultEditorHeader" class="h-[28px] bg-zinc-900 border-b border-zinc-800 px-3 flex items-center justify-between text-xs text-zinc-400 select-none shrink-0">
+                    <div class="flex items-center gap-3">
+                        <span class="font-semibold text-zinc-200 flex items-center gap-1.5">
+                            <i class="bi bi-lightning-charge text-amber-400"></i>
+                            <span>Query Output (Result)</span>
+                        </span>
+
+                        <!-- Output Flavour Selector -->
+                        <div class="flex items-center bg-zinc-950 border border-zinc-800 rounded p-0.5 text-[10px] font-mono">
+                            <button id="flavourTreeBtn" type="button" title="View formatted JSON tree"
+                                class="px-2 py-0.5 rounded bg-zinc-800 text-sky-300 font-bold transition">
+                                Tree
+                            </button>
+                            <button id="flavourPathsBtn" type="button" title="View normalized RFC 9535 paths"
+                                class="px-2 py-0.5 rounded text-zinc-500 hover:text-zinc-300 transition">
+                                Paths
+                            </button>
+                        </div>
+                    </div>
+
+                    <span id="resultEditorStats" class="text-[11px] font-mono text-emerald-400">0 matches</span>
+                </div>
+                <div id="resultEditorContainer" class="flex-1 w-full h-full bg-[#1e1e1e]"></div>
+            </section>
+        </main>
+
+        <!-- 22px Compact Studio Status Bar -->
+        <footer
+            class="h-[22px] bg-sky-950 border-t border-sky-800/60 px-3 flex items-center justify-between text-[11px] text-zinc-300 select-none shrink-0">
+            <!-- Left: Studio & Cursor Position -->
+            <div class="flex items-center gap-3">
+                <span class="flex items-center gap-1.5 text-sky-300 font-semibold">
+                    <i class="bi bi-cpu text-xs"></i>
+                    <span>Monaco Studio</span>
+                </span>
+                <span class="text-sky-800">|</span>
+                <span id="cursorPos" class="font-mono text-zinc-300">Ln 1, Col 1</span>
+            </div>
+
+            <!-- Right: Studio Controls (Wrap, Map, Encoding, Language) -->
+            <div class="flex items-center gap-3 font-mono text-[10px]">
+                <span id="toggleWordWrapBtn"
+                    class="status-bar-item text-zinc-400 rounded px-1.5 py-0.5 hover:text-white"
+                    title="Toggle Word Wrap (Alt+Z)">
+                    Wrap: Off
+                </span>
+                <span id="toggleMinimapBtn" class="status-bar-item text-zinc-400 rounded px-1.5 py-0.5 hover:text-white"
+                    title="Toggle Minimap">
+                    Map: Off
+                </span>
+                <span class="text-zinc-400">UTF-8</span>
+                <span class="text-zinc-400">Spaces: 2</span>
+                <span id="statusLanguage"
+                    class="text-sky-300 font-bold bg-sky-900/60 px-1.5 py-0.2 rounded border border-sky-700/60">
+                    JSON
+                </span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/loader.min.js"></script>
+    <script type="module" src="./js/index.js"></script>
+</body>
+
+</html>

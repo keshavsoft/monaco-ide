@@ -1,0 +1,41 @@
+[
+  {
+    "id": "sourceEditor",
+    "containerId": "sourceEditorContainer",
+    "role": "source",
+    "title": "Source Document (Input)",
+    "readOnly": false,
+    "initialFile": "./sample.json",
+    "options": {
+      "theme": "vs-dark",
+      "tabSize": 2,
+      "fontSize": 13,
+      "lineNumbers": "on",
+      "minimap": { "enabled": false },
+      "automaticLayout": true,
+      "scrollBeyondLastLine": false,
+      "renderLineHighlight": "all",
+      "padding": { "top": 8 }
+    }
+  },
+  {
+    "id": "resultEditor",
+    "containerId": "resultEditorContainer",
+    "role": "result",
+    "title": "Query Output (Result)",
+    "readOnly": true,
+    "initialContent": "[\n  // Type a JSONPath query above and press Enter to inspect results\n]\n",
+    "options": {
+      "theme": "vs-dark",
+      "tabSize": 2,
+      "fontSize": 13,
+      "lineNumbers": "on",
+      "minimap": { "enabled": false },
+      "automaticLayout": true,
+      "scrollBeyondLastLine": false,
+      "renderLineHighlight": "all",
+      "padding": { "top": 8 }
+    }
+  }
+]
+

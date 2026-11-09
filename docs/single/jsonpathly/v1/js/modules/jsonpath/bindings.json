@@ -1,0 +1,38 @@
+[
+  {
+    "event": "keydown",
+    "selector": "#jsonPathQueryInput",
+    "action": "handleQueryKeydown",
+    "narration": "Execute JSONPath query when Enter key is pressed"
+  },
+  {
+    "event": "click",
+    "selector": "#runJsonPathBtn",
+    "action": "executeQuery",
+    "narration": "Execute query on button click"
+  },
+  {
+    "event": "click",
+    "selector": "#clearQueryBtn",
+    "action": "clearQuery",
+    "narration": "Clear query input and reset result editor"
+  },
+  {
+    "event": "click",
+    "selector": "#copyResultBtn",
+    "action": "copyResult",
+    "narration": "Copy content of the result editor to clipboard"
+  },
+  {
+    "event": "click",
+    "selector": "#flavourTreeBtn",
+    "action": "setFlavourTree",
+    "narration": "Render result as extracted JSON tree in right Monaco editor"
+  },
+  {
+    "event": "click",
+    "selector": "#flavourPathsBtn",
+    "action": "setFlavourPaths",
+    "narration": "Render result as normalized RFC 9535 paths in right Monaco editor"
+  }
+]

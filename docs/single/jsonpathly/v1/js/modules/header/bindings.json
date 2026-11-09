@@ -1,0 +1,8 @@
+[
+  {
+    "event": "click",
+    "selector": "#openFileBtn",
+    "action": "openFiles",
+    "narration": "Open file from local disk via native file dialog (Ctrl+O)"
+  }
+]

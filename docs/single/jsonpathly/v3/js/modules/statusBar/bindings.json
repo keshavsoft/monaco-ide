@@ -1,0 +1,9 @@
+[
+  {
+    "event": "click",
+    "selector": "#btnWrap",
+    "action": "toggleWordWrap",
+    "narration": "Toggle word wrapping on both Monaco editors"
+  }
+]
+

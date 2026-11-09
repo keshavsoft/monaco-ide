@@ -1,0 +1,15 @@
+[
+  {
+    "event": "click",
+    "selector": "#btnFile",
+    "action": "openFile",
+    "narration": "Open JSON file from local disk"
+  },
+  {
+    "event": "change",
+    "selector": "#fileInput",
+    "action": "handleFileInputChange",
+    "narration": "Handle file selected via file input dialog"
+  }
+]
+
