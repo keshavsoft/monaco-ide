@@ -1,0 +1,7 @@
+{
+  "tagName": "tr",
+  "attributes": {
+    "class": "hover:bg-slate-50"
+  },
+  "children": []
+}

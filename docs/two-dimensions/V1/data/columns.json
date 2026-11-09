@@ -1,0 +1,23 @@
+[
+  {
+    "key": "id",
+    "label": "ID",
+    "align": "left",
+    "className": "font-mono"
+  },
+  {
+    "key": "name",
+    "label": "Name",
+    "align": "left"
+  },
+  {
+    "key": "status",
+    "label": "Status",
+    "align": "left"
+  },
+  {
+    "key": "amount",
+    "label": "Amount",
+    "align": "right"
+  }
+]

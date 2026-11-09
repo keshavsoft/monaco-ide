@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Two Dimensions V1 — Monaco JSON Table Builder</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+html,body{height:100%;margin:0}body{display:flex;flex-direction:column;background:#111318;color:#e7eaf0;font:14px system-ui}
+header{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:#1b2029;border-bottom:1px solid #303846}
+h1{font-size:18px;margin:0}header p{margin:3px 0 0;color:#9ca9ba;font-size:12px}
+.toolbar{display:flex;gap:8px}.toolbar button,.tab{padding:8px 12px;border:1px solid #435064;border-radius:5px;background:#26364a;color:#eaf4ff;cursor:pointer}
+.tabs{display:flex;gap:5px;flex-wrap:wrap;padding:9px 14px;background:#171b22}
+.tab{background:transparent;border-color:transparent;color:#aab3c2}.tab.active{background:#26364a;border-color:#41617f;color:#fff}
+main{display:flex;flex:1;min-height:0;flex-direction:column}.meta{padding:6px 12px;background:#202630;color:#aeb9c8;font-size:12px;display:flex;justify-content:space-between}
+#editor{flex:1;min-height:0}footer{padding:7px 12px;background:#0b0e13;color:#8e9aaa;font-size:11px}
+</style></head><body>
+<header><div><h1>Two Dimensions — V1</h1><p>Render V3 structure extended with independent Columns and Rows dimensions.</p></div>
+<div class="toolbar"><button id="buildBtn">Build Table</button><button id="renderBtn" disabled>Render Output</button></div></header>
+<nav class="tabs">
+<button class="tab active" data-view="base">Base JSON</button>
+<button class="tab" data-view="columns">Columns JSON</button>
+<button class="tab" data-view="rows">Rows JSON</button>
+<button class="tab" data-view="columnTemplate">Column Template</button>
+<button class="tab" data-view="rowTemplate">Row Template</button>
+<button class="tab" data-view="cellTemplate">Cell Template</button>
+<button class="tab" data-view="output">Output JSON</button>
+</nav>
+<main><div class="meta"><strong id="fileName">base.json</strong><span id="status">Loading…</span></div><div id="editor"></div></main>
+<footer>Two-dimensional construction · Columns define the horizontal dimension · Rows define the vertical dimension</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/loader.min.js"></script>
+<script type="module" src="./js/v1.js"></script>
+</body></html>

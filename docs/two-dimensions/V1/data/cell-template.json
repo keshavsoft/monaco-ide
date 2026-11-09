@@ -1,0 +1,7 @@
+{
+  "tagName": "td",
+  "attributes": {
+    "class": "px-3 py-2"
+  },
+  "textContent": "{{value}}"
+}
