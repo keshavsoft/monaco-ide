@@ -1,0 +1,17 @@
+[
+  {
+    "key": "name",
+    "label": "Name",
+    "align": "left"
+  },
+  {
+    "key": "role",
+    "label": "Role",
+    "align": "left"
+  },
+  {
+    "key": "age",
+    "label": "Age",
+    "align": "right"
+  }
+]

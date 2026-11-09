@@ -1,0 +1,14 @@
+[
+  {
+    "event": "click",
+    "selector": "[data-model]",
+    "action": "switchModel",
+    "narration": "Switch the active JSON model and update the Monaco editor contents."
+  },
+  {
+    "event": "click",
+    "selector": "#openTab2",
+    "action": "openTab2",
+    "narration": "Open the sibling tab window for Tab 2."
+  }
+]

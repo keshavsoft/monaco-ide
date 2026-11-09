@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Table V3 — Tab 1 · Supplier</title>
+  <link rel="stylesheet" href="../shared/app.css">
+</head>
+<body>
+  <header><div><small>TABLE / V3</small><h1>Tab 1 — What I Supply</h1><p>Tab 1 is the only tab that reads the shared JSON files.</p></div>
+    <div class="header-actions"><span id="connection" class="pill">Loading source files…</span><button id="openTab2" disabled>Open Tab 2 →</button></div>
+  </header>
+  <nav class="tabs">
+    <button class="tab active" data-model="columns">Columns</button>
+    <button class="tab" data-model="tables">Tables / Data</button>
+    <button class="tab" data-model="options">Options</button>
+  </nav>
+  <main><div class="editor-heading"><strong id="fileName">columns.json</strong><span id="status">Loading…</span></div><div id="editor"></div></main>
+  <footer>Source owner · Tab 1 · BroadcastChannel: <code>keshavsoft-table-v1</code></footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/loader.min.js"></script>
+  <script type="module" src="./js/index.js"></script>
+</body>
+</html>
