@@ -1,0 +1,21 @@
+{
+  "title": "Team Members",
+  "description": "Sample table supplied by Tab 1",
+  "rows": [
+    {
+      "name": "Asha",
+      "role": "Developer",
+      "age": 28
+    },
+    {
+      "name": "Ravi",
+      "role": "Designer",
+      "age": 32
+    },
+    {
+      "name": "Maya",
+      "role": "Analyst",
+      "age": 26
+    }
+  ]
+}

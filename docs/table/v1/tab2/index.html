@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Table V1 — Tab 2 · Consumer</title>
+  <link rel="stylesheet" href="../shared/app.css">
+</head>
+<body>
+  <header><div><small>TABLE / V1</small><h1>Tab 2 — Waiting for Tab 1</h1><p>This page does not fetch columns.json, tables.json or options.json.</p></div>
+    <span id="connection" class="pill">Requesting Tab 1…</span>
+  </header>
+  <main class="consumer">
+    <section id="waiting" class="message"><h2>Waiting for the source tab</h2><p>Tab 2 is asking Tab 1 to supply the current JSON data.</p></section>
+    <section id="received" hidden>
+      <div class="editor-heading"><strong>Received from Tab 1</strong><span id="receivedAt"></span></div>
+      <div class="received-tabs">
+        <button class="tab active" data-model="columns">Columns</button>
+        <button class="tab" data-model="tables">Tables / Data</button>
+        <button class="tab" data-model="options">Options</button>
+      </div>
+      <pre id="payloadView"></pre>
+    </section>
+    <section id="failure" class="message error-panel" hidden><h2>Tab 1 is not available</h2><p>Please open Tab 1, wait until its source files are loaded, then retry.</p><button id="retry">Retry request</button></section>
+  </main>
+  <footer>Consumer · Tab 2 · No direct fetch of shared JSON files</footer>
+  <script type="module" src="./js/index.js"></script>
+</body></html>
