@@ -1,15 +1,15 @@
 const CHANNEL_NAME = 'keshavsoft-table-v1';
 const channel = new BroadcastChannel(CHANNEL_NAME);
 const FILES = {
-  columns: '../../shared/columns.json',
-  tables: '../../shared/tables.json',
-  options: '../../shared/options.json'
+  columns: '../shared/columns.json',
+  tables: '../shared/tables.json',
+  options: '../shared/options.json'
 };
 const models = {};
 let activeModel = 'columns';
 let editor;
 const $ = (id) => document.getElementById(id);
-const pretty = (value) => JSON.stringify(value, null, 2) + '\\n';
+const pretty = (value) => JSON.stringify(value, null, 2) + '\n';
 
 function setStatus(message, isError = false) {
   $('status').textContent = message;
@@ -89,7 +89,7 @@ async function start() {
   $('connection').textContent = 'Source ready · listening for Tab 2';
   $('connection').classList.add('ready');
   $('openTab2').addEventListener('click', () => {
-    const url = new URL('../../tab2/index.html', location.href);
+    const url = new URL('../tab2/index.html', location.href);
     window.open(url.href, 'keshavsoft_table_tab2');
   });
   setStatus('Loaded 3 shared JSON files. Tab 1 is now listening.');
