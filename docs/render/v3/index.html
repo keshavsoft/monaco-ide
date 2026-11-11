@@ -4,6 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Ensure directory URLs always have trailing slash so relative paths resolve correctly -->
+    <script>
+        if (!location.pathname.endsWith('/') && !location.pathname.split('/').pop().includes('.')) {
+            location.replace(location.pathname + '/' + location.search + location.hash);
+        }
+    </script>
     <title>sample.json — Monaco IDE Render V3</title>
     <!-- Compiled Standalone Tailwind CSS -->
     <link rel="stylesheet" href="./style.css">

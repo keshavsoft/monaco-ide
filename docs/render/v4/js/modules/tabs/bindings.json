@@ -1,0 +1,8 @@
+[
+  {
+    "event": "change",
+    "selector": "#fileInput",
+    "action": "handleFileInput",
+    "narration": "Load selected single file into Monaco editor"
+  }
+]

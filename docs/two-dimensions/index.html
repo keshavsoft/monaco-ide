@@ -4,6 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Ensure directory URLs always have trailing slash so relative paths resolve correctly -->
+    <script>
+        if (!location.pathname.endsWith('/') && !location.pathname.split('/').pop().includes('.')) {
+            location.replace(location.pathname + '/' + location.search + location.hash);
+        }
+    </script>
     <title>Monaco IDE — Two Dimensions Table Builder</title>
     <!-- Compiled Standalone Tailwind CSS & Bootstrap Icons -->
     <link rel="stylesheet" href="../v14/style.css">
@@ -32,9 +38,9 @@
 
             <!-- Quick Version Jump -->
             <div class="flex items-center gap-2 text-xs font-mono">
-                <a href="./v1/index.html" class="text-indigo-400 bg-indigo-950/80 border border-indigo-800/80 px-2.5 py-1 rounded font-bold hover:bg-indigo-900/80 transition" title="Two Dimensions V1 Builder">v1 Builder</a>
+                <a href="./v1/" class="text-indigo-400 bg-indigo-950/80 border border-indigo-800/80 px-2.5 py-1 rounded font-bold hover:bg-indigo-900/80 transition" title="Two Dimensions V1 Builder">v1 Builder</a>
                 <a href="./v1/render.html" target="_blank" class="text-zinc-400 hover:text-zinc-200 px-2.5 py-1 rounded hover:bg-zinc-800 transition" title="Render Canvas">Render</a>
-                <a href="../index.html" class="text-zinc-400 hover:text-zinc-200 border border-zinc-700/80 px-2.5 py-1 rounded hover:bg-zinc-800 transition flex items-center gap-1 ml-2" title="Back to Docs Portal">
+                <a href="../" class="text-zinc-400 hover:text-zinc-200 border border-zinc-700/80 px-2.5 py-1 rounded hover:bg-zinc-800 transition flex items-center gap-1 ml-2" title="Back to Docs Portal">
                     <i class="bi bi-arrow-left"></i>
                     <span class="hidden sm:inline">Docs Portal</span>
                 </a>
@@ -60,7 +66,7 @@
 
         <!-- CTA Buttons -->
         <div class="flex flex-wrap items-center justify-center gap-3.5 mb-14">
-            <a href="./v1/index.html" class="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white font-semibold text-sm px-6 py-3 rounded-lg shadow-lg shadow-indigo-950/60 transition transform hover:-translate-y-0.5 active:translate-y-0">
+            <a href="./v1/" class="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white font-semibold text-sm px-6 py-3 rounded-lg shadow-lg shadow-indigo-950/60 transition transform hover:-translate-y-0.5 active:translate-y-0">
                 <i class="bi bi-play-circle-fill text-lg"></i>
                 <span>Launch Two Dimensions V1 Builder</span>
             </a>
@@ -68,7 +74,7 @@
                 <i class="bi bi-box-arrow-up-right"></i>
                 <span>Open Rendered Output</span>
             </a>
-            <a href="../index.html" class="inline-flex items-center gap-2 bg-zinc-900/60 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 border border-zinc-800 font-semibold text-sm px-4 py-3 rounded-lg transition">
+            <a href="../" class="inline-flex items-center gap-2 bg-zinc-900/60 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 border border-zinc-800 font-semibold text-sm px-4 py-3 rounded-lg transition">
                 <i class="bi bi-house"></i>
                 <span>Docs Portal</span>
             </a>

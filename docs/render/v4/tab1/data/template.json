@@ -1,0 +1,46 @@
+{
+  "tagName": "thead",
+  "attributes": {
+    "class": "table-dark text-uppercase small"
+  },
+  "children": [
+    {
+      "tagName": "tr",
+      "children": [
+        {
+          "tagName": "th",
+          "textContent": "Invoice #",
+          "attributes": {
+            "class": "px-3 py-3 text-start",
+            "scope": "col"
+          }
+        },
+        {
+          "tagName": "th",
+          "textContent": "Customer / Entity",
+          "attributes": {
+            "class": "px-3 py-3 text-start",
+            "scope": "col"
+          }
+        },
+        {
+          "tagName": "th",
+          "textContent": "Status",
+          "attributes": {
+            "class": "px-3 py-3 text-center",
+            "scope": "col"
+          }
+        },
+        {
+          "tagName": "th",
+          "textContent": "Amount",
+          "attributes": {
+            "class": "px-3 py-3 text-end",
+            "scope": "col"
+          }
+        }
+      ]
+    }
+  ]
+}
+

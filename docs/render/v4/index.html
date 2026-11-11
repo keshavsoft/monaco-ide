@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Ensure trailing slash redirect then forward to Tab 1 -->
+    <script>
+        if (!location.pathname.endsWith('/') && !location.pathname.split('/').pop().includes('.')) {
+            location.replace(location.pathname + '/' + location.search + location.hash);
+        } else {
+            location.replace('./tab1/');
+        }
+    </script>
+    <title>Monaco IDE Render V4</title>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+{
+  "table": {
+    "allowedAttributes": [
+      "id",
+      "class",
+      "role"
+    ],
+    "allowsChildren": true
+  },
+  "thead": {
+    "allowedAttributes": [
+      "id",
+      "class"
+    ],
+    "allowsChildren": true
+  },
+  "tbody": {
+    "allowedAttributes": [
+      "id",
+      "class"
+    ],
+    "allowsChildren": true
+  },
+  "tr": {
+    "allowedAttributes": [
+      "id",
+      "class"
+    ],
+    "allowsChildren": true
+  },
+  "th": {
+    "allowedAttributes": [
+      "id",
+      "class",
+      "scope"
+    ],
+    "allowsChildren": true
+  },
+  "td": {
+    "allowedAttributes": [
+      "id",
+      "class"
+    ],
+    "allowsChildren": true
+  }
+}

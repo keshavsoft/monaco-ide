@@ -1,0 +1,22 @@
+[
+  {
+    "key": "id",
+    "label": "Invoice #",
+    "className": "font-monospace fw-bold text-primary"
+  },
+  {
+    "key": "name",
+    "label": "Customer / Entity"
+  },
+  {
+    "key": "status",
+    "label": "Status",
+    "align": "center"
+  },
+  {
+    "key": "amount",
+    "label": "Amount",
+    "align": "right",
+    "className": "fw-bold text-dark"
+  }
+]

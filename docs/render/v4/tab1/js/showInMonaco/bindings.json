@@ -1,0 +1,51 @@
+[
+  {
+    "event": "click",
+    "selector": "[data-view]",
+    "action": "switchView",
+    "narration": "Switch the active JSON model and update the Monaco editor contents."
+  },
+  {
+    "event": "click",
+    "selector": "#openTab2",
+    "action": "openTab2",
+    "narration": "Open the isolated Tab 2 HTML renderer."
+  },
+  {
+    "event": "click",
+    "selector": "#playBtn",
+    "action": "playHtml",
+    "narration": "Build and transmit the live HTML specification to Tab 2."
+  },
+  {
+    "event": "click",
+    "selector": "#renderBtn",
+    "action": "playHtml",
+    "narration": "Build and transmit the live HTML specification to Tab 2."
+  },
+  {
+    "event": "click",
+    "selector": "#buildBtn",
+    "action": "buildSpec",
+    "narration": "Compile base, columns, template, and data into output.json."
+  },
+  {
+    "event": "click",
+    "selector": "#openFileBtn",
+    "action": "openFile",
+    "narration": "Open a local JSON file from disk."
+  },
+  {
+    "event": "click",
+    "selector": "#toggleWordWrapBtn",
+    "action": "toggleWordWrap",
+    "narration": "Toggle word wrapping in Monaco editor."
+  },
+  {
+    "event": "click",
+    "selector": "#toggleMinimapBtn",
+    "action": "toggleMinimap",
+    "narration": "Toggle minimap in Monaco editor."
+  }
+]
+

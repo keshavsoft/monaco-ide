@@ -1,0 +1,15 @@
+[
+  {
+    "event": "click",
+    "selector": "#toggleWordWrapBtn",
+    "action": "toggleWordWrap",
+    "narration": "Toggle editor word wrap on and off (Alt+Z)"
+  },
+  {
+    "event": "click",
+    "selector": "#toggleMinimapBtn",
+    "action": "toggleMinimap",
+    "narration": "Toggle Monaco code minimap on and off"
+  }
+]
+

@@ -1,0 +1,22 @@
+{
+  "tagName": "table",
+  "attributes": {
+    "id": "PR",
+    "class": "table table-striped table-hover table-bordered align-middle shadow-sm mb-0"
+  },
+  "children": [
+    {
+      "tagName": "thead",
+      "attributes": {
+        "id": "PR-head",
+        "class": "table-dark text-uppercase small"
+      }
+    },
+    {
+      "tagName": "tbody",
+      "attributes": {
+        "id": "PR-body"
+      }
+    }
+  ]
+}

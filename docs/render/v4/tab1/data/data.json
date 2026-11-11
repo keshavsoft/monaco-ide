@@ -1,0 +1,29 @@
+{
+  "rows": [
+    {
+      "id": "INV-2026-1042",
+      "name": "Keshav Enterprise Solutions Pvt Ltd",
+      "status": "Paid",
+      "amount": "₹1,25,000"
+    },
+    {
+      "id": "INV-2026-1043",
+      "name": "Sri Lakshmi Trading Co.",
+      "status": "Pending",
+      "amount": "₹48,750"
+    },
+    {
+      "id": "INV-2026-1044",
+      "name": "Coastal Shipping & Logistics",
+      "status": "Overdue",
+      "amount": "₹2,14,300"
+    },
+    {
+      "id": "INV-2026-1045",
+      "name": "Apex Cloud Technologies",
+      "status": "Paid",
+      "amount": "₹95,000"
+    }
+  ]
+}
+
