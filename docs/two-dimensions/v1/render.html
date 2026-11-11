@@ -9,9 +9,16 @@
 </head>
 
 <body class="min-h-screen bg-slate-950 text-slate-100">
-    <header class="border-b border-slate-800 p-4">
-        <h1 class="text-lg font-bold">Two Dimensions V1 — Rendered Table</h1>
-        <p class="text-xs text-slate-400">Pure DOM output · No Monaco editor</p>
+    <header class="border-b border-slate-800 p-4 flex items-center justify-between">
+        <div>
+            <h1 class="text-lg font-bold">Two Dimensions V1 — Rendered Table</h1>
+            <p class="text-xs text-slate-400">Pure DOM output · No Monaco editor</p>
+        </div>
+        <div class="flex items-center gap-3 text-xs">
+            <a href="./index.html" class="text-sky-400 hover:text-sky-300 font-semibold">← Back to Builder</a>
+            <a href="../index.html" class="text-slate-400 hover:text-slate-200">Hub</a>
+            <a href="../../index.html" class="text-slate-400 hover:text-slate-200">Docs</a>
+        </div>
     </header>
     <main id="app" class="p-6">
         <p class="text-slate-400">Waiting for output from the builder…</p>

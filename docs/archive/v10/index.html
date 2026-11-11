@@ -38,11 +38,11 @@
         <header class="h-[44px] bg-zinc-900 border-b border-zinc-800 flex items-center justify-between px-3 shrink-0">
             <!-- Left Branding & Tools -->
             <div class="flex items-center gap-3">
-                <div class="flex items-center gap-1.5 text-zinc-200">
+                <a href="../index.html" title="Back to Archive" class="flex items-center gap-1.5 text-zinc-200 hover:text-white transition">
                     <i class="bi bi-code-slash text-sky-400 text-lg"></i>
                     <span class="text-xs font-bold tracking-wider uppercase text-zinc-200">Monaco IDE</span>
                     <span class="text-[10px] font-bold text-sky-300 bg-sky-950 border border-sky-800 px-1.5 py-0.5 rounded">V10</span>
-                </div>
+                </a>
 
                 <div class="h-4 w-[1px] bg-zinc-800"></div>
 
@@ -80,12 +80,19 @@
             </div>
 
             <!-- Right Status Badges -->
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2">
                 <span id="saveIndicator" class="text-zinc-500 font-mono text-[11px]"></span>
                 <span id="fileCountBadge" class="text-[10px] text-zinc-400 bg-zinc-800 border border-zinc-700/60 px-2 py-0.5 rounded font-mono">0 files</span>
-                <span id="statusBadge" class="text-xs px-2.5 py-1 rounded font-mono bg-zinc-800 text-zinc-400 border border-zinc-700 flex items-center gap-1.5">
+                <span id="statusBadge" class="text-xs px-2 py-0.5 rounded font-mono bg-zinc-800 text-zinc-400 border border-zinc-700 flex items-center gap-1.5">
                     Initializing…
                 </span>
+                <div class="h-4 w-[1px] bg-zinc-800 mx-1"></div>
+                <a href="../index.html" title="Back to Archive" class="text-zinc-400 hover:text-zinc-200 text-xs px-2 py-1 rounded hover:bg-zinc-800/60 transition">
+                    Archive
+                </a>
+                <a href="../../index.html" title="Back to Docs Portal" class="text-zinc-400 hover:text-zinc-200 text-xs px-2 py-1 rounded hover:bg-zinc-800/60 transition">
+                    Docs
+                </a>
             </div>
         </header>
 

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Monaco IDE — Table Workspaces</title>
+    <!-- Compiled Standalone Tailwind CSS & Bootstrap Icons -->
+    <link rel="stylesheet" href="../v14/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body class="bg-zinc-950 text-zinc-100 antialiased min-h-screen flex flex-col font-sans selection:bg-sky-500/30 selection:text-sky-200">
+    <!-- Navbar -->
+    <nav class="border-b border-zinc-800 bg-zinc-900/90 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+            <!-- Brand & Breadcrumbs -->
+            <div class="flex items-center gap-2 shrink-0">
+                <a href="../index.html" class="flex items-center gap-2 text-zinc-400 hover:text-zinc-200 transition">
+                    <i class="bi bi-code-slash text-sky-400 text-xl"></i>
+                    <span class="font-bold text-sm tracking-wider uppercase text-zinc-200">Monaco IDE</span>
+                </a>
+                <span class="text-zinc-600">/</span>
+                <span class="font-bold text-sm text-sky-400 flex items-center gap-1.5">
+                    <i class="bi bi-table"></i>
+                    <span>Table Workspaces</span>
+                </span>
+                <span class="text-[10px] font-semibold text-sky-400 bg-sky-950/80 border border-sky-800/80 px-2 py-0.5 rounded-full ml-1">
+                    Multi-Tab Broadcast
+                </span>
+            </div>
+
+            <!-- Quick Version Jump -->
+            <div class="flex items-center gap-2 text-xs font-mono">
+                <a href="./v1/tab1/index.html" class="text-zinc-400 hover:text-zinc-200 px-2.5 py-1 rounded hover:bg-zinc-800 transition" title="Table V1">v1</a>
+                <a href="./v2/tab1/index.html" class="text-zinc-400 hover:text-zinc-200 px-2.5 py-1 rounded hover:bg-zinc-800 transition" title="Table V2">v2</a>
+                <a href="./v3/tab1/index.html" class="text-sky-400 bg-sky-950/80 border border-sky-800/80 px-2.5 py-1 rounded font-bold hover:bg-sky-900/80 transition" title="Table V3 Flagship">v3 Flagship</a>
+                <a href="../index.html" class="text-zinc-400 hover:text-zinc-200 border border-zinc-700/80 px-2.5 py-1 rounded hover:bg-zinc-800 transition flex items-center gap-1 ml-2" title="Back to Docs Portal">
+                    <i class="bi bi-arrow-left"></i>
+                    <span class="hidden sm:inline">Docs Portal</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-5xl mx-auto px-4 sm:px-6 py-12 flex flex-col items-center text-center">
+        <!-- Status Pill -->
+        <div class="inline-flex items-center gap-2 bg-zinc-900 border border-sky-800/60 text-sky-400 px-3.5 py-1 rounded-full text-xs font-medium mb-6 shadow-sm">
+            <span class="inline-block w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+            <span>Decoupled Multi-Tab Supplier & Consumer State Engine</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white max-w-3xl leading-tight mb-4">
+            2D Table Spec Workspaces
+        </h1>
+
+        <p class="text-base sm:text-lg text-zinc-400 max-w-3xl mb-8 leading-relaxed">
+            High performance dual-tab architecture powered by <code class="text-sky-300 font-mono">BroadcastChannel</code>. <strong>Tab 1 (Supplier)</strong> reads and manages table specs (<code class="text-zinc-300 font-mono">columns.json</code>, <code class="text-zinc-300 font-mono">tables.json</code>, <code class="text-zinc-300 font-mono">options.json</code>) while <strong>Tab 2 (Consumer)</strong> receives updates without direct file access.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap items-center justify-center gap-3.5 mb-14">
+            <a href="./v3/tab1/index.html" class="inline-flex items-center gap-2 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-semibold text-sm px-6 py-3 rounded-lg shadow-lg shadow-sky-950/60 transition transform hover:-translate-y-0.5 active:translate-y-0">
+                <i class="bi bi-play-circle-fill text-lg"></i>
+                <span>Open Table V3 (Tab 1 Supplier)</span>
+            </a>
+            <a href="./v2/tab1/index.html" class="inline-flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-700/80 font-semibold text-sm px-5 py-3 rounded-lg transition">
+                <i class="bi bi-window"></i>
+                <span>Open Table V2 (Tab 1)</span>
+            </a>
+            <a href="../index.html" class="inline-flex items-center gap-2 bg-zinc-900/60 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 border border-zinc-800 font-semibold text-sm px-4 py-3 rounded-lg transition">
+                <i class="bi bi-house"></i>
+                <span>Docs Portal</span>
+            </a>
+        </div>
+
+        <!-- Table Versions Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full text-left">
+            <!-- V3 -->
+            <div class="bg-zinc-900/60 border border-sky-600/60 rounded-xl p-6 flex flex-col justify-between shadow-lg relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-sky-500 text-black text-[10px] font-bold px-3 py-0.5 rounded-bl uppercase tracking-wider">
+                    Flagship
+                </div>
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-bold font-mono text-sky-300 bg-sky-950 border border-sky-800 px-2 py-0.5 rounded">v3</span>
+                        <h3 class="text-lg font-bold text-white">Declarative Reader &amp; State</h3>
+                    </div>
+                    <p class="text-xs text-zinc-400 mb-4 leading-relaxed">
+                        Refactored with modular <code class="text-zinc-300 font-mono">showInMonaco</code> actions, bindings, and dedicated state manager with BroadcastChannel synchronization.
+                    </p>
+                </div>
+                <div class="pt-4 border-t border-zinc-800">
+                    <a href="./v3/tab1/index.html" class="block text-center bg-sky-600 hover:bg-sky-500 text-white font-semibold text-xs py-2 px-3 rounded transition">
+                        Launch Tab 1 (Supplier)
+                    </a>
+                </div>
+            </div>
+
+            <!-- V2 -->
+            <div class="bg-zinc-900/40 border border-zinc-800 rounded-xl p-6 flex flex-col justify-between hover:border-zinc-700 transition">
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-bold font-mono text-zinc-400 bg-zinc-800 px-2 py-0.5 rounded">v2</span>
+                        <h3 class="text-lg font-bold text-white">Dual Tab Orchestration</h3>
+                    </div>
+                    <p class="text-xs text-zinc-400 mb-4 leading-relaxed">
+                        Complete Tab 1 (Supplier) and Tab 2 (Consumer) pair demonstrating live cross-window state replication.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2 pt-4 border-t border-zinc-800">
+                    <a href="./v2/tab1/index.html" class="flex-1 text-center bg-zinc-800 hover:bg-zinc-700 text-zinc-200 font-semibold text-xs py-2 px-3 rounded transition">
+                        Tab 1 (Supplier)
+                    </a>
+                    <a href="./v2/tab2/index.html" class="flex-1 text-center bg-zinc-800 hover:bg-zinc-700 text-zinc-200 font-semibold text-xs py-2 px-3 rounded transition">
+                        Tab 2 (Consumer)
+                    </a>
+                </div>
+            </div>
+
+            <!-- V1 -->
+            <div class="bg-zinc-900/40 border border-zinc-800 rounded-xl p-6 flex flex-col justify-between hover:border-zinc-700 transition">
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-bold font-mono text-zinc-400 bg-zinc-800 px-2 py-0.5 rounded">v1</span>
+                        <h3 class="text-lg font-bold text-white">Core Channel Prototype</h3>
+                    </div>
+                    <p class="text-xs text-zinc-400 mb-4 leading-relaxed">
+                        Baseline multi-window broadcast channel prototype establishing the supplier/consumer protocol.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2 pt-4 border-t border-zinc-800">
+                    <a href="./v1/tab1/index.html" class="flex-1 text-center bg-zinc-800 hover:bg-zinc-700 text-zinc-200 font-semibold text-xs py-2 px-3 rounded transition">
+                        Tab 1 (Supplier)
+                    </a>
+                    <a href="./v1/tab2/index.html" class="flex-1 text-center bg-zinc-800 hover:bg-zinc-700 text-zinc-200 font-semibold text-xs py-2 px-3 rounded transition">
+                        Tab 2 (Consumer)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-zinc-800/80 py-8 text-center text-xs text-zinc-500 bg-zinc-950">
+        <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-2 text-zinc-400">
+                <i class="bi bi-code-slash text-sky-400"></i>
+                <span class="font-semibold text-zinc-300">Monaco IDE Table Workspaces</span>
+                <span>&bull;</span>
+                <a href="../index.html" class="hover:text-zinc-300 transition">Portal Home</a>
+            </div>
+            <p>&copy; 2026 KeshavSoft. Released under the MIT License.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
+

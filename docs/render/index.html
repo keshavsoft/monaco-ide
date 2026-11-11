@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Monaco IDE — JSON-to-DOM Render Studio</title>
+    <!-- Compiled Standalone Tailwind CSS & Bootstrap Icons -->
+    <link rel="stylesheet" href="../v14/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body class="bg-zinc-950 text-zinc-100 antialiased min-h-screen flex flex-col font-sans selection:bg-sky-500/30 selection:text-sky-200">
+    <!-- Navbar -->
+    <nav class="border-b border-zinc-800 bg-zinc-900/90 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+            <!-- Brand & Breadcrumbs -->
+            <div class="flex items-center gap-2 shrink-0">
+                <a href="../index.html" class="flex items-center gap-2 text-zinc-400 hover:text-zinc-200 transition">
+                    <i class="bi bi-code-slash text-sky-400 text-xl"></i>
+                    <span class="font-bold text-sm tracking-wider uppercase text-zinc-200">Monaco IDE</span>
+                </a>
+                <span class="text-zinc-600">/</span>
+                <span class="font-bold text-sm text-emerald-400 flex items-center gap-1.5">
+                    <i class="bi bi-filetype-json"></i>
+                    <span>Render Studio</span>
+                </span>
+                <span class="text-[10px] font-semibold text-emerald-400 bg-emerald-950/80 border border-emerald-800/80 px-2 py-0.5 rounded-full ml-1">
+                    JSON-to-DOM
+                </span>
+            </div>
+
+            <!-- Quick Version Jump -->
+            <div class="flex items-center gap-2 text-xs font-mono">
+                <a href="./v1/index.html" class="text-zinc-400 hover:text-zinc-200 px-2.5 py-1 rounded hover:bg-zinc-800 transition" title="Render V1: Core Spec">v1</a>
+                <a href="./v2/index.html" class="text-zinc-400 hover:text-zinc-200 px-2.5 py-1 rounded hover:bg-zinc-800 transition" title="Render V2: Enhanced Pipeline">v2</a>
+                <a href="./v3/index.html" class="text-emerald-400 bg-emerald-950/80 border border-emerald-800/80 px-2.5 py-1 rounded font-bold hover:bg-emerald-900/80 transition" title="Render V3: Multi-Spec Template Model">v3 Flagship</a>
+                <a href="../index.html" class="text-zinc-400 hover:text-zinc-200 border border-zinc-700/80 px-2.5 py-1 rounded hover:bg-zinc-800 transition flex items-center gap-1 ml-2" title="Back to Docs Portal">
+                    <i class="bi bi-arrow-left"></i>
+                    <span class="hidden sm:inline">Docs Portal</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-5xl mx-auto px-4 sm:px-6 py-12 flex flex-col items-center text-center">
+        <!-- Status Pill -->
+        <div class="inline-flex items-center gap-2 bg-zinc-900 border border-emerald-800/60 text-emerald-400 px-3.5 py-1 rounded-full text-xs font-medium mb-6 shadow-sm">
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Declarative JSON-to-DOM Dynamic UI Rendering Engine</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white max-w-3xl leading-tight mb-4">
+            JSON-to-DOM Render Studio
+        </h1>
+
+        <p class="text-base sm:text-lg text-zinc-400 max-w-3xl mb-8 leading-relaxed">
+            Transform JSON schema declarations directly into interactive DOM elements. Edit your JSON specs inside Monaco with instant syntax validation and render dynamically in an isolated runtime tab.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap items-center justify-center gap-3.5 mb-14">
+            <a href="./v3/index.html" class="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-semibold text-sm px-6 py-3 rounded-lg shadow-lg shadow-emerald-950/60 transition transform hover:-translate-y-0.5 active:translate-y-0">
+                <i class="bi bi-play-circle-fill text-lg"></i>
+                <span>Launch Render V3 Studio</span>
+            </a>
+            <a href="./v3/render.html" target="_blank" class="inline-flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-700/80 font-semibold text-sm px-5 py-3 rounded-lg transition">
+                <i class="bi bi-box-arrow-up-right"></i>
+                <span>Open V3 Render Canvas</span>
+            </a>
+            <a href="../index.html" class="inline-flex items-center gap-2 bg-zinc-900/60 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 border border-zinc-800 font-semibold text-sm px-4 py-3 rounded-lg transition">
+                <i class="bi bi-house"></i>
+                <span>Docs Portal</span>
+            </a>
+        </div>
+
+        <!-- Render Editions Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full text-left">
+            <!-- V3 Flagship -->
+            <div class="bg-zinc-900/60 border border-emerald-600/60 rounded-xl p-6 flex flex-col justify-between shadow-lg relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-emerald-500 text-black text-[10px] font-bold px-3 py-0.5 rounded-bl uppercase tracking-wider">
+                    Flagship
+                </div>
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-bold font-mono text-emerald-400 bg-emerald-950 border border-emerald-800 px-2 py-0.5 rounded">v3</span>
+                        <h3 class="text-lg font-bold text-white">Multi-Spec Template Model</h3>
+                    </div>
+                    <p class="text-xs text-zinc-400 mb-4 leading-relaxed">
+                        Full composable architecture with separated <code class="text-zinc-300 font-mono">base.json</code>, <code class="text-zinc-300 font-mono">columns.json</code>, <code class="text-zinc-300 font-mono">data.json</code>, <code class="text-zinc-300 font-mono">tags.json</code>, and <code class="text-zinc-300 font-mono">template.json</code> models.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2 pt-4 border-t border-zinc-800">
+                    <a href="./v3/index.html" class="flex-1 text-center bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs py-2 px-3 rounded transition">
+                        Launch Editor
+                    </a>
+                    <a href="./v3/render.html" target="_blank" class="text-center bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-xs py-2 px-3 rounded transition" title="Preview Render Output">
+                        <i class="bi bi-box-arrow-up-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- V2 -->
+            <div class="bg-zinc-900/40 border border-zinc-800 rounded-xl p-6 flex flex-col justify-between hover:border-zinc-700 transition">
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-bold font-mono text-zinc-400 bg-zinc-800 px-2 py-0.5 rounded">v2</span>
+                        <h3 class="text-lg font-bold text-white">Enhanced DOM Pipeline</h3>
+                    </div>
+                    <p class="text-xs text-zinc-400 mb-4 leading-relaxed">
+                        Optimized DOM serialization with integrated live preview listener and schema validation bindings.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2 pt-4 border-t border-zinc-800">
+                    <a href="./v2/index.html" class="flex-1 text-center bg-zinc-800 hover:bg-zinc-700 text-zinc-200 font-semibold text-xs py-2 px-3 rounded transition">
+                        Launch Editor
+                    </a>
+                    <a href="./v2/render.html" target="_blank" class="text-center bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-xs py-2 px-3 rounded transition" title="Preview Render Output">
+                        <i class="bi bi-box-arrow-up-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- V1 -->
+            <div class="bg-zinc-900/40 border border-zinc-800 rounded-xl p-6 flex flex-col justify-between hover:border-zinc-700 transition">
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-bold font-mono text-zinc-400 bg-zinc-800 px-2 py-0.5 rounded">v1</span>
+                        <h3 class="text-lg font-bold text-white">Core Specification Genesis</h3>
+                    </div>
+                    <p class="text-xs text-zinc-400 mb-4 leading-relaxed">
+                        Original proof-of-concept for JSON-driven HTML synthesis using Monaco editor and standalone JSON-to-DOM renderer.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2 pt-4 border-t border-zinc-800">
+                    <a href="./v1/index.html" class="flex-1 text-center bg-zinc-800 hover:bg-zinc-700 text-zinc-200 font-semibold text-xs py-2 px-3 rounded transition">
+                        Launch Editor
+                    </a>
+                    <a href="./v1/render.html" target="_blank" class="text-center bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-xs py-2 px-3 rounded transition" title="Preview Render Output">
+                        <i class="bi bi-box-arrow-up-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-zinc-800/80 py-8 text-center text-xs text-zinc-500 bg-zinc-950">
+        <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-2 text-zinc-400">
+                <i class="bi bi-code-slash text-sky-400"></i>
+                <span class="font-semibold text-zinc-300">Monaco IDE Render Studio</span>
+                <span>&bull;</span>
+                <a href="../index.html" class="hover:text-zinc-300 transition">Portal Home</a>
+            </div>
+            <p>&copy; 2026 KeshavSoft. Released under the MIT License.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
+

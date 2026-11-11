@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Monaco IDE — Historical Archive (v1 – v12)</title>
+    <!-- Compiled Standalone Tailwind CSS & Bootstrap Icons -->
+    <link rel="stylesheet" href="../v14/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body class="bg-zinc-950 text-zinc-100 antialiased min-h-screen flex flex-col font-sans selection:bg-sky-500/30 selection:text-sky-200">
+    <!-- Navbar -->
+    <nav class="border-b border-zinc-800 bg-zinc-900/90 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+            <!-- Brand & Breadcrumbs -->
+            <div class="flex items-center gap-2 shrink-0">
+                <a href="../index.html" class="flex items-center gap-2 text-zinc-400 hover:text-zinc-200 transition">
+                    <i class="bi bi-code-slash text-sky-400 text-xl"></i>
+                    <span class="font-bold text-sm tracking-wider uppercase text-zinc-200">Monaco IDE</span>
+                </a>
+                <span class="text-zinc-600">/</span>
+                <span class="font-bold text-sm text-amber-400 flex items-center gap-1.5">
+                    <i class="bi bi-archive-fill"></i>
+                    <span>Archive</span>
+                </span>
+                <span class="text-[10px] font-semibold text-amber-400 bg-amber-950/80 border border-amber-800/80 px-2 py-0.5 rounded-full ml-1">
+                    v1 – v12 Historical
+                </span>
+            </div>
+
+            <!-- Version Switcher Pills -->
+            <div class="flex items-center gap-1 overflow-x-auto py-1 text-xs font-mono scrollbar-thin">
+                <a href="./v1/" class="text-zinc-400 hover:text-zinc-200 px-2 py-1 rounded hover:bg-zinc-800 transition" title="Version 1: Fullscreen Read-Only IDE">v1</a>
+                <a href="./v2/" class="text-zinc-400 hover:text-zinc-200 px-2 py-1 rounded hover:bg-zinc-800 transition" title="Version 2: Native Disk Save (Ctrl+S)">v2</a>
+                <a href="./v3/" class="text-zinc-400 hover:text-zinc-200 px-2 py-1 rounded hover:bg-zinc-800 transition" title="Version 3: Multi-Document Tabs">v3</a>
+                <a href="./v4/" class="text-zinc-400 hover:text-zinc-200 px-2 py-1 rounded hover:bg-zinc-800 transition" title="Version 4: Workspace Explorer & Split Preview">v4</a>
+                <a href="./v5/" class="text-zinc-400 hover:text-zinc-200 px-2 py-1 rounded hover:bg-zinc-800 transition" title="Version 5: Virtual Asset Resolver & Quick Open">v5</a>
+                <a href="./v6/" class="text-zinc-400 hover:text-zinc-200 px-2 py-1 rounded hover:bg-zinc-800 transition" title="Version 6: Declarative DOM Primitive Bindings">v6</a>
+                <a href="./v7/" class="text-zinc-400 hover:text-zinc-200 px-2 py-1 rounded hover:bg-zinc-800 transition" title="Version 7: Multi-Tab Live Preview Window">v7</a>
+                <a href="./v8/" class="text-zinc-400 hover:text-zinc-200 px-2 py-1 rounded hover:bg-zinc-800 transition" title="Version 8: Bi-directional Workspace State Sync">v8</a>
+                <a href="./v9/" class="text-zinc-400 hover:text-zinc-200 px-2 py-1 rounded hover:bg-zinc-800 transition" title="Version 9: Service Worker Interception Genesis">v9</a>
+                <a href="./v10/" class="text-zinc-400 hover:text-zinc-200 px-2 py-1 rounded hover:bg-zinc-800 transition" title="Version 10: In-Browser Virtual Server Lab">v10</a>
+                <a href="./v11/" class="text-zinc-400 hover:text-zinc-200 px-2 py-1 rounded hover:bg-zinc-800 transition" title="Version 11: Unified Virtual Server Pipeline">v11</a>
+                <a href="./v12/" class="text-zinc-400 hover:text-zinc-200 px-2 py-1 rounded hover:bg-zinc-800 transition" title="Version 12: Clean Studio Architecture">v12</a>
+                <a href="../v14/" class="bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-sans font-semibold px-3 py-1 rounded shadow-sm transition active:scale-95 flex items-center gap-1 ml-1 shrink-0">
+                    <i class="bi bi-play-fill text-sm"></i>
+                    <span>Flagship V14</span>
+                </a>
+                <a href="../index.html" class="text-zinc-400 hover:text-zinc-200 border border-zinc-700/80 px-2.5 py-1 rounded hover:bg-zinc-800 transition flex items-center gap-1 ml-2" title="Back to Docs Portal">
+                    <i class="bi bi-arrow-left"></i>
+                    <span class="hidden sm:inline">Docs Portal</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-5xl mx-auto px-4 sm:px-6 py-12 flex flex-col items-center text-center">
+        <!-- Status Pill -->
+        <div class="inline-flex items-center gap-2 bg-zinc-900 border border-amber-800/60 text-amber-400 px-3.5 py-1 rounded-full text-xs font-medium mb-6 shadow-sm">
+            <i class="bi bi-archive"></i>
+            <span>Historical Archive • Preserved Architectural Milestones (v1 – v12)</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white max-w-3xl leading-tight mb-4">
+            The Evolution of Monaco IDE
+        </h1>
+
+        <p class="text-base sm:text-lg text-zinc-400 max-w-3xl mb-8 leading-relaxed">
+            Every release from the original fullscreen canvas to the complete zero-backend virtual server. Preserved for architectural reference, regression benchmarking, and declarative design research.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap items-center justify-center gap-3.5 mb-12">
+            <a href="../v14/" class="inline-flex items-center gap-2 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-semibold text-sm px-6 py-2.5 rounded-lg shadow-lg shadow-sky-950/60 transition transform hover:-translate-y-0.5 active:translate-y-0">
+                <i class="bi bi-lightning-charge-fill"></i>
+                <span>Current Flagship (v14)</span>
+            </a>
+            <a href="./v12/" class="inline-flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-700/80 font-semibold text-sm px-5 py-2.5 rounded-lg transition">
+                <i class="bi bi-window-sidebar"></i>
+                <span>Open v12 Studio</span>
+            </a>
+            <a href="../index.html" class="inline-flex items-center gap-2 bg-zinc-900/60 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 border border-zinc-800 font-semibold text-sm px-4 py-2.5 rounded-lg transition">
+                <i class="bi bi-house"></i>
+                <span>Docs Portal</span>
+            </a>
+        </div>
+
+        <!-- Four Architectural Eras -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full text-left mb-12">
+            <div class="bg-zinc-900/50 border border-zinc-800/80 rounded-lg p-4">
+                <div class="text-xs font-semibold text-sky-400 mb-1 flex items-center gap-1.5">
+                    <i class="bi bi-1-circle"></i>
+                    <span>Era 1: Native Disk Studio (v1–v3)</span>
+                </div>
+                <p class="text-xs text-zinc-400">Pure Monaco canvas core, native OS file picker, disk saving (<code class="text-zinc-300 font-mono">Ctrl+S</code>), code formatting, and multi-document tab strip with per-buffer undo stacks.</p>
+            </div>
+            <div class="bg-zinc-900/50 border border-zinc-800/80 rounded-lg p-4">
+                <div class="text-xs font-semibold text-amber-400 mb-1 flex items-center gap-1.5">
+                    <i class="bi bi-2-circle"></i>
+                    <span>Era 2: Declarative DOM Bindings (v4–v6)</span>
+                </div>
+                <p class="text-xs text-zinc-400">Workspace tree explorer (<code class="text-zinc-300 font-mono">showDirectoryPicker</code>), quick open palette (<code class="text-zinc-300 font-mono">Ctrl+P</code>), and 100% adoption of KeshavSoft declarative <code class="text-zinc-300 font-mono">bindings.json</code> + <code class="text-zinc-300 font-mono">actions.js</code>.</p>
+            </div>
+            <div class="bg-zinc-900/50 border border-zinc-800/80 rounded-lg p-4">
+                <div class="text-xs font-semibold text-emerald-400 mb-1 flex items-center gap-1.5">
+                    <i class="bi bi-3-circle"></i>
+                    <span>Era 3: Multi-Tab Live Preview Lab (v7–v10)</span>
+                </div>
+                <p class="text-xs text-zinc-400">Pop-out dedicated browser window preview, bi-directional postMessage state sync, and the groundbreaking discovery of client-side Service Worker fetch interception.</p>
+            </div>
+            <div class="bg-zinc-900/50 border border-zinc-800/80 rounded-lg p-4">
+                <div class="text-xs font-semibold text-indigo-400 mb-1 flex items-center gap-1.5">
+                    <i class="bi bi-4-circle"></i>
+                    <span>Era 4: Clean Virtual Server Studio (v11–v12)</span>
+                </div>
+                <p class="text-xs text-zinc-400">An in-browser HTTP server powered by IndexedDB &amp; Service Worker fetch interception with automated workspace disk sync.</p>
+            </div>
+        </div>
+
+        <!-- Version Cards (v12 to v1) -->
+        <section class="w-full text-left space-y-3">
+            <div class="flex items-center justify-between pb-2 border-b border-zinc-800">
+                <h3 class="text-lg font-bold text-zinc-100 flex items-center gap-2">
+                    <i class="bi bi-collection text-sky-400"></i>
+                    <span>All 12 Archived Versions</span>
+                </h3>
+                <span class="text-xs font-mono text-zinc-500">Chronological Archive</span>
+            </div>
+
+            <!-- V12 -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-lg bg-zinc-900/40 border border-zinc-800 hover:border-zinc-700 transition">
+                <div class="flex items-start gap-3">
+                    <span class="text-xs font-bold font-mono text-indigo-400 bg-indigo-950/80 border border-indigo-800/80 px-2 py-0.5 rounded shrink-0">v12</span>
+                    <div>
+                        <div class="font-semibold text-zinc-200 text-xs">Clean Studio Architecture &amp; Full Workspace Disk Sync</div>
+                        <p class="text-xs text-zinc-400 mt-0.5 leading-relaxed">
+                            Integrated Full Preview toolbar, zero-backend Tab 1 &amp; Tab 2 orchestration, automated bulk disk-to-IndexedDB sync on file change and buffer save.
+                        </p>
+                    </div>
+                </div>
+                <a href="./v12/" class="text-sky-400 hover:text-sky-300 text-xs font-semibold flex items-center gap-1 shrink-0 self-start sm:self-center">
+                    <span>Open V12</span>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- V11 -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-lg bg-zinc-900/40 border border-zinc-800 hover:border-zinc-700 transition">
+                <div class="flex items-start gap-3">
+                    <span class="text-xs font-bold font-mono text-indigo-400 bg-indigo-950/80 border border-indigo-800/80 px-2 py-0.5 rounded shrink-0">v11</span>
+                    <div>
+                        <div class="font-semibold text-zinc-200 text-xs">Unified Virtual Server Pipeline</div>
+                        <p class="text-xs text-zinc-400 mt-0.5 leading-relaxed">
+                            Direct <code class="text-zinc-300 font-mono">/virtual-server/*</code> URL routing, on-the-fly live-reload snippet injection, and styled 404 directory listing.
+                        </p>
+                    </div>
+                </div>
+                <a href="./v11/" class="text-sky-400 hover:text-sky-300 text-xs font-semibold flex items-center gap-1 shrink-0 self-start sm:self-center">
+                    <span>Open V11</span>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- V10 -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-lg bg-zinc-900/40 border border-zinc-800 hover:border-zinc-700 transition">
+                <div class="flex items-start gap-3">
+                    <span class="text-xs font-bold font-mono text-amber-400 bg-amber-950/80 border border-amber-800/80 px-2 py-0.5 rounded shrink-0">v10</span>
+                    <div>
+                        <div class="font-semibold text-zinc-200 text-xs">Virtual Server Architectural Lab</div>
+                        <p class="text-xs text-zinc-400 mt-0.5 leading-relaxed">
+                            Groundbreaking experimental prototype proving client-side Service Worker fetch interception with IndexedDB storage for zero-backend static web hosting.
+                        </p>
+                    </div>
+                </div>
+                <a href="./v10/" class="text-sky-400 hover:text-sky-300 text-xs font-semibold flex items-center gap-1 shrink-0 self-start sm:self-center">
+                    <span>Open V10</span>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- V9 -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-lg bg-zinc-900/40 border border-zinc-800 hover:border-zinc-700 transition">
+                <div class="flex items-start gap-3">
+                    <span class="text-xs font-bold font-mono text-zinc-400 bg-zinc-800 px-2 py-0.5 rounded shrink-0">v9</span>
+                    <div>
+                        <div class="font-semibold text-zinc-200 text-xs">Service Worker Fetch Interception Genesis</div>
+                        <p class="text-xs text-zinc-400 mt-0.5 leading-relaxed">
+                            Initial proof-of-concept of Service Worker URL interception for workspace files, decoupling preview from iframe sandboxing constraints.
+                        </p>
+                    </div>
+                </div>
+                <a href="./v9/" class="text-sky-400 hover:text-sky-300 text-xs font-semibold flex items-center gap-1 shrink-0 self-start sm:self-center">
+                    <span>Open V9</span>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- V8 -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-lg bg-zinc-900/40 border border-zinc-800 hover:border-zinc-700 transition">
+                <div class="flex items-start gap-3">
+                    <span class="text-xs font-bold font-mono text-zinc-400 bg-zinc-800 px-2 py-0.5 rounded shrink-0">v8</span>
+                    <div>
+                        <div class="font-semibold text-zinc-200 text-xs">Bi-directional Workspace State Synchronization</div>
+                        <p class="text-xs text-zinc-400 mt-0.5 leading-relaxed">
+                            Multi-tab communication bridge, live active tab synchronization, and responsive design controls in external pop-out window.
+                        </p>
+                    </div>
+                </div>
+                <a href="./v8/" class="text-sky-400 hover:text-sky-300 text-xs font-semibold flex items-center gap-1 shrink-0 self-start sm:self-center">
+                    <span>Open V8</span>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- V7 -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-lg bg-zinc-900/40 border border-zinc-800 hover:border-zinc-700 transition">
+                <div class="flex items-start gap-3">
+                    <span class="text-xs font-bold font-mono text-zinc-400 bg-zinc-800 px-2 py-0.5 rounded shrink-0">v7</span>
+                    <div>
+                        <div class="font-semibold text-zinc-200 text-xs">Dedicated Multi-Tab Live Preview Window</div>
+                        <p class="text-xs text-zinc-400 mt-0.5 leading-relaxed">
+                            Pop-out dedicated browser window (<code class="text-zinc-300 font-mono">preview-tab.html</code>) communicating with the main editor via initial message transfer.
+                        </p>
+                    </div>
+                </div>
+                <a href="./v7/" class="text-sky-400 hover:text-sky-300 text-xs font-semibold flex items-center gap-1 shrink-0 self-start sm:self-center">
+                    <span>Open V7</span>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- V6 -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-lg bg-zinc-900/40 border border-zinc-800 hover:border-zinc-700 transition">
+                <div class="flex items-start gap-3">
+                    <span class="text-xs font-bold font-mono text-amber-400 bg-amber-950/80 border border-amber-800/80 px-2 py-0.5 rounded shrink-0">v6</span>
+                    <div>
+                        <div class="font-semibold text-zinc-200 text-xs">Declarative DOM Primitive Bindings</div>
+                        <p class="text-xs text-zinc-400 mt-0.5 leading-relaxed">
+                            100% modular <code class="text-zinc-300 font-mono">bindings.json</code> + <code class="text-zinc-300 font-mono">actions.js</code> per domain module, eliminating imperative event listener spaghetti; ES module import maps.
+                        </p>
+                    </div>
+                </div>
+                <a href="./v6/" class="text-sky-400 hover:text-sky-300 text-xs font-semibold flex items-center gap-1 shrink-0 self-start sm:self-center">
+                    <span>Open V6</span>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- V5 -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-lg bg-zinc-900/20 border border-zinc-800/80 hover:border-zinc-700 transition">
+                <div class="flex items-start gap-3">
+                    <span class="text-xs font-bold font-mono text-zinc-400 bg-zinc-800 px-2 py-0.5 rounded shrink-0">v5</span>
+                    <div>
+                        <div class="font-semibold text-zinc-200 text-xs">Virtual Asset Resolver &amp; Quick Open Palette</div>
+                        <p class="text-xs text-zinc-400 mt-0.5 leading-relaxed">
+                            Inlined relative workspace CSS for full preview styling, Event Bus messaging architecture, and Quick Open palette (<code class="text-zinc-300 font-mono">Ctrl+P</code>).
+                        </p>
+                    </div>
+                </div>
+                <a href="./v5/" class="text-sky-400 hover:text-sky-300 text-xs font-semibold flex items-center gap-1 shrink-0 self-start sm:self-center">
+                    <span>Open V5</span>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- V4 -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-lg bg-zinc-900/20 border border-zinc-800/80 hover:border-zinc-700 transition">
+                <div class="flex items-start gap-3">
+                    <span class="text-xs font-bold font-mono text-zinc-400 bg-zinc-800 px-2 py-0.5 rounded shrink-0">v4</span>
+                    <div>
+                        <div class="font-semibold text-zinc-200 text-xs">Workspace Explorer Tree &amp; Split Live Preview</div>
+                        <p class="text-xs text-zinc-400 mt-0.5 leading-relaxed">
+                            Native folder tree picker (<code class="text-zinc-300 font-mono">showDirectoryPicker</code>), collapsible sidebar (<code class="text-zinc-300 font-mono">Ctrl+B</code>), 22px status bar (<code class="text-zinc-300 font-mono">Alt+Z</code>), split iframe preview.
+                        </p>
+                    </div>
+                </div>
+                <a href="./v4/" class="text-sky-400 hover:text-sky-300 text-xs font-semibold flex items-center gap-1 shrink-0 self-start sm:self-center">
+                    <span>Open V4</span>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- V3 -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-lg bg-zinc-900/20 border border-zinc-800/80 hover:border-zinc-700 transition">
+                <div class="flex items-start gap-3">
+                    <span class="text-xs font-bold font-mono text-zinc-400 bg-zinc-800 px-2 py-0.5 rounded shrink-0">v3</span>
+                    <div>
+                        <div class="font-semibold text-zinc-200 text-xs">Multi-Document Tabs Strip</div>
+                        <p class="text-xs text-zinc-400 mt-0.5 leading-relaxed">
+                            Independent Monaco editor models, multi-file tab strip, per-tab dirty tracking, and instant buffer swapping.
+                        </p>
+                    </div>
+                </div>
+                <a href="./v3/" class="text-sky-400 hover:text-sky-300 text-xs font-semibold flex items-center gap-1 shrink-0 self-start sm:self-center">
+                    <span>Open V3</span>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- V2 -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-lg bg-zinc-900/20 border border-zinc-800/80 hover:border-zinc-700 transition">
+                <div class="flex items-start gap-3">
+                    <span class="text-xs font-bold font-mono text-emerald-400 bg-emerald-950/80 border border-emerald-800/80 px-2 py-0.5 rounded shrink-0">v2</span>
+                    <div>
+                        <div class="font-semibold text-zinc-200 text-xs">Native Disk Persistence</div>
+                        <p class="text-xs text-zinc-400 mt-0.5 leading-relaxed">
+                            Direct disk persistence via <code class="text-zinc-300 font-mono">Ctrl+S</code> (<code class="text-zinc-300 font-mono">showSaveFilePicker</code>), built-in code formatting, and tab close protection guards.
+                        </p>
+                    </div>
+                </div>
+                <a href="./v2/" class="text-emerald-400 hover:text-emerald-300 text-xs font-semibold flex items-center gap-1 shrink-0 self-start sm:self-center">
+                    <span>Open V2</span>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- V1 -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-lg bg-zinc-900/20 border border-zinc-800/80 hover:border-zinc-700 transition">
+                <div class="flex items-start gap-3">
+                    <span class="text-xs font-bold font-mono text-zinc-400 bg-zinc-800 px-2 py-0.5 rounded shrink-0">v1</span>
+                    <div>
+                        <div class="font-semibold text-zinc-200 text-xs">Fullscreen Read-only Monaco IDE</div>
+                        <p class="text-xs text-zinc-400 mt-0.5 leading-relaxed">
+                            Pure Monaco canvas engine, native OS file open picker, auto-language detection, and Ahead-of-Time Tailwind CSS compilation.
+                        </p>
+                    </div>
+                </div>
+                <a href="./v1/" class="text-sky-400 hover:text-sky-300 text-xs font-semibold flex items-center gap-1 shrink-0 self-start sm:self-center">
+                    <span>Open V1</span>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-zinc-800/80 py-8 text-center text-xs text-zinc-500 bg-zinc-950">
+        <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-2 text-zinc-400">
+                <i class="bi bi-code-slash text-sky-400"></i>
+                <span class="font-semibold text-zinc-300">Monaco IDE Archive</span>
+                <span>&bull;</span>
+                <a href="../index.html" class="hover:text-zinc-300 transition">Portal Home</a>
+            </div>
+            <p>&copy; 2026 KeshavSoft. Released under the MIT License.</p>
+            <div class="flex items-center gap-4">
+                <a href="https://github.com/keshavsoft/monaco-ide" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-300 transition">
+                    <i class="bi bi-github mr-1"></i>GitHub
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
+
