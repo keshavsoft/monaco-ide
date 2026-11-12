@@ -20,7 +20,7 @@ async function boot() {
         initHeader();
         initJsonPath();
         initStatusBar();
-        console.log('[App] Autocomplete V1 Initialized.');
+        console.log('[App] Autocomplete V2 Initialized.');
     } catch (e) {
         console.error(e);
     }

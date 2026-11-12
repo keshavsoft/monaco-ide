@@ -1,0 +1,6 @@
+[
+  { "event": "click", "selector": "#btnFind", "action": "executeSearch" },
+  { "event": "keydown", "selector": "#txtQuery", "action": "handleKeydown" },
+  { "event": "click", "selector": "#btnClear", "action": "clearQuery" }
+]
+

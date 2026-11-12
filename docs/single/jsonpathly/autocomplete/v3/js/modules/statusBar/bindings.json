@@ -1,0 +1,4 @@
+[
+  { "event": "click", "selector": "#btnWrap", "action": "toggleWordWrap" }
+]
+
