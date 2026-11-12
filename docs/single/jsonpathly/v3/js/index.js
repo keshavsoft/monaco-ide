@@ -11,6 +11,7 @@ import { initEditors } from './modules/editors/index.js';
 import { initHeader } from './modules/header/index.js';
 import { initJsonPath } from './modules/jsonpath/index.js';
 import { initStatusBar } from './modules/statusBar/index.js';
+import { initAutocomplete } from './modules/autocomplete/index.js';
 
 function loadMonaco() {
     return new Promise((resolve, reject) => {
@@ -35,11 +36,12 @@ async function boot() {
         await initEditors(monaco);
 
         // 2. Wire domain modules declaratively
+        initAutocomplete();
         initHeader();
         initJsonPath();
         initStatusBar();
 
-        console.log('[App] Monaco IDE Single jsonpathly V2 initialized.');
+        console.log('[App] Monaco IDE Single jsonpathly V3 initialized.');
     } catch (err) {
         console.error('[App] Boot failure:', err);
     }

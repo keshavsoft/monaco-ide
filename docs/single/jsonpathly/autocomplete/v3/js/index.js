@@ -1,7 +1,6 @@
 import { initEditors } from './modules/editors/index.js';
 import { initAutocomplete } from './modules/autocomplete/index.js';
 import { initHeader } from './modules/header/index.js';
-import { initJsonPath } from './modules/jsonpath/index.js';
 import { initStatusBar } from './modules/statusBar/index.js';
 
 function loadMonaco() {
@@ -18,9 +17,8 @@ async function boot() {
         initAutocomplete();
         await initEditors(monaco);
         initHeader();
-        initJsonPath();
         initStatusBar();
-        console.log('[App] Autocomplete V2 Initialized.');
+        console.log('[App] Autocomplete V3 Initialized.');
     } catch (e) {
         console.error(e);
     }

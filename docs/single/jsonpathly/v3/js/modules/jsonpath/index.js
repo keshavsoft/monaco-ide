@@ -4,10 +4,9 @@ import bindings from './bindings.json' with { type: 'json' };
 import actions from './actions.js';
 
 export function initJsonPath() {
-    const headerEl = document.querySelector('header');
-    if (headerEl) {
-        bindEvents(headerEl, bindings, actions);
-    }
+    // The query field moved to the right-side pane, so the JSONPath bindings must listen
+    // at the document level rather than only the header.
+    bindEvents(document.body, bindings, actions);
 
     eventBus.on('file:loaded', () => {
         const input = document.getElementById('txtQuery');

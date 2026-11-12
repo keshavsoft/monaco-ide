@@ -16,20 +16,17 @@
 
 <body class="bg-zinc-950 text-zinc-100 antialiased overflow-hidden m-0 p-0 font-sans">
     <div class="h-screen w-screen flex flex-col overflow-hidden select-none">
-        <!-- 42px Compact Studio Header: Brand + File + Search Bar + Find Button -->
         <header class="h-[42px] bg-zinc-900 border-b border-zinc-800 flex items-center justify-between px-3 shrink-0 gap-3">
-            <!-- Left: Brand & File Operations -->
             <div class="flex items-center gap-2 shrink-0">
                 <a href="../../index.html" title="Back to Single Editions Portal"
                     class="flex items-center gap-1.5 text-zinc-200 hover:text-white transition">
                     <i class="bi bi-code-slash text-sky-400 text-base"></i>
                     <span class="text-xs font-bold tracking-wider uppercase text-zinc-300">Monaco IDE</span>
-                    <span class="text-[10px] font-semibold text-emerald-400 bg-emerald-950/80 border border-emerald-800/80 px-1.5 py-0.2 rounded font-mono">v2</span>
+                    <span class="text-[10px] font-semibold text-emerald-400 bg-emerald-950/80 border border-emerald-800/80 px-1.5 py-0.2 rounded font-mono">v3</span>
                 </a>
 
                 <div class="h-4 w-[1px] bg-zinc-800 mx-1"></div>
 
-                <!-- File Button -->
                 <button id="btnFile" type="button" title="Open JSON file from disk"
                     class="inline-flex items-center gap-1.5 bg-zinc-800 hover:bg-zinc-700 active:bg-zinc-900 border border-zinc-700/60 text-zinc-200 text-xs font-semibold px-2.5 py-1 rounded-md shadow-sm transition active:scale-95 cursor-pointer">
                     <i class="bi bi-file-earmark-plus text-sky-400"></i>
@@ -38,30 +35,6 @@
                 <input type="file" id="fileInput" class="hidden" accept=".json,application/json,text/*">
             </div>
 
-            <!-- Center: Pure Search Bar & Find Button -->
-            <div class="flex items-center gap-2 flex-1 max-w-xl">
-                <div class="relative flex-1 flex items-center">
-                    <span class="absolute left-2.5 text-sky-400 text-xs select-none">
-                        <i class="bi bi-search"></i>
-                    </span>
-                    <input id="txtQuery" type="text"
-                        placeholder="Enter JSONPath (e.g. $.rawAst.end or $.rawAst.program.body[*])..."
-                        class="w-full bg-zinc-950 border border-zinc-700/80 rounded pl-7 pr-7 py-1 text-xs font-mono text-sky-200 placeholder-zinc-500 focus:outline-none focus:border-sky-500 transition shadow-inner">
-                    <button id="btnClear" type="button" title="Clear query"
-                        class="absolute right-2 text-zinc-500 hover:text-zinc-200 text-xs">
-                        <i class="bi bi-x-circle-fill"></i>
-                    </button>
-                </div>
-
-                <!-- Find Button -->
-                <button id="btnFind" type="button" title="Find matches (Enter)"
-                    class="inline-flex items-center gap-1.5 bg-sky-600 hover:bg-sky-500 active:bg-sky-700 text-white text-xs font-semibold px-3.5 py-1 rounded shadow-sm transition active:scale-95 cursor-pointer shrink-0">
-                    <i class="bi bi-search text-[10px]"></i>
-                    <span>Find</span>
-                </button>
-            </div>
-
-            <!-- Right: Proposal Link & Portal Hub -->
             <div class="flex items-center gap-2 shrink-0">
                 <a href="./proposal.md" title="View Architectural Proposal"
                     class="text-zinc-400 hover:text-sky-300 text-xs px-2 py-1 rounded hover:bg-zinc-800/60 transition flex items-center gap-1">
@@ -79,13 +52,29 @@
             </div>
         </header>
 
-        <!-- Main Workspace Body: True 50/50 Dual Monaco Split Canvas -->
-        <main class="flex-1 flex flex-row overflow-hidden w-full h-full">
-            <!-- Left 50%: Source Monaco Editor Container -->
-            <div id="sourceEditorContainer" class="split-pane-half h-full bg-[#1e1e1e] border-r border-zinc-800 overflow-hidden"></div>
+        <main class="workspace-shell">
+            <div id="sourceEditorContainer" class="split-pane-half source-pane"></div>
 
-            <!-- Right 50%: Query Output Monaco Editor Container -->
-            <div id="resultEditorContainer" class="split-pane-half h-full bg-[#1e1e1e] overflow-hidden"></div>
+            <div class="split-pane-half result-pane">
+                <div class="query-panel">
+                    <label for="txtQuery" class="query-label">JSONPath / JSON helper</label>
+                    <div class="query-input-wrap">
+                        <span class="query-icon"><i class="bi bi-search"></i></span>
+                        <input id="txtQuery" type="text" autocomplete="off" placeholder="Type $.rawAst. ..."
+                            class="query-input">
+                        <button id="btnClear" type="button" title="Clear query" class="query-clear">
+                            <i class="bi bi-x-circle-fill"></i>
+                        </button>
+                        <button id="btnFind" type="button" title="Find matches" class="query-find">
+                            <i class="bi bi-search"></i>
+                            <span>Find</span>
+                        </button>
+                    </div>
+                    <div id="autocompleteDropdown" class="autocomplete-dropdown hidden"></div>
+                </div>
+
+                <div id="resultEditorContainer" class="result-editor"></div>
+            </div>
         </main>
 
         <!-- 22px Compact Status Bar -->

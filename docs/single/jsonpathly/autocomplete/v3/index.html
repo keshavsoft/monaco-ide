@@ -39,9 +39,9 @@
         <main class="workspace-shell">
             <div id="sourceEditorContainer" class="split-pane-half source-pane"></div>
 
-            <div class="split-pane-half result-pane">
+            <div class="split-pane-half helper-pane">
                 <div class="query-panel">
-                    <label for="txtQuery" class="query-label">JSONPath / JSON helper</label>
+                    <label for="txtQuery" class="query-label">JSONPath autocomplete</label>
                     <div class="query-input-wrap">
                         <span class="query-icon"><i class="bi bi-search"></i></span>
                         <input id="txtQuery" type="text" autocomplete="off" placeholder="Type $.rawAst. ..."
@@ -49,15 +49,9 @@
                         <button id="btnClear" type="button" title="Clear query" class="query-clear">
                             <i class="bi bi-x-circle-fill"></i>
                         </button>
-                        <button id="btnFind" type="button" title="Find matches" class="query-find">
-                            <i class="bi bi-search"></i>
-                            <span>Find</span>
-                        </button>
                     </div>
                     <div id="autocompleteDropdown" class="autocomplete-dropdown hidden"></div>
                 </div>
-
-                <div id="resultEditorContainer" class="result-editor"></div>
             </div>
         </main>
 

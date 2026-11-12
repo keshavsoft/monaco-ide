@@ -18,13 +18,13 @@
 }
 
 .source-pane,
-.result-pane {
+.helper-pane {
     height: 100%;
     overflow: hidden;
     background: #1e1e1e;
 }
 
-.result-pane {
+.helper-pane {
     display: flex;
     flex-direction: column;
     border-left: 1px solid rgba(255,255,255,0.08);
@@ -85,8 +85,14 @@
     pointer-events: none;
 }
 
-.query-clear,
-.query-find {
+.query-clear {
+    position: absolute;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+    display: grid;
+    place-items: center;
     border: 1px solid rgba(148,163,184,0.25);
     border-radius: 8px;
     background: rgba(15, 23, 42, 0.92);
@@ -95,34 +101,9 @@
     transition: all 0.15s ease;
 }
 
-.query-clear {
-    position: absolute;
-    right: 88px;
-    width: 28px;
-    height: 28px;
-    font-size: 12px;
-    display: grid;
-    place-items: center;
-}
-
-.query-clear:hover,
-.query-find:hover {
+.query-clear:hover {
     border-color: rgba(125, 211, 252, 0.7);
     background: rgba(14, 165, 233, 0.12);
-}
-
-.query-find {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    min-width: 80px;
-    height: 42px;
-    padding: 0 12px;
-    font-size: 12px;
-    font-weight: 700;
-    background: linear-gradient(180deg, rgba(14,165,233,0.24), rgba(14,165,233,0.08));
-    border-color: rgba(56, 189, 248, 0.75);
 }
 
 .autocomplete-dropdown {
@@ -158,9 +139,4 @@
     color: #7dd3fc;
 }
 
-.result-editor {
-    flex: 1 1 auto;
-    min-height: 0;
-    overflow: hidden;
-}
 
