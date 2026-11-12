@@ -4,8 +4,7 @@ import bindings from './bindings.json' with { type: 'json' };
 import actions from './actions.js';
 
 export function initJsonPath() {
-    const headerEl = document.querySelector('header');
-    if (headerEl) bindEvents(headerEl, bindings, actions);
+    bindEvents(document.body, bindings, actions);
     eventBus.on('file:loaded', () => {
         const input = document.getElementById('txtQuery');
         if (input && input.value.trim()) actions.executeSearch();

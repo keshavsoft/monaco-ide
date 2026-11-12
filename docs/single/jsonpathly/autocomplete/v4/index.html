@@ -15,7 +15,7 @@
                 <a href="../../../index.html" class="flex items-center gap-1.5 text-zinc-200 hover:text-white transition">
                     <i class="bi bi-code-slash text-sky-400 text-base"></i>
                     <span class="text-xs font-bold tracking-wider uppercase text-zinc-300">Monaco IDE</span>
-                    <span class="text-[10px] font-semibold text-teal-400 bg-teal-950/80 border border-teal-800/80 px-1.5 py-0.2 rounded font-mono">Autocomplete V2</span>
+                    <span class="text-[10px] font-semibold text-teal-400 bg-teal-950/80 border border-teal-800/80 px-1.5 py-0.2 rounded font-mono">Autocomplete V4</span>
                 </a>
                 <div class="h-4 w-[1px] bg-zinc-800 mx-1"></div>
                 <button id="btnFile" type="button" title="Open JSON file (Ctrl+O)" class="inline-flex items-center gap-1.5 bg-zinc-800 hover:bg-zinc-700 active:bg-zinc-900 border border-zinc-700/60 text-zinc-200 text-xs font-semibold px-2.5 py-1 rounded-md shadow-sm transition active:scale-95 cursor-pointer">
@@ -49,9 +49,15 @@
                         <button id="btnClear" type="button" title="Clear query" class="query-clear">
                             <i class="bi bi-x-circle-fill"></i>
                         </button>
+                        <button id="btnFind" type="button" title="Find matches" class="query-find">
+                            <i class="bi bi-search"></i>
+                            <span>Find</span>
+                        </button>
                     </div>
                     <div id="autocompleteDropdown" class="autocomplete-dropdown hidden"></div>
                 </div>
+
+                <div id="resultEditorContainer" class="result-editor"></div>
             </div>
         </main>
 
