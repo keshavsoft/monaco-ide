@@ -1,0 +1,11 @@
+{
+  "sequence": [
+    {
+      "action": "load",
+      "input": {
+        "baseUrl": "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs"
+      },
+      "output": "monaco"
+    }
+  ]
+}

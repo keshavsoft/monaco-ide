@@ -1,0 +1,3 @@
+[
+  { "event": "click", "selector": "#resetButton", "action": "reset" }
+]

@@ -1,0 +1,9 @@
+{
+  "sequence": [
+    {
+      "action": "create",
+      "input": { "columns": "$columns" },
+      "output": "schema"
+    }
+  ]
+}

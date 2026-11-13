@@ -1,0 +1,8 @@
+{
+  "sequence": [
+    {
+      "action": "bind",
+      "input": { "monaco": "$monaco", "schema": "$schema" }
+    }
+  ]
+}

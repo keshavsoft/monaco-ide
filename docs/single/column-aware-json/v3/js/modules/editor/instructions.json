@@ -1,0 +1,27 @@
+{
+  "sequence": [
+    {
+      "action": "create",
+      "input": {
+        "monaco": "$monaco",
+        "containerId": "editor",
+        "initialValue": "{}",
+        "options": {
+          "language": "json",
+          "theme": "vs-dark",
+          "automaticLayout": true,
+          "minimap": { "enabled": false },
+          "fontSize": 14,
+          "lineNumbers": "on",
+          "tabSize": 2,
+          "formatOnPaste": true,
+          "formatOnType": true,
+          "scrollBeyondLastLine": false,
+          "suggest": { "showProperties": true, "showWords": false },
+          "quickSuggestions": { "other": true, "strings": true, "comments": false }
+        }
+      },
+      "output": "editor"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "sequence": [
+    {
+      "action": "load",
+      "input": { "url": "./data/columns.json" },
+      "output": "columns"
+    },
+    {
+      "action": "render",
+      "input": { "containerId": "columnList", "columns": "$columns" }
+    }
+  ]
+}

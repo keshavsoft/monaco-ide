@@ -1,0 +1,22 @@
+{
+  "sequence": [
+    {
+      "action": "validate",
+      "input": {
+        "monaco": "$monaco",
+        "editor": "$editor",
+        "statusId": "status",
+        "messageId": "validationMessage"
+      }
+    },
+    {
+      "action": "watch",
+      "input": {
+        "monaco": "$monaco",
+        "editor": "$editor",
+        "statusId": "status",
+        "messageId": "validationMessage"
+      }
+    }
+  ]
+}
