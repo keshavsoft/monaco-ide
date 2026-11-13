@@ -1,0 +1,5 @@
+[
+  { "event": "click", "selector": "#btnStepNext", "action": "stepNext" },
+  { "event": "click", "selector": "#btnStepPrev", "action": "stepPrev" }
+]
+

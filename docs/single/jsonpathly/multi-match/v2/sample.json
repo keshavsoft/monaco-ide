@@ -1,0 +1,57 @@
+{
+  "project": "Monaco IDE Single — jsonpathly Multi-Match Stepper V1",
+  "version": "1.0.0",
+  "engine": "jsonpathly (RFC 9535)",
+  "feature": "Contextual Match Stepper & Traversal",
+  "author": "KeshavSoft",
+  "rawAst": {
+    "type": "File",
+    "start": 0,
+    "end": 3672,
+    "loc": {
+      "start": { "line": 1, "column": 0, "index": 0 },
+      "end": { "line": 103, "column": 0, "index": 3672 }
+    },
+    "program": {
+      "type": "Program",
+      "sourceType": "module",
+      "body": [
+        {
+          "type": "ImportDeclaration",
+          "specifiers": [
+            { "type": "ImportDefaultSpecifier", "local": { "type": "Identifier", "name": "bindEvents" } }
+          ],
+          "source": { "type": "StringLiteral", "value": "./core/bindings.js" },
+          "loc": { "start": { "line": 1, "column": 0 }, "end": { "line": 1, "column": 45 } }
+        },
+        {
+          "type": "VariableDeclaration",
+          "kind": "const",
+          "declarations": [
+            {
+              "type": "VariableDeclarator",
+              "id": { "type": "Identifier", "name": "state" },
+              "init": { "type": "ObjectExpression", "properties": [] }
+            }
+          ],
+          "loc": { "start": { "line": 12, "column": 0 }, "end": { "line": 12, "column": 26 } }
+        },
+        {
+          "type": "FunctionDeclaration",
+          "id": { "type": "Identifier", "name": "stepNext" },
+          "params": [],
+          "body": { "type": "BlockStatement", "body": [] },
+          "loc": { "start": { "line": 20, "column": 0 }, "end": { "line": 28, "column": 1 } }
+        },
+        {
+          "type": "FunctionDeclaration",
+          "id": { "type": "Identifier", "name": "stepPrev" },
+          "params": [],
+          "body": { "type": "BlockStatement", "body": [] },
+          "loc": { "start": { "line": 30, "column": 0 }, "end": { "line": 38, "column": 1 } }
+        }
+      ]
+    }
+  }
+}
+

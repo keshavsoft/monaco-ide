@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-Match Proposal</title>
+  <style>
+    :root {
+      --bg: #020817;
+      --panel: #0f172a;
+      --panel-2: #111827;
+      --border: #2b374a;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #a78bfa;
+      --accent-2: #34d399;
+      --warning: #fbbf24;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #020817, #0b1120);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 30px;
+    }
+    .brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: 0.04em;
+    }
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .nav a {
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      background: rgba(15, 23, 42, 0.8);
+    }
+    .nav a.active {
+      border-color: rgba(167, 139, 250, 0.8);
+      background: rgba(167, 139, 250, 0.12);
+      color: #e9ddff;
+    }
+    h1 {
+      font-size: 2.4rem;
+      margin: 0 0 18px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin-top: 32px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+    p, li {
+      color: var(--text);
+      font-size: 1.02rem;
+    }
+    .muted {
+      color: var(--muted);
+    }
+    .panel {
+      background: rgba(17, 24, 39, 0.95);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    .tag {
+      display: inline-block;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: rgba(167, 139, 250, 0.12);
+      color: #ddd6fe;
+      margin-bottom: 12px;
+    }
+    code {
+      font-family: Consolas, "Courier New", monospace;
+      color: #d8b4fe;
+      background: rgba(15, 23, 42, 0.9);
+      padding: 2px 6px;
+      border-radius: 6px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+    .card {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+    }
+    .layout-mock {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 0;
+      background: rgba(11, 17, 32, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 18px;
+      min-height: 360px;
+    }
+    .editor-pane, .result-pane {
+      min-height: 360px;
+      position: relative;
+      background: #0d1627;
+    }
+    .editor-pane {
+      border-right: 1px solid var(--border);
+      padding: 16px 12px 16px 14px;
+    }
+    .line-numbers {
+      position: absolute;
+      left: 8px;
+      top: 16px;
+      width: 26px;
+      color: rgba(148, 163, 184, 0.65);
+      font-size: 12px;
+      line-height: 1.7;
+      font-family: Consolas, monospace;
+      text-align: right;
+    }
+    .source-lines {
+      position: absolute;
+      left: 40px;
+      right: 12px;
+      top: 16px;
+      color: #dbe8ff;
+      font-size: 12px;
+      line-height: 1.7;
+      font-family: Consolas, monospace;
+      white-space: pre-wrap;
+      opacity: 0.9;
+    }
+    .result-pane {
+      padding: 14px 14px 12px;
+      background: rgba(11, 17, 32, 0.97);
+    }
+    .query-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border: 1px solid rgba(125, 211, 252, 0.7);
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.9);
+      margin-bottom: 12px;
+    }
+    .query-box .query {
+      flex: 1;
+      color: #dbeafe;
+      background: transparent;
+      border: none;
+      font-size: 15px;
+      font-family: Consolas, monospace;
+      outline: none;
+    }
+    .find-btn {
+      background: rgba(59, 130, 246, 0.2);
+      border: 1px solid rgba(96, 165, 250, 0.8);
+      color: white;
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-weight: 700;
+      font-size: 12px;
+    }
+    .result-box {
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.9);
+      min-height: 260px;
+      padding: 16px;
+      color: #d1d5db;
+      font-family: Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+    .stepper {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      color: #dbeafe;
+      font-size: 12px;
+      font-family: Consolas, monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">Multi-Match</div>
+      <div class="nav">
+        <a href="index.html">Feature Home</a>
+        <a class="active" href="proposal.html">Proposal</a>
+      </div>
+    </div>
+
+    <div class="tag">Proposal</div>
+    <h1>Multi-Match Proposal</h1>
+    <p class="muted">
+      This feature is for queries that return many results. It stays attached to the source JSON editor and does not become a separate search page.
+    </p>
+
+    <div class="panel">
+      <h2>V1</h2>
+      <p>
+        V1 is the basic result flow. The user types a query such as <code>$.rawAst.program.body[*]</code>, executes it,
+        and sees a result list on the right side.
+      </p>
+      <p>
+        This proves the idea: multi-match queries can be evaluated and displayed in a dedicated result area.
+      </p>
+
+      <div class="layout-mock" aria-label="V1 mockup">
+        <div class="editor-pane">
+          <div class="line-numbers">1<br/>2<br/>3<br/>4<br/>5</div>
+          <div class="source-lines">{
+  "project": "Monaco IDE",
+  "feature": "Multi-Match V1",
+  "rawAst": {
+    "program": {
+      "body": [ ... ]
+    }
+  }
+}</div>
+        </div>
+        <div class="result-pane">
+          <div class="query-box">
+            <span class="query">$.rawAst.program.body[*]</span>
+            <button class="find-btn">Find</button>
+          </div>
+          <div class="result-box">[
+  { ... },
+  { ... },
+  { ... }
+]</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>V2</h2>
+      <p>
+        V2 is where the real feature begins. The right side must stop being a plain result dump and become a match stepper.
+      </p>
+      <p>
+        The user must be able to move through matches one by one and understand which result is currently active.
+      </p>
+      <p>
+        This means the right panel becomes larger, the query input stays on top, and a small stepper appears when the result count is more than one.
+      </p>
+
+      <div class="layout-mock" aria-label="V2 mockup">
+        <div class="editor-pane">
+          <div class="line-numbers">1<br/>2<br/>3<br/>4<br/>5<br/>6</div>
+          <div class="source-lines">{
+  "project": "Monaco IDE",
+  "feature": "Multi-Match V2",
+  "rawAst": {
+    "program": {
+      "body": [
+        { "type": "File" },
+        { "type": "Program" },
+        { "type": "FunctionDeclaration" }
+      ]
+    }
+  }
+}</div>
+        </div>
+        <div class="result-pane">
+          <div class="query-box">
+            <span class="query">$.rawAst.program.body[*]</span>
+            <button class="find-btn">Find</button>
+          </div>
+          <div class="result-box">[
+  { "type": "File" },
+  { "type": "Program" },
+  { "type": "FunctionDeclaration" }
+]</div>
+          <div class="stepper">[ 1 of 3 ]</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Problem</h3>
+        <p>Many results make it hard to understand which match is which and where each result comes from.</p>
+      </div>
+      <div class="card">
+        <h3>Goal</h3>
+        <p>Provide a simple stepping experience for multi-result queries without leaving the editor flow.</p>
+      </div>
+      <div class="card">
+        <h3>Scope</h3>
+        <p>This stays inside the feature folder and is only about multi-result queries and navigation.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>V2 UX</h2>
+      <ul>
+        <li>Left side stays as the source JSON editor.</li>
+        <li>Right side becomes the larger result and stepper area.</li>
+        <li>Top of the right pane keeps the query input.</li>
+        <li>When the query returns many results, a compact match counter appears.</li>
+        <li>The user can move between matches with buttons or keyboard actions.</li>
+        <li>The active match is highlighted in the source editor and the result panel.</li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <h2>V2 behavior</h2>
+      <p>
+        The user types a query like <code>$.rawAst.program.body[*]</code>. The right pane shows the collection, and the stepper helps the user move through items sequentially.
+      </p>
+      <p>
+        Each step keeps the source editor synchronized to the current result. This is the real value of V2: multi-match browsing becomes understandable and traceable.
+      </p>
+    </div>
+
+    <div class="panel">
+      <h2>Design rule</h2>
+      <p>
+        This feature should look like an extension of the editor, not a separate dashboard. The right pane is larger than the
+        autocomplete input area, but it still belongs to the same editor workflow.
+      </p>
+      <p>
+        The feature should remain narrow. It is not a general search product and it is not a full JSONPath runner page.
+      </p>
+    </div>
+
+    <div class="panel">
+      <h2>What V2 should do</h2>
+      <p>
+        V2 should focus on one thing: making multi-match results navigable and understandable inside the same editor workflow.
+      </p>
+      <p>
+        It is not a new app. It is a better result panel with stepping, synchronization, and clearer match tracking.
+      </p>
+    </div>
+  </div>
+</body>
+</html>
