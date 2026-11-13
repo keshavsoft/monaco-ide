@@ -1,0 +1,12 @@
+{
+  "sequence": [
+    {
+      "action": "createAll",
+      "input": {
+        "monaco": "$monaco",
+        "initialColumns": "$initialColumns"
+      },
+      "output": "editors"
+    }
+  ]
+}

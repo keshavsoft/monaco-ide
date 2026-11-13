@@ -1,0 +1,9 @@
+{
+  "sequence": [
+    {
+      "action": "createInitial",
+      "input": {},
+      "output": "initialColumns"
+    }
+  ]
+}

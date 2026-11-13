@@ -1,0 +1,9 @@
+{
+  "sequence": [
+    {
+      "action": "load",
+      "input": {},
+      "output": "monaco"
+    }
+  ]
+}

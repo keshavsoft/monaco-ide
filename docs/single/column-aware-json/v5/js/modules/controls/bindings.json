@@ -1,0 +1,17 @@
+[
+  {
+    "event": "click",
+    "selector": "#loadButton",
+    "action": "loadIntelligence"
+  },
+  {
+    "event": "click",
+    "selector": "#pullButton",
+    "action": "pullSchemaBack"
+  },
+  {
+    "event": "click",
+    "selector": "#resetButton",
+    "action": "reset"
+  }
+]
