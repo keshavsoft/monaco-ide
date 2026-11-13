@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "name": "Column-aware JSON Editor",
+    "version": "2.0.0",
+    "architecture": "instruction-driven",
+    "description": "Every application operation is declared here and executed by the action registry."
+  },
+  "sequence": [
+    {
+      "action": "loadColumns",
+      "input": { "url": "./data/columns.json" },
+      "output": "columns"
+    },
+    {
+      "action": "renderColumns",
+      "input": { "containerId": "columnList", "source": "columns" }
+    },
+    {
+      "action": "createColumnSchema",
+      "input": { "source": "columns" },
+      "output": "schema"
+    },
+    {
+      "action": "loadMonaco",
+      "input": {
+        "loaderUrl": "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/loader.min.js",
+        "baseUrl": "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs"
+      },
+      "output": "monaco"
+    },
+    {
+      "action": "bindSchemaToMonaco",
+      "input": { "monaco": "$monaco", "schema": "$schema" }
+    },
+    {
+      "action": "createJsonEditor",
+      "input": {
+        "monaco": "$monaco",
+        "containerId": "editor",
+        "initialValue": "{}",
+        "options": {
+          "language": "json",
+          "theme": "vs-dark",
+          "automaticLayout": true,
+          "minimap": { "enabled": false },
+          "fontSize": 14,
+          "lineNumbers": "on",
+          "tabSize": 2,
+          "formatOnPaste": true,
+          "formatOnType": true,
+          "scrollBeyondLastLine": false,
+          "suggest": { "showProperties": true, "showWords": false },
+          "quickSuggestions": { "other": true, "strings": true, "comments": false }
+        }
+      },
+      "output": "editor"
+    },
+    {
+      "action": "validateAndRender",
+      "input": {
+        "monaco": "$monaco",
+        "editor": "$editor",
+        "statusId": "status",
+        "messageId": "validationMessage"
+      }
+    },
+    {
+      "action": "bindEditorEvents",
+      "input": {
+        "monaco": "$monaco",
+        "editor": "$editor",
+        "statusId": "status",
+        "messageId": "validationMessage"
+      }
+    },
+    {
+      "action": "bindButtonEvents",
+      "input": {
+        "monaco": "$monaco",
+        "editor": "$editor",
+        "validateButtonId": "validateButton",
+        "resetButtonId": "resetButton",
+        "statusId": "status",
+        "messageId": "validationMessage",
+        "resetValue": "{}"
+      }
+    }
+  ]
+}

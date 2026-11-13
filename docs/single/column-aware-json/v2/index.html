@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Column-aware JSON Editor — V2</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/editor/editor.main.min.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../../index.html"><i class="bi bi-code-square"></i> Monaco IDE</a>
+    <span class="version">Column-aware JSON · V2 · Instruction-driven</span>
+    <div class="actions">
+      <button id="resetButton" type="button"><i class="bi bi-arrow-counterclockwise"></i> Reset</button>
+      <button id="validateButton" class="primary" type="button"><i class="bi bi-check2-circle"></i> Validate</button>
+    </div>
+  </header>
+  <main class="workspace">
+    <aside class="contract-panel">
+      <div class="panel-heading">
+        <div><span class="eyebrow">SINGLE SOURCE OF TRUTH</span><h1>Columns</h1></div>
+        <span class="count">3 fields</span>
+      </div>
+      <p class="intro">These definitions are loaded from data/columns.json. They control the allowed property names and value types.</p>
+      <div id="columnList"></div>
+      <div class="hint"><i class="bi bi-lightbulb"></i> Type <kbd>{</kbd> in the editor, then press <kbd>Ctrl</kbd> + <kbd>Space</kbd> for available columns.</div>
+    </aside>
+    <section class="editor-panel">
+      <div class="editor-heading">
+        <div><span class="eyebrow">DATA OBJECT</span><h2>Build one object</h2></div>
+        <span id="status" class="status">Loading</span>
+      </div>
+      <div id="editor" aria-label="JSON data editor"></div>
+      <footer class="editor-footer">
+        <span id="validationMessage">Loading instruction sequence…</span>
+        <span>JSON · Monaco</span>
+      </footer>
+    </section>
+  </main>
+  <script type="module" src="./js/index.js"></script>
+</body>
+</html>
