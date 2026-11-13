@@ -1,0 +1,12 @@
+*{box-sizing:border-box}
+:root{color-scheme:dark;font-family:Inter,Segoe UI,Arial,sans-serif;background:#0b1120;color:#e7edf7}
+body{margin:0;min-height:100vh;background:#0b1120}
+.topbar{height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:#111a2b;border-bottom:1px solid #26354d;gap:16px}
+.brand{font-size:17px;font-weight:700;white-space:nowrap}.brand-mark{display:inline-grid;place-items:center;width:30px;height:30px;margin-right:9px;border:1px solid #159bd2;border-radius:7px;color:#45c7ff}.crumb{margin-left:14px;color:#91a4c0;font-size:14px;font-weight:400}
+.toolbar{display:flex;align-items:center;gap:10px}.status{font-size:13px;padding:8px 12px;border-radius:20px}.inactive{color:#f5c36a;background:#493719}.active{color:#7be0ae;background:#123b2d}
+button{border:1px solid #344660;border-radius:8px;padding:10px 15px;font-size:13px;font-weight:600;cursor:pointer;color:#eaf2ff;background:#1b2940}button:hover{filter:brightness(1.18)}button.primary{background:#087eae;border-color:#159fd3}button.secondary{background:#202d42}
+.workspace{display:grid;grid-template-columns:1fr 1fr;gap:1px;min-height:calc(100vh - 66px);background:#29384e}
+.pane{min-width:0;display:flex;flex-direction:column;background:#0f1728;padding:22px 22px 14px}
+.pane-heading{display:flex;align-items:center;justify-content:space-between}.eyebrow{font-size:11px;letter-spacing:1.7px;font-weight:700;color:#37baf0}.pane h1{font-size:22px;margin:6px 0 0}.pane-tag{font-size:11px;letter-spacing:1px;color:#92a6c2;border:1px solid #34445d;border-radius:20px;padding:6px 10px}
+.description{min-height:42px;color:#9eafc8;font-size:13px;line-height:1.55;margin:12px 0 16px}.editor{height:calc(100vh - 250px);min-height:360px;border:1px solid #293a54;border-radius:8px;overflow:hidden}.pane footer{display:flex;justify-content:space-between;gap:10px;color:#8fa2bd;font-size:12px;padding:12px 2px 0}
+@media(max-width:850px){.topbar{height:auto;min-height:66px;align-items:flex-start;flex-direction:column;padding:14px}.toolbar{flex-wrap:wrap}.workspace{grid-template-columns:1fr}.editor{height:420px}.pane{padding:18px}}
