@@ -1,0 +1,102 @@
+[
+  {
+    "event": "input",
+    "selector": "#source",
+    "action": "onSourceInput"
+  },
+  {
+    "event": "click",
+    "selector": "#format",
+    "action": "format"
+  },
+  {
+    "event": "click",
+    "selector": "#minify",
+    "action": "minify"
+  },
+  {
+    "event": "click",
+    "selector": "#sort",
+    "action": "sortKeys"
+  },
+  {
+    "event": "click",
+    "selector": "#copy-path",
+    "action": "copyPath"
+  },
+  {
+    "event": "click",
+    "selector": "#reset",
+    "action": "reset"
+  },
+  {
+    "event": "click",
+    "selector": "#run-query",
+    "action": "runQuery"
+  },
+  {
+    "event": "click",
+    "selector": "#suggest",
+    "action": "suggestQuery"
+  },
+  {
+    "event": "click",
+    "selector": "#validate-query",
+    "action": "validateQuery"
+  },
+  {
+    "event": "click",
+    "selector": "#apply",
+    "action": "applyMatches"
+  },
+  {
+    "event": "click",
+    "selector": "#replace",
+    "action": "replaceMatches"
+  },
+  {
+    "event": "click",
+    "selector": "#delete-matches",
+    "action": "deleteMatches"
+  },
+  {
+    "event": "click",
+    "selector": "#view-source",
+    "action": "showSource"
+  },
+  {
+    "event": "click",
+    "selector": "#view-tree",
+    "action": "showTree"
+  },
+  {
+    "event": "click",
+    "selector": "#view-grid-button",
+    "action": "showGrid"
+  },
+  {
+    "event": "click",
+    "selector": "#add-property",
+    "action": "addProperty"
+  },
+  {
+    "event": "click",
+    "selector": "#rename-key",
+    "action": "renameKey"
+  },
+  {
+    "event": "click",
+    "selector": "#delete-selected",
+    "action": "deleteSelected"
+  },
+  {
+    "event": "click",
+    "selector": ".tree-node",
+    "action": "selectNode"
+  },
+  {
+    "event": "click",
+    "selector": ".match-item",
+    "action": "selectMatch"
+  }
+]

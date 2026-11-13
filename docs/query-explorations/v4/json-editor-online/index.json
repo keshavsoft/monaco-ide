@@ -1,0 +1,17 @@
+{
+  "id": "json-editor-online",
+  "name": "JSON Editor Online",
+  "eyebrow": "STRUCTURED EDITING",
+  "description": "Edit JSON as text and as a structure. Add properties, rename keys and delete selected nodes.",
+  "features": [
+    "format",
+    "addProperty",
+    "renameKey",
+    "deleteSelected",
+    "copyPath",
+    "reset",
+    "showSource",
+    "showTree"
+  ],
+  "query": "$.rawAst.program.body[*].type"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "jsonlab",
+  "name": "JSONLab",
+  "eyebrow": "QUERY + EDIT",
+  "description": "Explore a source document and query result workflow. Run a query, inspect matches and apply selected results to the editable document.",
+  "features": [
+    "format",
+    "runQuery",
+    "applyMatches",
+    "reset",
+    "showSource",
+    "showTree"
+  ],
+  "query": "$.rawAst.program.body[*].type"
+}

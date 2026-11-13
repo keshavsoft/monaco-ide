@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JSON Editor Online — V4 Story</title><link rel="stylesheet" href="../assets/style.css">
+<style>
+.story-hero{padding:42px 0 24px}.story-hero h1{font-size:clamp(38px,5vw,60px);margin:8px 0}.story-hero p{max-width:980px;color:var(--muted);font-size:18px}
+.story-layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(260px,.6fr);gap:18px;align-items:start}
+.story-panel{background:linear-gradient(145deg,#142238,#101b2d);border:1px solid var(--line);border-radius:18px;padding:24px;margin-bottom:18px}
+.story-panel h2{margin-top:0}.story-step{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:18px 0;border-top:1px solid var(--line)}.step-no{color:var(--accent);font:700 18px ui-monospace,monospace}.story-step h3{margin:0 0 6px}.story-step p{margin:0;color:var(--muted)}
+.tech-tag{display:inline-block;border:1px solid var(--line);border-radius:99px;padding:6px 10px;color:var(--accent);font-size:13px}
+.story-nav{display:flex;gap:10px;flex-wrap:wrap}.story-nav a{text-decoration:none}
+@media(max-width:850px){.story-layout{grid-template-columns:1fr}}
+</style></head>
+<body><main class="shell">
+<div class="topline"><div class="brand">KESHAVSOFT / QUERY EXPLORATIONS</div><div class="story-nav"><a class="btn primary" href="./">Open playground ↗</a><a class="btn" href="../">All V4 experiments</a></div></div>
+<header class="story-hero"><div class="eyebrow">V4 · TECHNICAL STORY</div><h1>JSON Editor Online</h1><p>Study direct editing in code and structured views: selecting, adding, renaming and deleting JSON nodes while keeping the document coherent.</p><span class="tech-tag">Browser-based JSON editor</span></header>
+<div class="story-layout"><div>
+<section class="story-panel"><h2>How this experiment works</h2><p class="muted">This describes our KeshavSoft learning implementation: how the shared JSON is represented, selected and changed in this playground.</p><article class="story-step"><div class="step-no">01</div><div><h3>Code and structure</h3><p>The code surface represents the serialized JSON. The structural view represents parsed objects and arrays.</p></div></article>
+<article class="story-step"><div class="step-no">02</div><div><h3>Node selection</h3><p>A selected tree node is identified by its path. The inspector reads the value at that path.</p></div></article>
+<article class="story-step"><div class="step-no">03</div><div><h3>Structural mutation</h3><p>Adding, renaming or deleting a node updates the parsed object, then serializes it back into the source editor.</p></div></article>
+<article class="story-step"><div class="step-no">04</div><div><h3>Validation</h3><p>Parsing is the boundary between text and data. Invalid JSON should produce an error without silently replacing the user's source.</p></div></article></section>
+<section class="story-panel"><h2>What we learned</h2><p>The editor is not just a textarea plus a tree. It needs a reliable synchronization contract between textual JSON and its structured representation.</p></section>
+</div><aside>
+<section class="story-panel"><h2>Does it use Monaco?</h2><p>The current jsoneditor.io product describes its code editor as Monaco-based. Be careful not to confuse it with other similarly named JSONEditor libraries and projects; verify the exact product before attributing its implementation.</p><p><a href="https://jsoneditor.io/" target="_blank" rel="noopener">Evidence / reference ↗</a></p></section>
+<section class="story-panel"><h2>External project</h2><p><a href="https://jsoneditor.io/" target="_blank" rel="noopener">Open JSON Editor Online ↗</a></p><p><a href="https://jsoneditor.io/" target="_blank" rel="noopener">Project documentation / source ↗</a></p></section>
+<section class="story-panel"><h2>Our V4 architecture</h2><ul><li><code>../shared/sample.json</code> — shared fixture loaded at runtime</li><li><code>index.json</code> — declarative lab configuration</li><li><code>bindings.json</code> — event-to-action mapping</li><li><code>actions.js</code> — named behavior functions</li><li><code>index.js</code> — startup and orchestration</li></ul><p class="subtle">The playground is our independent experiment, not copied third-party source code.</p></section>
+</aside></div>
+<footer class="footer">V4 separates the explanation from the working surface. Use the Playground link above to return to the live experiment.</footer>
+</main></body></html>

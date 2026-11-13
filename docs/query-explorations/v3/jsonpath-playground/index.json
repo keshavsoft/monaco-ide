@@ -1,0 +1,16 @@
+{
+  "id": "jsonpath-playground",
+  "name": "JSONPath Playground",
+  "eyebrow": "QUERY EXPERIMENTS",
+  "description": "Run JSONPath expressions, inspect matches, navigate paths and experiment with replacing or deleting matches.",
+  "features": [
+    "runQuery",
+    "applyMatches",
+    "replaceMatches",
+    "deleteMatches",
+    "copyPath",
+    "reset",
+    "showTree"
+  ],
+  "query": "$.rawAst.program.body[*].type"
+}

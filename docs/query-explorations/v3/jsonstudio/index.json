@@ -1,0 +1,16 @@
+{
+  "id": "jsonstudio",
+  "name": "JsonStudio",
+  "eyebrow": "SOURCE + TREE + GRID",
+  "description": "Compare source editing with structured tree and grid inspection. Select a node to inspect its path and value.",
+  "features": [
+    "format",
+    "runQuery",
+    "showSource",
+    "showTree",
+    "showGrid",
+    "copyPath",
+    "reset"
+  ],
+  "query": "$.rawAst.program.body[*].type"
+}

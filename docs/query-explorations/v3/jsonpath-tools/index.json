@@ -1,0 +1,15 @@
+{
+  "id": "jsonpath-tools",
+  "name": "JSONPath Tools",
+  "eyebrow": "AUTHORING ASSIST",
+  "description": "Explore query authoring support: suggestions, syntax diagnostics and live result inspection.",
+  "features": [
+    "suggestQuery",
+    "validateQuery",
+    "runQuery",
+    "copyPath",
+    "reset",
+    "showTree"
+  ],
+  "query": "$.rawAst.program.body[*].type"
+}

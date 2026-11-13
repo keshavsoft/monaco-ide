@@ -1,0 +1,17 @@
+{
+  "id": "nifty-json",
+  "name": "Nifty JSON",
+  "eyebrow": "EDITOR WORKFLOW",
+  "description": "Format, validate, sort, inspect paths and browse the shared nested document.",
+  "features": [
+    "format",
+    "minify",
+    "sortKeys",
+    "copyPath",
+    "runQuery",
+    "reset",
+    "showTree",
+    "showSource"
+  ],
+  "query": "$.rawAst.program.body[*].type"
+}
