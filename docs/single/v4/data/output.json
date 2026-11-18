@@ -1,0 +1,240 @@
+{
+  "tagName": "table",
+  "attributes": {
+    "id": "PR",
+    "class": "table table-striped table-hover table-bordered align-middle shadow-sm mb-0"
+  },
+  "children": [
+    {
+      "tagName": "thead",
+      "attributes": {
+        "class": "table-dark text-uppercase small"
+      },
+      "children": [
+        {
+          "tagName": "tr",
+          "children": [
+            {
+              "tagName": "th",
+              "textContent": "Invoice #",
+              "attributes": {
+                "class": "px-3 py-3 text-start",
+                "scope": "col"
+              }
+            },
+            {
+              "tagName": "th",
+              "textContent": "Customer / Entity",
+              "attributes": {
+                "class": "px-3 py-3 text-start",
+                "scope": "col"
+              }
+            },
+            {
+              "tagName": "th",
+              "textContent": "Status",
+              "attributes": {
+                "class": "px-3 py-3 text-center",
+                "scope": "col"
+              }
+            },
+            {
+              "tagName": "th",
+              "textContent": "Amount",
+              "attributes": {
+                "class": "px-3 py-3 text-end",
+                "scope": "col"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tagName": "tbody",
+      "attributes": {
+        "id": "PR-body",
+        "class": "table-group-divider"
+      },
+      "children": [
+        {
+          "tagName": "tr",
+          "attributes": {
+            "class": "align-middle"
+          },
+          "children": [
+            {
+              "tagName": "td",
+              "textContent": "INV-2026-1042",
+              "attributes": {
+                "class": "px-3 py-2.5 text-start font-monospace fw-bold text-primary"
+              }
+            },
+            {
+              "tagName": "td",
+              "textContent": "Keshav Enterprise Solutions Pvt Ltd",
+              "attributes": {
+                "class": "px-3 py-2.5 text-start"
+              }
+            },
+            {
+              "tagName": "td",
+              "attributes": {
+                "class": "px-3 py-2.5 text-center"
+              },
+              "children": [
+                {
+                  "tagName": "span",
+                  "textContent": "Paid",
+                  "attributes": {
+                    "class": "badge bg-success"
+                  }
+                }
+              ]
+            },
+            {
+              "tagName": "td",
+              "textContent": "₹1,25,000",
+              "attributes": {
+                "class": "px-3 py-2.5 text-end fw-bold text-dark"
+              }
+            }
+          ]
+        },
+        {
+          "tagName": "tr",
+          "attributes": {
+            "class": "align-middle"
+          },
+          "children": [
+            {
+              "tagName": "td",
+              "textContent": "INV-2026-1043",
+              "attributes": {
+                "class": "px-3 py-2.5 text-start font-monospace fw-bold text-primary"
+              }
+            },
+            {
+              "tagName": "td",
+              "textContent": "Sri Lakshmi Trading Co.",
+              "attributes": {
+                "class": "px-3 py-2.5 text-start"
+              }
+            },
+            {
+              "tagName": "td",
+              "attributes": {
+                "class": "px-3 py-2.5 text-center"
+              },
+              "children": [
+                {
+                  "tagName": "span",
+                  "textContent": "Pending",
+                  "attributes": {
+                    "class": "badge bg-warning text-dark"
+                  }
+                }
+              ]
+            },
+            {
+              "tagName": "td",
+              "textContent": "₹48,750",
+              "attributes": {
+                "class": "px-3 py-2.5 text-end fw-bold text-dark"
+              }
+            }
+          ]
+        },
+        {
+          "tagName": "tr",
+          "attributes": {
+            "class": "align-middle"
+          },
+          "children": [
+            {
+              "tagName": "td",
+              "textContent": "INV-2026-1044",
+              "attributes": {
+                "class": "px-3 py-2.5 text-start font-monospace fw-bold text-primary"
+              }
+            },
+            {
+              "tagName": "td",
+              "textContent": "Coastal Shipping & Logistics",
+              "attributes": {
+                "class": "px-3 py-2.5 text-start"
+              }
+            },
+            {
+              "tagName": "td",
+              "attributes": {
+                "class": "px-3 py-2.5 text-center"
+              },
+              "children": [
+                {
+                  "tagName": "span",
+                  "textContent": "Overdue",
+                  "attributes": {
+                    "class": "badge bg-danger"
+                  }
+                }
+              ]
+            },
+            {
+              "tagName": "td",
+              "textContent": "₹2,14,300",
+              "attributes": {
+                "class": "px-3 py-2.5 text-end fw-bold text-dark"
+              }
+            }
+          ]
+        },
+        {
+          "tagName": "tr",
+          "attributes": {
+            "class": "align-middle"
+          },
+          "children": [
+            {
+              "tagName": "td",
+              "textContent": "INV-2026-1045",
+              "attributes": {
+                "class": "px-3 py-2.5 text-start font-monospace fw-bold text-primary"
+              }
+            },
+            {
+              "tagName": "td",
+              "textContent": "Apex Cloud Technologies",
+              "attributes": {
+                "class": "px-3 py-2.5 text-start"
+              }
+            },
+            {
+              "tagName": "td",
+              "attributes": {
+                "class": "px-3 py-2.5 text-center"
+              },
+              "children": [
+                {
+                  "tagName": "span",
+                  "textContent": "Paid",
+                  "attributes": {
+                    "class": "badge bg-success"
+                  }
+                }
+              ]
+            },
+            {
+              "tagName": "td",
+              "textContent": "₹95,000",
+              "attributes": {
+                "class": "px-3 py-2.5 text-end fw-bold text-dark"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

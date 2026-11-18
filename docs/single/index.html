@@ -4,6 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Ensure directory URLs always have trailing slash so relative paths resolve correctly -->
+  <script>
+    if (!location.pathname.endsWith('/') && !location.pathname.split('/').pop().includes('.')) {
+      location.replace(location.pathname + '/' + location.search + location.hash);
+    }
+  </script>
   <title>Monaco IDE Single — Distraction-Free Single File Editors</title>
   <!-- Compiled Tailwind CSS & Bootstrap Icons -->
   <link rel="stylesheet" href="./v1/style.css">
@@ -16,6 +22,12 @@
     .card-hover:hover {
       transform: translateY(-4px);
       box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(56, 189, 248, 0.4);
+    }
+    .gradient-border-v4 {
+      position: relative;
+      background: linear-gradient(#18181b, #18181b) padding-box,
+                  linear-gradient(135deg, #06b6d4, #10b981, #6366f1) border-box;
+      border: 2px solid transparent;
     }
     .gradient-border-v3 {
       position: relative;
@@ -48,12 +60,16 @@
       </div>
 
       <!-- Quick Version Jump -->
-      <div class="flex items-center gap-2 text-xs font-mono">
-        <a href="./v1/index.html" class="text-zinc-400 hover:text-zinc-200 px-2.5 py-1 rounded hover:bg-zinc-800 transition" title="V1: Compact Studio with Explorer">v1</a>
-        <a href="./v2/index.html" class="text-zinc-400 hover:text-zinc-200 px-2.5 py-1 rounded hover:bg-zinc-800 transition" title="V2: Full Width without Explorer">v2</a>
-        <a href="./v3/index.html" class="text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-2.5 py-1 rounded font-bold hover:bg-emerald-900/60 transition" title="V3: Strict Single File Canvas">v3 Flagship</a>
-        <a href="./jsonpathly/v1/index.html" class="text-sky-400 bg-sky-950/80 border border-sky-800/80 px-2.5 py-1 rounded font-bold hover:bg-sky-900/80 transition" title="jsonpathly V1: RFC 9535 AST Visualizer">jsonpathly v1</a>
-        <a href="../index.html" class="text-zinc-400 hover:text-zinc-200 border border-zinc-700/80 px-2.5 py-1 rounded hover:bg-zinc-800 transition flex items-center gap-1 ml-2" title="Back to Docs Portal">
+      <div class="flex items-center gap-1.5 sm:gap-2 text-xs font-mono">
+        <a href="./v1/index.html" class="text-zinc-400 hover:text-zinc-200 px-2 py-1 rounded hover:bg-zinc-800 transition" title="V1: Compact Studio with Explorer">v1</a>
+        <a href="./v2/index.html" class="text-zinc-400 hover:text-zinc-200 px-2 py-1 rounded hover:bg-zinc-800 transition" title="V2: Full Width without Explorer">v2</a>
+        <a href="./v3/index.html" class="text-zinc-400 hover:text-zinc-200 px-2 py-1 rounded hover:bg-zinc-800 transition" title="V3: Strict Single File Canvas">v3</a>
+        <a href="./v4/index.html" class="text-emerald-300 bg-emerald-950/80 border border-emerald-700/80 px-2.5 py-1 rounded font-bold hover:bg-emerald-900/80 transition flex items-center gap-1" title="V4: Ultra-Lean Single Studio & Tab Sync">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>v4 Flagship</span>
+        </a>
+        <a href="./jsonpathly/v2/index.html" class="text-sky-400 bg-sky-950/60 border border-sky-800/60 px-2 py-1 rounded hover:bg-sky-900/60 transition" title="jsonpathly V2: Dual Monaco Visualizer">jsonpathly</a>
+        <a href="../index.html" class="text-zinc-400 hover:text-zinc-200 border border-zinc-700/80 px-2.5 py-1 rounded hover:bg-zinc-800 transition flex items-center gap-1 ml-1" title="Back to Docs Portal">
           <i class="bi bi-arrow-left"></i>
           <span class="hidden sm:inline">Docs Portal</span>
         </a>
@@ -70,7 +86,7 @@
     <!-- Status Pill -->
     <div class="inline-flex items-center gap-2 bg-zinc-900 border border-emerald-800/60 text-emerald-400 px-3.5 py-1 rounded-full text-xs font-medium mb-6 shadow-sm">
       <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-      <span>Monaco IDE Single • Dedicated Distraction-Free Code & Spec Workspaces</span>
+      <span>Monaco IDE Single • V4 Streamlined Studio &amp; Live Sync Released</span>
     </div>
 
     <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white max-w-3xl leading-tight mb-5">
@@ -79,44 +95,34 @@
     </h1>
 
     <p class="text-base sm:text-lg text-zinc-400 max-w-3xl mb-8 leading-relaxed">
-      Sometimes you don't need a heavy multi-project workspace, background service workers, or sprawling directory trees. You just want to open an individual file or JSON spec, inspect its syntax with Monaco precision, live-preview changes side-by-side, and save directly to your physical disk via native File System Access.
+      Sometimes you don't need a heavy multi-project workspace or background service workers. You just want to open an individual file or JSON spec, inspect and edit with Monaco precision, and seamlessly synchronize changes with zero friction.
     </p>
 
     <!-- Hero CTA Buttons -->
     <div class="flex flex-wrap items-center justify-center gap-3.5 mb-14">
-      <a href="./jsonpathly/v2/index.html"
-        class="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-sky-600 hover:from-emerald-400 hover:to-sky-500 text-white font-semibold text-sm px-6 py-3 rounded-lg shadow-lg shadow-emerald-950/60 transition transform hover:-translate-y-0.5 active:translate-y-0">
-        <i class="bi bi-lightning-charge-fill text-base"></i>
-        <span>Launch jsonpathly V2 (Clean Dual Monaco)</span>
-      </a>
-      <a href="./jsonpathly/v1/index.html"
-        class="inline-flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-700/80 font-semibold text-sm px-5 py-3 rounded-lg transition">
-        <i class="bi bi-search text-base"></i>
-        <span>jsonpathly V1 (Lab)</span>
+      <a href="./v4/index.html"
+        class="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 via-teal-500 to-sky-600 hover:from-emerald-400 hover:to-sky-500 text-white font-semibold text-sm px-6 py-3 rounded-lg shadow-lg shadow-emerald-950/60 transition transform hover:-translate-y-0.5 active:translate-y-0">
+        <i class="bi bi-rocket-takeoff-fill text-base"></i>
+        <span>Launch V4 Studio (Premier)</span>
       </a>
       <a href="./v3/index.html"
-        class="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-semibold text-sm px-6 py-3 rounded-lg shadow-lg shadow-emerald-950/60 transition transform hover:-translate-y-0.5 active:translate-y-0">
-        <i class="bi bi-play-circle-fill text-lg"></i>
-        <span>Launch V3 Strict Single File</span>
+        class="inline-flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-700/80 font-semibold text-sm px-5 py-3 rounded-lg transition">
+        <i class="bi bi-play-circle-fill text-emerald-400 text-base"></i>
+        <span>V3 Strict Single File</span>
       </a>
-      <a href="./v2/index.html"
+      <a href="./jsonpathly/v2/index.html"
         class="inline-flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-700/80 font-semibold text-sm px-5 py-3 rounded-lg transition">
-        <i class="bi bi-aspect-ratio"></i>
-        <span>Open V2 Full-Width Canvas</span>
-      </a>
-      <a href="./v1/index.html"
-        class="inline-flex items-center gap-2 bg-zinc-900/60 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 border border-zinc-800 font-semibold text-sm px-4 py-3 rounded-lg transition">
-        <i class="bi bi-layout-sidebar"></i>
-        <span>Open V1 with Explorer</span>
+        <i class="bi bi-columns text-sky-400"></i>
+        <span>jsonpathly V2 (Dual Monaco)</span>
       </a>
       <a href="../index.html"
-        class="inline-flex items-center gap-2 bg-zinc-900/40 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 border border-zinc-800/80 font-semibold text-sm px-4 py-3 rounded-lg transition">
+        class="inline-flex items-center gap-2 bg-zinc-900/50 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 border border-zinc-800 font-semibold text-sm px-4 py-3 rounded-lg transition">
         <i class="bi bi-arrow-left-circle"></i>
-        <span>Full Monaco IDE Studio</span>
+        <span>Full Monaco IDE</span>
       </a>
     </div>
 
-    <!-- The Story Section -->
+    <!-- The Evolution Story -->
     <section class="w-full text-left bg-zinc-900/60 border border-zinc-800 rounded-xl p-6 sm:p-8 mb-12 shadow-md">
       <div class="flex items-center gap-2 text-sky-400 font-semibold text-xs tracking-wider uppercase mb-2">
         <i class="bi bi-book-half"></i>
@@ -126,21 +132,18 @@
       
       <div class="space-y-4 text-zinc-300 text-sm leading-relaxed">
         <p>
-          While the full <strong>Monaco IDE</strong> grew into a comprehensive web-based development environment—complete with in-browser Service Worker HTTP virtual servers, virtual asset resolving, and multi-tab workspace sessions—many everyday workflows simply demanded a <em>featherlight, focused editor</em>.
-        </p>
-        <p>
-          When you want to tweak a configuration, craft a declarative JSON table specification, test a single HTML snippet, or edit a markdown doc, managing folder permissions and navigating deep folder structures is friction. The <strong>Single</strong> edition was created to solve this through progressive simplification:
+          While the full <strong>Monaco IDE</strong> is a comprehensive web-based IDE with in-browser virtual servers and multi-project workspaces, everyday editing tasks demand a <em>featherlight, focused canvas</em>. The <strong>Single</strong> edition progressively strips away unnecessary weight to deliver peak velocity:
         </p>
 
-        <!-- Progressive Steps Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-3">
+        <!-- Progressive Steps Grid: 4 Milestones -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-3">
           <div class="bg-zinc-950/70 border border-zinc-800/80 rounded-lg p-4">
             <div class="flex items-center gap-2 text-sky-400 font-mono text-xs font-bold mb-2">
               <span class="w-5 h-5 rounded-full bg-sky-950 border border-sky-800 flex items-center justify-center text-[10px]">1</span>
-              <span>V1: The Focused Core</span>
+              <span>V1: Focused Core</span>
             </div>
             <p class="text-xs text-zinc-400 leading-normal">
-              Stripped out the virtual server and background service workers while keeping the explorer sidebar, quick open palette (<code class="text-zinc-300">Ctrl+P</code>), and split preview.
+              Stripped out the virtual server while keeping the explorer sidebar, Quick Open (<code class="text-zinc-300">Ctrl+P</code>), and split preview.
             </p>
           </div>
 
@@ -150,17 +153,27 @@
               <span>V2: No Explorer</span>
             </div>
             <p class="text-xs text-zinc-400 leading-normal">
-              Eliminated the left workspace directory tree altogether. 100% of viewport width is dedicated to the Monaco Editor with direct file open (<code class="text-zinc-300">Ctrl+O</code>).
+              Eliminated the workspace directory tree. 100% of viewport width dedicated to Monaco with direct file picker (<code class="text-zinc-300">Ctrl+O</code>).
             </p>
           </div>
 
-          <div class="bg-zinc-950/70 border border-emerald-800/60 rounded-lg p-4 bg-emerald-950/10">
-            <div class="flex items-center gap-2 text-emerald-400 font-mono text-xs font-bold mb-2">
-              <span class="w-5 h-5 rounded-full bg-emerald-950 border border-emerald-800 flex items-center justify-center text-[10px]">3</span>
-              <span>V3: Strict Single File</span>
+          <div class="bg-zinc-950/70 border border-zinc-800/80 rounded-lg p-4">
+            <div class="flex items-center gap-2 text-teal-400 font-mono text-xs font-bold mb-2">
+              <span class="w-5 h-5 rounded-full bg-teal-950 border border-teal-800 flex items-center justify-center text-[10px]">3</span>
+              <span>V3: Strict Single</span>
             </div>
             <p class="text-xs text-zinc-400 leading-normal">
-              Removed the multi-tab strip. Exactly one file in memory. Native disk persistence via <code class="text-emerald-300">Ctrl+S</code>, active file status indicator, and instant split preview.
+              Removed multi-tab management. Exactly one file in memory with native disk persistence via <code class="text-teal-300">Ctrl+S</code>.
+            </p>
+          </div>
+
+          <div class="bg-zinc-950/70 border border-emerald-800/80 rounded-lg p-4 bg-emerald-950/15">
+            <div class="flex items-center gap-2 text-emerald-300 font-mono text-xs font-bold mb-2">
+              <span class="w-5 h-5 rounded-full bg-emerald-950 border border-emerald-700 flex items-center justify-center text-[10px]">4</span>
+              <span>V4: Streamlined Studio</span>
+            </div>
+            <p class="text-xs text-zinc-400 leading-normal">
+              Ultra-lean 42px header, active file indicator, and zero-latency BroadcastChannel live sync to preview (<code class="text-emerald-300">Ctrl+Enter</code>).
             </p>
           </div>
         </div>
@@ -177,179 +190,37 @@
           </div>
           <h2 class="text-2xl font-bold text-white">Choose Your Workspace</h2>
         </div>
-        <span class="text-xs text-zinc-500 font-mono">3 Editions Available</span>
+        <span class="text-xs text-zinc-500 font-mono">4 Single Editions + 1 Visualizer</span>
       </div>
 
       <div class="space-y-5">
 
-        <!-- Card jsonpathly v2 (Pristine Clean 50/50 Dual Monaco) -->
-        <div class="rounded-xl p-6 sm:p-7 card-hover bg-gradient-to-r from-emerald-950/40 via-zinc-900/60 to-sky-950/40 border border-emerald-800/80">
+        <!-- Card V4 (Flagship & Premier Studio) -->
+        <div class="gradient-border-v4 rounded-xl p-6 sm:p-7 card-hover">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
             <div class="flex items-center gap-3">
               <span class="text-sm font-bold font-mono text-emerald-400 bg-emerald-950 border border-emerald-800 px-3 py-1 rounded-md">
-                jsonpathly v2
+                v4
               </span>
               <div>
                 <div class="flex items-center gap-2">
-                  <h3 class="text-lg font-bold text-white">Ruthless Simplicity — Dual Monaco 50/50 Split</h3>
-                  <span class="text-[10px] font-bold text-emerald-300 bg-emerald-950/80 border border-emerald-700/80 px-2 py-0.5 rounded-full uppercase tracking-wide">
-                    Clean • Distraction-Free
+                  <h3 class="text-lg font-bold text-white">Streamlined Single File Studio</h3>
+                  <span class="text-[10px] font-bold text-emerald-300 bg-emerald-950/90 border border-emerald-600/90 px-2 py-0.5 rounded-full uppercase tracking-wide flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Flagship • Latest</span>
                   </span>
                 </div>
-                <p class="text-xs text-zinc-400 mt-0.5">Single top header • Zero clutter • 50% Source Editor ↔ 50% Result Editor • Declarative form-load instructions</p>
+                <p class="text-xs text-zinc-400 mt-0.5">Ultra-compact 42px header • Active file indicator • Live Tab 2 BroadcastChannel sync (<code class="text-emerald-300 font-mono">Ctrl+Enter</code>)</p>
               </div>
             </div>
 
             <div class="flex items-center gap-2 shrink-0">
-              <a href="./jsonpathly/v2/index.html"
-                class="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-sky-600 hover:from-emerald-400 hover:to-sky-500 text-white font-semibold text-xs px-4 py-2 rounded-lg shadow transition">
+              <a href="./v4/index.html"
+                class="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 via-teal-500 to-sky-600 hover:from-emerald-400 hover:to-sky-500 text-white font-semibold text-xs px-4 py-2 rounded-lg shadow-lg shadow-emerald-950/80 transition">
                 <i class="bi bi-play-fill text-base"></i>
-                <span>Launch V2</span>
+                <span>Launch V4 Studio</span>
               </a>
-              <a href="./jsonpathly/v2/proposal.md" target="_blank"
-                class="inline-flex items-center gap-1.5 text-zinc-400 hover:text-zinc-200 border border-zinc-700 px-3 py-2 rounded-lg text-xs hover:bg-zinc-800 transition">
-                <i class="bi bi-file-earmark-text"></i>
-                <span>Proposal ADR</span>
-              </a>
-            </div>
-          </div>
-
-          <p class="text-sm text-zinc-300 mb-4 leading-relaxed">
-            Eliminates all intermediate telemetry clutter, preset pills, and latency badges. Pure 50/50 canvas with declarative form-load dual Monaco activation, native file selection, and direct RFC 9535 query evaluation.
-          </p>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 pt-2 border-t border-zinc-800/80 text-xs">
-            <div class="flex items-center gap-2 text-zinc-300">
-              <i class="bi bi-columns text-emerald-400"></i>
-              <span>50/50 Dual Monaco Split</span>
-            </div>
-            <div class="flex items-center gap-2 text-zinc-300">
-              <i class="bi bi-check2-circle text-sky-400"></i>
-              <span>Zero Clutter / Sub-headers</span>
-            </div>
-            <div class="flex items-center gap-2 text-zinc-300">
-              <i class="bi bi-file-earmark-code text-indigo-400"></i>
-              <span>instructions.json Lifecycle</span>
-            </div>
-            <div class="flex items-center gap-2 text-zinc-300">
-              <i class="bi bi-lightning text-amber-400"></i>
-              <span>0.7ms Query Speed</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Section: V3 Component Laboratories (Isolated Task Editions) -->
-        <div class="bg-zinc-900/40 border border-zinc-800 rounded-xl p-6">
-          <div class="flex items-center justify-between mb-4">
-            <div class="flex items-center gap-2">
-              <i class="bi bi-cpu text-purple-400 text-lg"></i>
-              <h3 class="text-base font-bold text-white">V3 Component Laboratories (Isolated Evaluation Editions)</h3>
-            </div>
-            <span class="text-[11px] font-mono text-zinc-500">4 Isolated Tasks</span>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <!-- Lab 1: Context Menu -->
-            <div class="bg-zinc-950/80 border border-amber-900/50 hover:border-amber-700 rounded-lg p-4 transition flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-xs font-bold font-mono text-amber-400 bg-amber-950 border border-amber-800 px-2 py-0.5 rounded">Task 1: Context Menu</span>
-                  <span class="text-[10px] text-amber-300 font-mono">Alt+I / Alt+Click</span>
-                </div>
-                <h4 class="text-sm font-semibold text-white mb-1">Right-Click Node Inspection</h4>
-                <p class="text-xs text-zinc-400 leading-normal">Right-click any node in Left Monaco ➔ "Inspect Node with JSONPath". Resolves path and evaluates with zero typing.</p>
-              </div>
-              <div class="pt-3 mt-3 border-t border-zinc-800/80 flex items-center justify-between">
-                <a href="./jsonpathly/context-menu/index.html" class="inline-flex items-center gap-1.5 text-xs text-amber-300 font-semibold hover:underline">
-                  <i class="bi bi-journal-text"></i> Story
-                </a>
-                <div class="flex items-center gap-2">
-                  <a href="./jsonpathly/context-menu/v1/index.html" class="text-[11px] bg-zinc-800 hover:bg-zinc-700 text-zinc-300 px-2 py-0.5 rounded border border-zinc-700">V1</a>
-                  <a href="./jsonpathly/context-menu/v2/index.html" class="text-[11px] bg-amber-950/80 hover:bg-amber-900 text-amber-300 font-bold px-2 py-0.5 rounded border border-amber-800">V2 (Pure)</a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Lab 2: Traceability -->
-            <div class="bg-zinc-950/80 border border-sky-900/50 hover:border-sky-700 rounded-lg p-4 transition flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-xs font-bold font-mono text-sky-400 bg-sky-950 border border-sky-800 px-2 py-0.5 rounded">Task 2: Traceability</span>
-                  <span class="text-[10px] text-sky-300 font-mono">Click-to-Locate</span>
-                </div>
-                <h4 class="text-sm font-semibold text-white mb-1">Synchronized Source Highlighting</h4>
-                <p class="text-xs text-zinc-400 leading-normal">Click any line in the Right Editor ➔ Left Editor automatically scrolls to and highlights that source code line.</p>
-              </div>
-              <div class="pt-3 mt-3 border-t border-zinc-800/80 flex items-center justify-between">
-                <a href="./jsonpathly/traceability/v1/index.html" class="inline-flex items-center gap-1.5 text-xs text-sky-300 font-semibold hover:underline">
-                  <i class="bi bi-play-circle"></i> Launch Traceability V1
-                </a>
-                <a href="./jsonpathly/traceability/v1/proposal.md" target="_blank" class="text-[11px] text-zinc-500 hover:text-zinc-300 font-mono">ADR</a>
-              </div>
-            </div>
-
-            <!-- Lab 3: Autocomplete -->
-            <div class="bg-zinc-950/80 border border-teal-900/50 hover:border-teal-700 rounded-lg p-4 transition flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-xs font-bold font-mono text-teal-400 bg-teal-950 border border-teal-800 px-2 py-0.5 rounded">Task 3: Autocomplete</span>
-                  <span class="text-[10px] text-teal-300 font-mono">Arrow / Tab / Enter</span>
-                </div>
-                <h4 class="text-sm font-semibold text-white mb-1">Dynamic Key Introspection</h4>
-                <p class="text-xs text-zinc-400 leading-normal">Type $ or $. in the search bar ➔ a floating palette suggests child keys from the loaded JSON tree in real time.</p>
-              </div>
-              <div class="pt-3 mt-3 border-t border-zinc-800/80 flex items-center justify-between">
-                <a href="./jsonpathly/autocomplete/v1/index.html" class="inline-flex items-center gap-1.5 text-xs text-teal-300 font-semibold hover:underline">
-                  <i class="bi bi-play-circle"></i> Launch Autocomplete V1
-                </a>
-                <a href="./jsonpathly/autocomplete/v1/proposal.md" target="_blank" class="text-[11px] text-zinc-500 hover:text-zinc-300 font-mono">ADR</a>
-              </div>
-            </div>
-
-            <!-- Lab 4: Multi-Match Stepper -->
-            <div class="bg-zinc-950/80 border border-purple-900/50 hover:border-purple-700 rounded-lg p-4 transition flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-xs font-bold font-mono text-purple-400 bg-purple-950 border border-purple-800 px-2 py-0.5 rounded">Task 4: Multi-Match</span>
-                  <span class="text-[10px] text-purple-300 font-mono">F3 / Shift+F3</span>
-                </div>
-                <h4 class="text-sm font-semibold text-white mb-1">Contextual Match Stepper</h4>
-                <p class="text-xs text-zinc-400 leading-normal">When queries return arrays (e.g. body[*]), a discreet stepper appears to cycle matches with synchronized source tracking.</p>
-              </div>
-              <div class="pt-3 mt-3 border-t border-zinc-800/80 flex items-center justify-between">
-                <a href="./jsonpathly/multi-match/v1/index.html" class="inline-flex items-center gap-1.5 text-xs text-purple-300 font-semibold hover:underline">
-                  <i class="bi bi-play-circle"></i> Launch Multi-Match V1
-                </a>
-                <a href="./jsonpathly/multi-match/v1/proposal.md" target="_blank" class="text-[11px] text-zinc-500 hover:text-zinc-300 font-mono">ADR</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card jsonpathly v1 (New Flagship AST Visualizer) -->
-        <div class="rounded-xl p-6 sm:p-7 card-hover bg-gradient-to-r from-sky-950/40 via-zinc-900/60 to-indigo-950/40 border border-sky-800/80">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-            <div class="flex items-center gap-3">
-              <span class="text-sm font-bold font-mono text-sky-400 bg-sky-950 border border-sky-800 px-3 py-1 rounded-md">
-                jsonpathly v1
-              </span>
-              <div>
-                <div class="flex items-center gap-2">
-                  <h3 class="text-lg font-bold text-white">RFC 9535 AST &amp; JSONPath Visualizer</h3>
-                  <span class="text-[10px] font-bold text-sky-300 bg-sky-950/80 border border-sky-700/80 px-2 py-0.5 rounded-full uppercase tracking-wide">
-                    New • AST Engine
-                  </span>
-                </div>
-                <p class="text-xs text-zinc-400 mt-0.5">High-speed RFC 9535 query bar • Normalized paths • Click-to-jump line navigation</p>
-              </div>
-            </div>
-
-            <div class="flex items-center gap-2 shrink-0">
-              <a href="./jsonpathly/v1/index.html"
-                class="inline-flex items-center gap-2 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-semibold text-xs px-4 py-2 rounded-lg shadow transition">
-                <i class="bi bi-play-fill text-base"></i>
-                <span>Launch jsonpathly V1</span>
-              </a>
-              <a href="./jsonpathly/v1/README.md" target="_blank"
+              <a href="./v4/README.md" target="_blank"
                 class="inline-flex items-center gap-1.5 text-zinc-400 hover:text-zinc-200 border border-zinc-700 px-3 py-2 rounded-lg text-xs hover:bg-zinc-800 transition">
                 <i class="bi bi-file-earmark-text"></i>
                 <span>Docs</span>
@@ -358,50 +229,50 @@
           </div>
 
           <p class="text-sm text-zinc-300 mb-4 leading-relaxed">
-            Specially engineered for exploring large, deeply-nested JSON payloads (such as Babel ASTs like <code class="text-sky-300 font-mono">raw-ast.json</code>). Includes instant RFC 9535 query execution, preset chips, match counters, latency metrics, and interactive line-jumping directly into Monaco.
+            The most refined distraction-free single-buffer environment. Features a razor-thin 42px studio bar, native file loading from disk via <code class="text-zinc-200 font-mono">Ctrl+O</code>, active file status indicator, smooth cursor rendering, and instant zero-latency multi-tab synchronization with downstream renderers.
           </p>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 pt-2 border-t border-zinc-800/80 text-xs">
             <div class="flex items-center gap-2 text-zinc-300">
-              <i class="bi bi-search text-sky-400"></i>
-              <span>RFC 9535 JSONPath Engine</span>
+              <i class="bi bi-layout-sidebar-inset-reverse text-emerald-400"></i>
+              <span>42px Compact Studio Header</span>
             </div>
             <div class="flex items-center gap-2 text-zinc-300">
-              <i class="bi bi-signpost-split text-indigo-400"></i>
-              <span>Normalized Paths List</span>
+              <i class="bi bi-folder2-open text-sky-400"></i>
+              <span>Direct File Open (<code class="font-mono text-zinc-400">Ctrl+O</code>)</span>
             </div>
             <div class="flex items-center gap-2 text-zinc-300">
-              <i class="bi bi-cursor-fill text-emerald-400"></i>
-              <span>Click-to-Jump Line Navigation</span>
+              <i class="bi bi-broadcast text-indigo-400"></i>
+              <span>Tab 2 Live Sync (<code class="font-mono text-zinc-400">Ctrl+Enter</code>)</span>
             </div>
             <div class="flex items-center gap-2 text-zinc-300">
-              <i class="bi bi-lightning text-amber-400"></i>
-              <span>Zero-Server Browser ESM</span>
+              <i class="bi bi-speedometer2 text-amber-400"></i>
+              <span>Instant Zero-State Boot</span>
             </div>
           </div>
         </div>
 
-        <!-- Card V3 (Flagship) -->
-        <div class="gradient-border-v3 rounded-xl p-6 sm:p-7 card-hover">
+        <!-- Card V3 (Strict Single File) -->
+        <div class="bg-zinc-900/60 border border-zinc-800 rounded-xl p-6 sm:p-7 card-hover">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
             <div class="flex items-center gap-3">
-              <span class="text-sm font-bold font-mono text-emerald-400 bg-emerald-950 border border-emerald-800 px-3 py-1 rounded-md">
+              <span class="text-sm font-bold font-mono text-teal-400 bg-teal-950 border border-teal-800 px-3 py-1 rounded-md">
                 v3
               </span>
               <div>
                 <div class="flex items-center gap-2">
                   <h3 class="text-lg font-bold text-white">Strict Single File Canvas</h3>
-                  <span class="text-[10px] font-bold text-emerald-300 bg-emerald-950/80 border border-emerald-700/80 px-2 py-0.5 rounded-full uppercase tracking-wide">
-                    Flagship • Recommended
+                  <span class="text-[10px] font-semibold text-teal-300 bg-teal-950/80 border border-teal-700/80 px-2 py-0.5 rounded-full">
+                    Direct Disk Handle
                   </span>
                 </div>
-                <p class="text-xs text-zinc-400 mt-0.5">Strict single-file lifecycle • No tab confusion • Direct disk save (<code class="text-emerald-300 font-mono">Ctrl+S</code>)</p>
+                <p class="text-xs text-zinc-400 mt-0.5">Strict single-file lifecycle • No tab strip • Direct disk save (<code class="text-teal-300 font-mono">Ctrl+S</code>)</p>
               </div>
             </div>
 
             <div class="flex items-center gap-2 shrink-0">
               <a href="./v3/index.html"
-                class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-semibold text-xs px-4 py-2 rounded-lg shadow transition">
+                class="inline-flex items-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-zinc-100 font-semibold text-xs px-4 py-2 rounded-lg border border-zinc-700 transition">
                 <i class="bi bi-play-fill text-base"></i>
                 <span>Launch V3</span>
               </a>
@@ -414,12 +285,12 @@
           </div>
 
           <p class="text-sm text-zinc-300 mb-4 leading-relaxed">
-            The purest distraction-free Monaco environment. Multi-tab management is completely eliminated; opening a file replaces the active editor buffer immediately. Edits are saved directly back to the physical file on disk using the browser's native File System Access API (<code class="text-zinc-200 font-mono">FileSystemFileHandle.createWritable()</code>).
+            Multi-tab management is completely eliminated; opening a file replaces the active editor buffer immediately. Edits are saved directly back to the physical file on disk using the browser's native File System Access API (<code class="text-zinc-200 font-mono">FileSystemFileHandle.createWritable()</code>).
           </p>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 pt-2 border-t border-zinc-800/80 text-xs">
             <div class="flex items-center gap-2 text-zinc-300">
-              <i class="bi bi-hdd-network text-emerald-400"></i>
+              <i class="bi bi-hdd-network text-teal-400"></i>
               <span>Native Disk Save (<code class="font-mono text-zinc-400">Ctrl+S</code>)</span>
             </div>
             <div class="flex items-center gap-2 text-zinc-300">
@@ -431,13 +302,13 @@
               <span>Live Split Preview (<code class="font-mono text-zinc-400">Ctrl+\</code>)</span>
             </div>
             <div class="flex items-center gap-2 text-zinc-300">
-              <i class="bi bi-speedometer2 text-amber-400"></i>
-              <span>Instant Zero-State Boot</span>
+              <i class="bi bi-lightning text-amber-400"></i>
+              <span>Single Buffer Memory</span>
             </div>
           </div>
         </div>
 
-        <!-- Card V2 -->
+        <!-- Card V2 (Full-Width Canvas) -->
         <div class="bg-zinc-900/60 border border-zinc-800 rounded-xl p-6 sm:p-7 card-hover">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
             <div class="flex items-center gap-3">
@@ -446,9 +317,9 @@
               </span>
               <div>
                 <div class="flex items-center gap-2">
-                  <h3 class="text-lg font-bold text-white">Distraction-Free Editor (Without Explorer)</h3>
+                  <h3 class="text-lg font-bold text-white">Full-Width Canvas (Without Explorer)</h3>
                   <span class="text-[10px] font-semibold text-zinc-400 bg-zinc-800 border border-zinc-700 px-2 py-0.5 rounded-full">
-                    Full-Width Canvas
+                    100% Viewport
                   </span>
                 </div>
                 <p class="text-xs text-zinc-400 mt-0.5">100% viewport width for Monaco • Multi-document tab strip • Live preview</p>
@@ -470,7 +341,7 @@
           </div>
 
           <p class="text-sm text-zinc-300 mb-4 leading-relaxed">
-            Designed for programmers who want full horizontal screen space. The left explorer tree is omitted entirely, giving the editor unobstructed canvas width. Multi-document buffers can be loaded from disk via <code class="text-zinc-200 font-mono">Ctrl+O</code> and switched via the compact tab strip.
+            Designed for full horizontal screen real estate. The left explorer tree is omitted entirely, giving the editor unobstructed canvas width. Multi-document buffers can be loaded from disk via <code class="text-zinc-200 font-mono">Ctrl+O</code> and switched via the compact tab strip.
           </p>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 pt-2 border-t border-zinc-800/80 text-xs">
@@ -493,7 +364,7 @@
           </div>
         </div>
 
-        <!-- Card V1 -->
+        <!-- Card V1 (Compact Studio Shell) -->
         <div class="bg-zinc-900/40 border border-zinc-800/80 rounded-xl p-6 sm:p-7 card-hover">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
             <div class="flex items-center gap-3">
@@ -504,7 +375,7 @@
                 <div class="flex items-center gap-2">
                   <h3 class="text-lg font-bold text-white">Compact Studio Shell</h3>
                   <span class="text-[10px] font-semibold text-zinc-500 bg-zinc-800/60 border border-zinc-700/60 px-2 py-0.5 rounded-full">
-                    Baseline Architecture
+                    Baseline
                   </span>
                 </div>
                 <p class="text-xs text-zinc-400 mt-0.5">Streamlined studio layout • Workspace tree explorer • Quick Open (<code class="text-zinc-300 font-mono">Ctrl+P</code>)</p>
@@ -549,6 +420,62 @@
           </div>
         </div>
 
+        <!-- Card jsonpathly v2 (Dual Monaco Visualizer) -->
+        <div class="rounded-xl p-6 sm:p-7 card-hover bg-gradient-to-r from-sky-950/30 via-zinc-900/60 to-indigo-950/30 border border-sky-800/60">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+            <div class="flex items-center gap-3">
+              <span class="text-sm font-bold font-mono text-sky-400 bg-sky-950 border border-sky-800 px-3 py-1 rounded-md">
+                jsonpathly
+              </span>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-lg font-bold text-white">Dual Monaco 50/50 RFC 9535 Visualizer</h3>
+                  <span class="text-[10px] font-bold text-sky-300 bg-sky-950/80 border border-sky-700/80 px-2 py-0.5 rounded-full uppercase tracking-wide">
+                    Clean Companion
+                  </span>
+                </div>
+                <p class="text-xs text-zinc-400 mt-0.5">Single top header • Zero clutter • 50% Source Editor ↔ 50% Result Editor</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 shrink-0">
+              <a href="./jsonpathly/v2/index.html"
+                class="inline-flex items-center gap-2 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-semibold text-xs px-4 py-2 rounded-lg shadow transition">
+                <i class="bi bi-play-fill text-base"></i>
+                <span>Launch jsonpathly V2</span>
+              </a>
+              <a href="./jsonpathly/v2/proposal.md" target="_blank"
+                class="inline-flex items-center gap-1.5 text-zinc-400 hover:text-zinc-200 border border-zinc-700 px-3 py-2 rounded-lg text-xs hover:bg-zinc-800 transition">
+                <i class="bi bi-file-earmark-text"></i>
+                <span>Proposal ADR</span>
+              </a>
+            </div>
+          </div>
+
+          <p class="text-sm text-zinc-300 mb-4 leading-relaxed">
+            High-speed query engine for exploring large, deeply-nested JSON payloads with zero clutter. Pure 50/50 canvas with native file selection and instant RFC 9535 JSONPath evaluation.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 pt-2 border-t border-zinc-800/80 text-xs">
+            <div class="flex items-center gap-2 text-zinc-300">
+              <i class="bi bi-columns text-sky-400"></i>
+              <span>50/50 Dual Monaco Split</span>
+            </div>
+            <div class="flex items-center gap-2 text-zinc-300">
+              <i class="bi bi-search text-emerald-400"></i>
+              <span>RFC 9535 Query Engine</span>
+            </div>
+            <div class="flex items-center gap-2 text-zinc-300">
+              <i class="bi bi-file-earmark-code text-indigo-400"></i>
+              <span>Declarative Instructions</span>
+            </div>
+            <div class="flex items-center gap-2 text-zinc-300">
+              <i class="bi bi-lightning text-amber-400"></i>
+              <span>Sub-millisecond Execution</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -567,7 +494,8 @@
               <th class="py-3 px-3">Feature</th>
               <th class="py-3 px-3">V1 Shell</th>
               <th class="py-3 px-3">V2 Canvas</th>
-              <th class="py-3 px-3 text-emerald-400">V3 Strict (Recommended)</th>
+              <th class="py-3 px-3">V3 Strict</th>
+              <th class="py-3 px-3 text-emerald-400 font-bold">V4 Studio (Latest)</th>
               <th class="py-3 px-3 text-zinc-500">Full IDE (V13)</th>
             </tr>
           </thead>
@@ -577,42 +505,48 @@
               <td class="py-3 px-3 text-sky-400"><i class="bi bi-check-circle-fill"></i> Yes (<code class="font-mono">Ctrl+B</code>)</td>
               <td class="py-3 px-3 text-zinc-500"><i class="bi bi-x-circle"></i> None</td>
               <td class="py-3 px-3 text-zinc-500"><i class="bi bi-x-circle"></i> None</td>
+              <td class="py-3 px-3 text-zinc-500"><i class="bi bi-x-circle"></i> None</td>
               <td class="py-3 px-3 text-sky-400"><i class="bi bi-check-circle-fill"></i> Full Tree</td>
             </tr>
             <tr>
-              <td class="py-3 px-3 font-semibold text-white">Multi-Document Tabs</td>
-              <td class="py-3 px-3 text-sky-400"><i class="bi bi-check-circle-fill"></i> Yes</td>
-              <td class="py-3 px-3 text-sky-400"><i class="bi bi-check-circle-fill"></i> Yes</td>
-              <td class="py-3 px-3 text-emerald-400 font-semibold"><i class="bi bi-dash-circle"></i> Strict 1 File</td>
-              <td class="py-3 px-3 text-sky-400"><i class="bi bi-check-circle-fill"></i> Yes</td>
+              <td class="py-3 px-3 font-semibold text-white">Header Profile</td>
+              <td class="py-3 px-3 text-zinc-400">Full (56px)</td>
+              <td class="py-3 px-3 text-zinc-400">Full (56px)</td>
+              <td class="py-3 px-3 text-zinc-400">Standard (48px)</td>
+              <td class="py-3 px-3 text-emerald-400 font-semibold"><i class="bi bi-check-circle-fill"></i> 42px Ultra-Lean</td>
+              <td class="py-3 px-3 text-zinc-400">Full Multi-Tier</td>
             </tr>
             <tr>
-              <td class="py-3 px-3 font-semibold text-white">Direct Disk Save (Ctrl+S)</td>
+              <td class="py-3 px-3 font-semibold text-white">Document Buffer</td>
+              <td class="py-3 px-3 text-sky-400">Multi-Tab Strip</td>
+              <td class="py-3 px-3 text-sky-400">Multi-Tab Strip</td>
+              <td class="py-3 px-3 text-teal-400">Strict 1 File</td>
+              <td class="py-3 px-3 text-emerald-400 font-semibold"><i class="bi bi-check-circle-fill"></i> Single Spec Canvas</td>
+              <td class="py-3 px-3 text-sky-400">Multi-Workspace Tabs</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-3 font-semibold text-white">File Open &amp; Save</td>
               <td class="py-3 px-3 text-zinc-400">Buffer save</td>
-              <td class="py-3 px-3 text-zinc-400">Buffer save</td>
-              <td class="py-3 px-3 text-emerald-400 font-bold"><i class="bi bi-check-circle-fill"></i> Native File System API</td>
-              <td class="py-3 px-3 text-sky-400"><i class="bi bi-check-circle-fill"></i> Native / Virtual</td>
+              <td class="py-3 px-3 text-zinc-400">File Picker (<code class="font-mono">Ctrl+O</code>)</td>
+              <td class="py-3 px-3 text-teal-400">Native FileSystem API</td>
+              <td class="py-3 px-3 text-emerald-400 font-bold"><i class="bi bi-check-circle-fill"></i> File (<code class="font-mono">Ctrl+O</code>) + Active Pill</td>
+              <td class="py-3 px-3 text-sky-400">Native / Virtual</td>
             </tr>
             <tr>
-              <td class="py-3 px-3 font-semibold text-white">Quick Open Palette (Ctrl+P)</td>
-              <td class="py-3 px-3 text-sky-400"><i class="bi bi-check-circle-fill"></i> Yes</td>
-              <td class="py-3 px-3 text-zinc-500"><i class="bi bi-x-circle"></i> None</td>
-              <td class="py-3 px-3 text-zinc-500"><i class="bi bi-x-circle"></i> None</td>
-              <td class="py-3 px-3 text-sky-400"><i class="bi bi-check-circle-fill"></i> Yes</td>
+              <td class="py-3 px-3 font-semibold text-white">Live Sync / Preview</td>
+              <td class="py-3 px-3 text-sky-400">Split Preview</td>
+              <td class="py-3 px-3 text-sky-400">Split Preview</td>
+              <td class="py-3 px-3 text-teal-400">Split Preview (<code class="font-mono">Ctrl+\</code>)</td>
+              <td class="py-3 px-3 text-emerald-400 font-bold"><i class="bi bi-check-circle-fill"></i> Tab 2 Broadcast Sync (<code class="font-mono">Ctrl+Enter</code>)</td>
+              <td class="py-3 px-3 text-sky-400">In-Browser Server</td>
             </tr>
             <tr>
-              <td class="py-3 px-3 font-semibold text-white">Split Live Preview (Ctrl+\)</td>
-              <td class="py-3 px-3 text-sky-400"><i class="bi bi-check-circle-fill"></i> Yes</td>
-              <td class="py-3 px-3 text-sky-400"><i class="bi bi-check-circle-fill"></i> Yes</td>
-              <td class="py-3 px-3 text-emerald-400"><i class="bi bi-check-circle-fill"></i> Yes</td>
-              <td class="py-3 px-3 text-sky-400"><i class="bi bi-check-circle-fill"></i> In-Browser Server</td>
-            </tr>
-            <tr>
-              <td class="py-3 px-3 font-semibold text-white">HTTP Virtual Server (Service Worker)</td>
-              <td class="py-3 px-3 text-zinc-500"><i class="bi bi-x-circle"></i> None</td>
-              <td class="py-3 px-3 text-zinc-500"><i class="bi bi-x-circle"></i> None</td>
-              <td class="py-3 px-3 text-zinc-500"><i class="bi bi-x-circle"></i> None</td>
-              <td class="py-3 px-3 text-sky-400 font-semibold"><i class="bi bi-check-circle-fill"></i> Port 8080 Intercept</td>
+              <td class="py-3 px-3 font-semibold text-white">Virtual Server Overhead</td>
+              <td class="py-3 px-3 text-emerald-400">Zero</td>
+              <td class="py-3 px-3 text-emerald-400">Zero</td>
+              <td class="py-3 px-3 text-emerald-400">Zero</td>
+              <td class="py-3 px-3 text-emerald-400 font-bold">Zero</td>
+              <td class="py-3 px-3 text-zinc-400">Service Worker Active</td>
             </tr>
           </tbody>
         </table>
@@ -637,11 +571,11 @@
         </div>
         <div class="p-3 bg-zinc-950/80 rounded border border-zinc-800">
           <div class="text-amber-400 font-bold mb-1">2. actions.js</div>
-          <div class="text-zinc-400 text-[11px]">Pure, decoupled domain functions executed when events fire (e.g. <code class="text-zinc-300">togglePreview</code>, <code class="text-zinc-300">saveCurrentFile</code>).</div>
+          <div class="text-zinc-400 text-[11px]">Pure, decoupled domain functions executed when events fire (e.g. <code class="text-zinc-300">openFile</code>, <code class="text-zinc-300">playHtml</code>).</div>
         </div>
         <div class="p-3 bg-zinc-950/80 rounded border border-zinc-800">
-          <div class="text-emerald-400 font-bold mb-1">3. eventBus.js</div>
-          <div class="text-zinc-400 text-[11px]">Asynchronous pub/sub broker allowing modules (header, preview, statusBar, tabs) to communicate cleanly without direct coupling.</div>
+          <div class="text-emerald-400 font-bold mb-1">3. state.js / channel</div>
+          <div class="text-zinc-400 text-[11px]">Reactive state &amp; zero-latency <code class="text-zinc-300">BroadcastChannel</code> broker synchronizing data models across browser tabs in real time.</div>
         </div>
       </div>
     </section>
@@ -671,4 +605,3 @@
 </body>
 
 </html>
-

@@ -1,0 +1,20 @@
+[
+  {
+    "event": "click",
+    "selector": "#openFileBtn",
+    "action": "openFile",
+    "narration": "Open a local JSON file from disk."
+  },
+  {
+    "event": "click",
+    "selector": "#toggleWordWrapBtn",
+    "action": "toggleWordWrap",
+    "narration": "Toggle word wrapping in Monaco editor."
+  },
+  {
+    "event": "click",
+    "selector": "#toggleMinimapBtn",
+    "action": "toggleMinimap",
+    "narration": "Toggle minimap in Monaco editor."
+  }
+]
